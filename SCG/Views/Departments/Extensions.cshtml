@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SCG.Models.Department>
+
+@{
+  ViewBag.Title = "Extensions";
+}
+
+<h2>Extensions</h2>
+
+@foreach (var department in Model)
+{
+  <h3>@department.Name</h3>
+  foreach (var location in ViewData["Locations"] as IEnumerable<SCG.Models.Location>)
+  {
+    System.Collections.Generic.List<SCG.Models.User> users = ViewBag.Users;
+    if (users.Where(u => u.DepartmentID == department.Id && u.LocationID == location.Id).Count() > 0)
+    {
+      <h4>@location.Name</h4>
+    }
+    foreach (var user in ViewData["Users"] as IEnumerable<SCG.Models.User>)
+    {
+      if (user.DepartmentID == department.Id && user.LocationID == location.Id)
+      {
+        <div>@user.FirstName @user.LastName @user.Extension</div>
+      }
+    }
+  }
+}

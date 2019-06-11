@@ -1,0 +1,358 @@
+﻿@model SCG.Models.Engagement
+
+@{
+  ViewBag.Title = "Delete";
+}
+
+<div id="openDelete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure you want to delete this Engagement?</h4>
+      </div>
+      <div class="modal-body fixed">
+        <dl class="dl-horizontal">
+          <dt>
+            @Html.DisplayNameFor(model => model.Location)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Location)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Description)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Description)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Frequency)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Frequency)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Visits)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Visits)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Date)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Date)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.OnStartDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.OnStartDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.OnEndDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.OnEndDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.OffStartDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.OffStartDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.OffEndDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.OffEndDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.ReportModel)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.ReportModel)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Exp)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Exp)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Fee)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Fee)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.AlmReview)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.AlmReview)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.LiquidityReview)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.LiquidityReview)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.BackTest)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.BackTest)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.IsReview)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.IsReview)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.PenTest)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.PenTest)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.VulA)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.VulA)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.LetterMailed)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.LetterMailed)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.LetterSigned)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.LetterSigned)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Core)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Core)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Software)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Software)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.NachaFull)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.NachaFull)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Notes)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Year)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Year)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Binder)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Binder)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.EndFieldDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.EndFieldDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.DateCheckedIn)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.DateCheckedIn)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.FileCompletedBy)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.FileCompletedBy)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.InitialReviewBy)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.InitialReviewBy)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.InitialReviewDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.InitialReviewDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.ReadyForSh)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.ReadyForSh)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.ShReviewBy)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.ShReviewBy)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.ShReviewCompleteDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.ShReviewCompleteDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.DraftReportDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.DraftReportDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.FinalReportDate)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.FinalReportDate)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.FileReviewYN)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.FileReviewYN)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.Bank.Name)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Bank.Name)
+          </dd>
+
+          <dt>
+            @Html.DisplayNameFor(model => model.EngageType.Name)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.EngageType.Name)
+          </dd>
+
+        </dl>
+      </div>
+      <div class="modal-footer">
+        @using (Html.BeginForm())
+        {
+          @Html.AntiForgeryToken()
+
+          <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger pull-right" />
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

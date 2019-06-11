@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SCG.Models.Role>
+
+@{
+    ViewBag.Title = "Employee Roles";
+    ViewBag.Page_Area = "admin_area";
+    ViewBag.Page_ID = "roles_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<style>
+    .table {
+        border-bottom: #E2E2E2 solid 1px;
+    }
+
+        .table th {
+            white-space: nowrap;
+            text-align: center;
+            border-left: #CCCCCC dashed 1px;
+        }
+
+        .table td {
+            border-left: #CCCCCC dashed 1px;
+        }
+
+            .table td:nth-child(1) {
+                width: 100%;
+            }
+
+            .table th:nth-last-child(1),
+            .table td:nth-last-child(1) {
+                white-space: nowrap;
+                text-align: right;
+                border-right: #CCCCCC dashed 1px;
+            }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="tools">
+            <i class="fa fa-plus add js_popup" w="60%" h="40%" rel="/Roles/Create/" aria-hidden="true" title="Create New Subscription"></i>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="tools">
+                <i class="fa fa-pencil-square edt" aria-hidden="true" onclick="fPopup('/Roles/Edit/@Html.Raw(item.Id)','60%','40%');" title="Edit Subscription"></i>
+                <i class="fa fa-minus-square dlt" aria-hidden="true" onclick="fPopup('/Roles/Delete/@Html.Raw(item.Id)','30%','40%');" title="Delete Subscription"></i>
+            </td>
+        </tr>
+    }
+
+</table>

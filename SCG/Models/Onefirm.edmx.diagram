@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f94391ce29d4287810aef3dc8e8728d" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="Onefirm.AttendeeGuestType" Width="1.5" PointX="6.125" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Attendee" Width="1.5" PointX="3.125" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Contact" Width="1.5" PointX="6.375" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Department" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.FavoriteProject" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.GuestType" Width="1.5" PointX="8.125" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.KeyPerson" Width="1.5" PointX="8.125" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Location" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Priority" Width="1.5" PointX="14.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Project" Width="1.5" PointX="11.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.ProjectSchedule" Width="1.5" PointX="10.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Role" Width="1.5" PointX="0.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Rsvp" Width="1.5" PointX="0.625" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.SharedProject" Width="1.5" PointX="8.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.TaskNote" Width="1.5" PointX="15.625" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Task" Width="1.5" PointX="13.125" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Touch" Width="1.5" PointX="6.125" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.Type" Width="1.5" PointX="16" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.UserRole" Width="1.5" PointX="2.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Onefirm.User" Width="1.5" PointX="5" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="Onefirm.FK_AttendeeGuestTypes_Attendees" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_AttendeeGuestTypes_GuestTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Attendees_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Attendees_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Contacts_Attendees" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Rsvps_Attendees" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Touches_Attendees" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Contacts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Users_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_FavoriteProjects_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_FavoriteProjects_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_GuestTypes_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_KeyPersons_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_KeyPersons_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Users_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Priorities_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Projects_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_ProjectSchedules_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_SharedProjects_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Tasks_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Types_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_ProjectSchedules_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_UserRoles_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_SharedProjects_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_TaskNotes_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_TaskNotes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Tasks_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Touches_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_UserRoles_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Onefirm.FK_Tasks_Priorities" />
+        <AssociationConnector Association="Onefirm.FK_Tasks_Types" />
+        <EntityTypeShape EntityType="Onefirm.Page" Width="1.5" PointX="0.5" PointY="10.875" />
+        <AssociationConnector Association="Onefirm.FK_Pages_Departments" />
+        <AssociationConnector Association="Onefirm.FK_Pages_Users" />
+        <EntityTypeShape EntityType="Onefirm.Bank" Width="1.5" PointX="10.375" PointY="16.125" />
+        <EntityTypeShape EntityType="Onefirm.EngagementMember" Width="1.5" PointX="14.75" PointY="10.25" />
+        <EntityTypeShape EntityType="Onefirm.EngagementNote" Width="1.5" PointX="10.375" PointY="10.375" />
+        <EntityTypeShape EntityType="Onefirm.Engagement" Width="1.5" PointX="12.875" PointY="13.625" />
+        <EntityTypeShape EntityType="Onefirm.EngageType" Width="1.5" PointX="10.375" PointY="21.5" />
+        <AssociationConnector Association="Onefirm.FK_EngagementNotes_Banks" />
+        <AssociationConnector Association="Onefirm.FK_Engagements_Banks" />
+        <AssociationConnector Association="Onefirm.FK_EngagementMembers_Engagements" />
+        <AssociationConnector Association="Onefirm.FK_EngagementMembers_Users" />
+        <AssociationConnector Association="Onefirm.FK_EngagementNotes_Engagements" />
+        <AssociationConnector Association="Onefirm.FK_EngagementNotes_Users" />
+        <AssociationConnector Association="Onefirm.FK_Engagements_EngageTypes" />
+        <AssociationConnector Association="Onefirm.FK_Attendees_Departments" />
+        <EntityTypeShape EntityType="Onefirm.RssFeed" Width="1.5" PointX="7.25" PointY="17.375" />
+        <AssociationConnector Association="Onefirm.FK_RssFeeds_Users" />
+        <EntityTypeShape EntityType="Onefirm.File" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="Onefirm.Profile" Width="1.5" PointX="7.5" PointY="21.125" />
+        <AssociationConnector Association="Onefirm.FK_Profiles_To_Users" />
+        <EntityTypeShape EntityType="Onefirm.MessageOfTheDay" Width="1.5" PointX="0.5" PointY="14" />
+        <AssociationConnector Association="Onefirm.FK_MessageOfTheDay_ToUsers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

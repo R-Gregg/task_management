@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmailTemplate</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica,Verdana;
+        }
+
+        #emailtemplate {
+            width: 100%;
+            max-width: 900px;
+            border-collapse: collapse;
+        }
+
+        #emailheader {
+            background-color: #1a1a1a;
+        }
+
+            #emailheader table {
+                width: 100%;
+            }
+
+                #emailheader table tr td {
+                    padding: 4%;
+                    color: white;
+                    font-size: 24px;
+                }
+
+        #emailnavbar {
+            text-align: right;
+            background-color: black;
+        }
+
+            #emailnavbar table {
+            }
+
+                #emailnavbar table td {
+                    padding: 5px 10px;
+                }
+
+            #emailnavbar td a {
+                font-size: 12px;
+                color: white;
+                text-decoration: none;
+            }
+
+
+
+        #emailbody {
+            padding: 4%;
+            color: black;
+            background-color: white;
+            line-height: 125%;
+        }
+
+            #emailbody h1 {
+                font-size: 24px;
+                color: black;
+            }
+
+                #emailbody h1 span {
+                    display: block;
+                    font-size: 16px;
+                }
+
+            #emailbody h2 {
+                font-size: 16px;
+                color: black;
+            }
+
+                #emailbody h2 span {
+                    display: block;
+                    font-size: 14px;
+                    color: #1a1a1a;
+                }
+
+            #emailbody h3 {
+                font-size: 14px;
+                color: black;
+            }
+
+                #emailbody h3 span {
+                    display: block;
+                    font-size: 12px;
+                }
+
+            #emailbody p, #emailbody ul, #emailbody ol {
+                font-size: 12px;
+                color: black;
+            }
+
+            #emailbody a {
+                color: #a11818;
+            }
+
+        #emailfooter {
+            padding: 4%;
+            text-align: center;
+            border-top: #1a1a1a solid 1px;
+        }
+
+            #emailfooter p {
+                font-size: 12px;
+                color: grey;
+            }
+
+            #emailfooter a {
+                color: black;
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+
+    <table id="emailtemplate" align="center" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td id="emailheader">
+                    <table>
+                        <tr>
+                            <td>[COMPANY]</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td id="emailnavbar">
+                    <table align="right">
+                        <tr>
+                            <td><a href="http://www.saltmarshcpa.com/cpa-firm/overview.asp">About</a></td>
+                            <td><a href="http://www.saltmarshcpa.com/cpa-services/overview.asp">Services</a></td>
+                            <td><a href="http://www.saltmarshcpa.com/cpa-news/">News</a></td>
+                            <td><a href="http://www.saltmarshcpa.com/cpa-firm/locations.asp">Contact</a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="emailbody">
+
+                    <!--
+                    <h1>You've Got Mail!</h1>
+                    <p>Today, we are releasing a new Cumulative Quality Update for the .NET Framework. It is specific to Windows 10 build 1703 (Creators Update). Previously released security and quality updates are included in this release, including the July 2017 Security and Quality Rollup, the July 2017 Preview of Quality Rollup and the June 2017 Cumulative Quality… Read more</p>
+                    <hr />
+                    -->
+                    [BODY]
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td id="emailfooter">
+                    <p>You are receiving this email because of your affiliation with [COMPANY]. If you are receiving this by mistake or wish to discontinue receiving emails from [COMPANY] then please contact <a href="[EMAIL]">[EMAIL]</a>.</p>
+                    <p>Email Application GRND EML.V2.R1.2017 - [c] [DATE] <a href='http://www.grendelfly.com'>Grendelfly Studio</a> - Division of Saltmarsh, Cleaveland, &amp; Gund</p>
+                </td>
+            </tr>
+
+        </tfoot>
+    </table>
+
+</body>
+</html>

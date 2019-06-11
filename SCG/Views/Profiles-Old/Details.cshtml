@@ -1,0 +1,50 @@
+﻿@model SCG.Models.Profile
+
+@{
+    ViewBag.Title = "Social Roster";
+    ViewBag.Page_Area = "onefirm_area";
+    ViewBag.Page_ID = "social_roster_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<style>
+        .roster-photo {
+            display: block;
+            width: 225px;
+            height: 330px;
+            margin-right: 40px;
+            float:left;
+            background: #CCC url() center top no-repeat;
+            background-size: cover;
+            border-radius: 8px;
+        }
+</style>
+
+<div class="page-holder">
+
+    <h2>@ViewBag.Title</h2>
+
+    <span class="roster-photo" style="background-image:url(/assets/Employees/@Html.DisplayFor(model => model.pro__Photo))"></span>
+
+    <h2>
+        @Html.DisplayFor(model => model.pro__First_Name)
+        @Html.DisplayFor(model => model.pro__Last_Name)<br />
+        @Html.DisplayFor(model => model.pro__Creds)<br />
+        @Html.DisplayFor(model => model.pro__Title)
+    </h2>
+    <p>
+        @Html.DisplayFor(model => model.pro__Phone)<br />
+        @Html.DisplayFor(model => model.pro__Email)
+    </p>
+    
+
+    @Html.Raw(Model.pro__Bio)
+
+    <div style="clear: both;"></div>
+
+    @Html.DisplayFor(model => model.pro__Areas)
+    @Html.DisplayFor(model => model.pro__File_Resume)
+    @Html.DisplayFor(model => model.pro__File_VCard)
+    @Html.DisplayFor(model => model.pro__LinkedIn)
+
+</div>

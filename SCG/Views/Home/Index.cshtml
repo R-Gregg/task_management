@@ -1,0 +1,307 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Page_Nav = "onefirm";
+    ViewBag.Page_Area = "onefirm_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<div class="body" id="body-2">
+  <div>
+
+    <div id="motd" style=" width: 97%; min-height: inherit; min-height: unset; overflow: hidden;">
+      <span class="handle">Message of the Day - <strong>@ViewBag.MOTD.Title</strong></span>
+      @*<span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>*@
+      <span class="content">@Html.Raw(ViewBag.MOTD.Description)</span>
+    </div>
+
+    <div style="text-align:right; padding-right:20px; opacity:.6;">
+      <span id="manage_widgets" style=" font-size: 10px; color:#900; padding:3px; cursor:pointer;" onclick="fPopup('/Home/UserProfile/','60%','40%');">
+        <i class="fa fa-square" aria-hidden="true" style="color:#900;"></i> Manage Widgets
+      </span>
+    </div>
+
+    <ul id="cards">
+
+      @foreach (var feed in ViewBag.Feeds)
+      {
+        if (feed.Title == "Weather")
+        {
+          <li class="ui-state-default" style="overflow: hidden;" feed="@feed.Id">
+            <span class="handle">Weather</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content" style="padding:0;">
+              <iframe style="display: block; width: 100%; height:298px;" src="//saltmarshcpa.com/webstreams/weather.asp" frameborder="0" scrolling="no"></iframe>
+            </span>
+          </li>
+        }
+        else
+        {
+          <li class="ui-state-default custom" url="@feed.Url" feed="@feed.Id">
+            <span class="handle">@feed.Title</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content">
+              <span class="rss-load"><i class="fa fa-smile-o fa-spin" aria-hidden="true"></i></span>
+            </span>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+</div>
+
+@section Scripts {
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      $(document).ready(function () {
+        // Cards Behavior
+        $(function () {
+          $("#cards").sortable({
+            revert: true,
+            containment: "#body-2",
+            update: function (e) {
+              var i = 0;
+              $(".ui-state-default").each(function () {
+                var attr = $(this).attr('feed');
+                if (typeof attr !== typeof undefined && attr !== false) {
+                  $.ajax({
+                    url: '/RssFeeds/OrderEdit/' + $(this).attr('feed'),
+                    method: 'POST',
+                    data: { Order: i }
+                  });
+                  i++;
+                }
+              });
+            }
+          });
+        });
+
+        $('#cards .check').click(function () {
+          $(this).closest('li').fadeOut();
+        });
+
+        $('.ui-state-default.custom').each(function () {
+          getRss($(this), $(this).attr('url'));
+        });
+      }); // $(document).ready(function()
+    }); // $(function()
+
+    function getRss(sel, url) {
+      $.ajax({
+        url: '/Home/GetRss?url=' + url,
+        type: 'GET',
+        success: function (data) {
+          $(sel).find('.content').html(data);
+          // Add Target Blank
+          $('.ui-state-default .content a').attr({ 'target': '_blank' });
+
+          // Twitter Header Patch
+          var content = $('.handle:contains("Twitter")').parent('li').children('.content')
+          if (content.find('.twitter-timeline-link').find('span.hidden-dot').length == 0) {
+            content.find('.twitter-timeline-link').append('<span class="hidden-dot hide">.</span>');
+          }
+          var dupe = content.find('h3');
+          dupe.next().remove();
+          dupe.remove();
+        }
+      });
+    }
+  </script>
+
+  <!-- From https://responsivevoice.org/ -->
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+  <script>
+    //    // Add Target Blank
+    //    $('.ui-state-default .content a').attr({ 'target': '_blank' });
+
+    //// Twitter Header Patch
+    //$('.handle:contains("Twitter")').parent('li').children('.content').find('h3').hide().next().hide();
+
+    // Place audio icons
+    var ico = '';
+    ico = ico + '<i class="fa fa-volume-up audio audio-on" aria-hidden="true" title="Audio/Read"></i>';
+    ico = ico + '<i class="fa fa-play-circle-o audio audio-resume" aria-hidden="true" title="Resume Audio"></i>';
+    ico = ico + '<i class="fa fa-pause-circle-o audio audio-pause" aria-hidden="true" title="Pause Audio"></i>';
+    ico = ico + '<i class="fa fa-stop-circle-o audio audio-off" aria-hidden="true" title="Stop Audio"></i>';
+
+    $('li.ui-state-default').prepend('<span class="audio-controls">' + ico + '</span>')
+
+    // Hide Audio Controls
+    $('.handle:contains("Weather")').parent('li').children('.audio-controls').remove();
+
+    // Add Pause After Header Tags
+    var pause = '<font style="display:none;">.</font>';
+    $('.ui-state-default h1,.ui-state-default h2,.ui-state-default h3,.ui-state-default h4,.ui-state-default a').each(function (i, e) {
+      var whole = $(e).html();
+      var span = $(e).find('span').html();
+      var head = whole.replace(span, '');
+      if (span != undefined && span != '' && span.indexOf('.') == -1) {
+        $(e).find('span').append(pause);
+      }
+      if (span != undefined && head.indexOf('.') == -1) {
+        $(e).find('span').before(pause);
+      }
+      if (span == undefined && head.indexOf('.') == -1) {
+        $(e).append(pause);
+      }
+    });
+
+    $('.audio-on').click(function () {
+      $('.audio-off,.audio-pause,.audio-resume').hide(); // Reset
+      $('.audio-on').show(); // Reset
+      $(this).hide();
+      $(this).closest('li').find('.audio-off').show();
+      $(this).closest('li').find('.audio-pause').show();
+      $(this).closest('li').find('.audio-resume').hide();
+      var t = $(this).closest('li').text();
+      responsiveVoice.cancel(); // Stop all current audio
+      responsiveVoice.speak(t, 'UK English Male');
+    });
+    $('.audio-off').click(function () {
+      $(this).hide();
+      $(this).closest('li').find('.audio-on').show();
+      $(this).closest('li').find('.audio-pause').hide();
+      $(this).closest('li').find('.audio-resume').hide();
+      responsiveVoice.cancel();
+    });
+    $('.audio-pause').click(function () {
+      $(this).hide();
+      $(this).closest('li').find('.audio-on').hide();
+      $(this).closest('li').find('.audio-off').show();
+      $(this).closest('li').find('.audio-resume').show();
+      responsiveVoice.pause();
+    });
+    $('.audio-resume').click(function () {
+      $(this).hide();
+      $(this).closest('li').find('.audio-on').hide();
+      $(this).closest('li').find('.audio-pause').show();
+      $(this).closest('li').find('.audio-off').show();
+      responsiveVoice.resume();
+    });
+
+      $(document).ready(function () {
+      // Instance the tour
+      function homeTour(restart) {
+        var tour = new Tour({
+          name: 'HomeTour',
+          delay: false,
+          autoscroll: false,
+          steps: [
+            {
+              title: "Saltmarsh CPA Intranet",
+              content: "Welcome to the Saltmarsh CPA Intranet! Follow this short tour to get familiar with the new design.",
+              orphan: true,
+              backdrop: true
+            },
+            {
+              element: "#col-1",
+              title: "Two Minutes and Conference Rooms",
+              content: "The latest Two Minutes with Saltmarsh video and the Pensacola Conference Room schedules are shown here. Make sure to click on 'More Information' to join Skype calls or get additional meeting notes.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: "#motd",
+              title: "Message of the Day",
+              content: "Here you can view the Message of the Day widget. Firm wide announcements will appear here.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: ".ui-state-default:eq(1)",
+              title: "Widgets",
+              content: "These are your customizable widgets. Drag them around to set the order.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: "#manage_widgets",
+              title: "Manage Widgets",
+              content: "The Manage Widgets button will allow you to select the content for each widget.",
+              placement: 'left',
+              backdrop: true
+            },
+            {
+              element: "#col-3",
+              title: "Saltmarsh Facebook",
+              content: "The Saltmarsh Facebook feed for the latest firm news.",
+              placement: 'left',
+              backdrop: true
+            },
+            {
+              element: "#main_nav",
+              title: "Website Navigation",
+              content: "Your main navigation will always be in the top left corner. From here you can get to the main areas of the website.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: "#nav",
+              title: "Additional Navigation",
+              content: "The second and third levels can be found here.",
+              placement: 'bottom',
+              backdrop: true
+            },
+            {
+              element: "#profile_button",
+              title: "Profile",
+              content: "Click this link to go to your Profile Page. From there you can edit personal information.",
+              placement: 'left',
+              backdrop: true
+            },
+            {
+              element: "#full-screen",
+              title: "Full Screen",
+              content: "Clicking this icon will allow you to enter full screen mode. This can be helpful in some of the Intranet Sub-Programs to see more information.",
+              placement: 'left',
+              backdrop: true
+            },
+            {
+              element: "#help",
+              title: "Help",
+              content: "Click on this icon to bring up a tutorial. Currently only the Home Page has a tutorial, but more are coming in the near future.",
+              placement: 'left',
+              backdrop: true
+            },
+            {
+              title: "Enjoy!",
+              content: "We hope you enjoy the new Intranet! There's a lot of new features, so please click around and explore the site. For any problems or questions, please email <a href='mailto:support@saltmarshcpa.com'>support@saltmarshcpa.com</a>",
+              orphan: true,
+              backdrop: true,
+              onHide: function () {
+                $('#eggBasket').load('/EasterEggs/SuperLee/');
+              }
+            }
+          ],
+          onStart: function () {
+            $('html, body').animate({ scrollTop: '0px' }, 300);
+          },
+          onShow: function (tour) {
+            $('body').addClass('stop-scrolling');
+          },
+          onHide: function (tour) {
+            $('body').removeClass('stop-scrolling');
+          }
+        });
+
+        // Initialize the tour
+        tour.init();
+
+        // Start the tour
+        if (restart == true) {
+          tour.restart();
+        } else {
+          tour.start();
+        }
+      }
+
+      homeTour(false);
+
+      $('#help').click(function () {
+        homeTour(true);
+      });
+    });
+  </script>
+}

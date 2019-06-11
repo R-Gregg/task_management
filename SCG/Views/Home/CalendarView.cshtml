@@ -1,0 +1,16 @@
+﻿<div id="openCalendar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@ViewBag.Calendar.Subject</h4>
+      </div>
+
+      <div class="modal-body">
+        @ViewBag.Calendar.Subject<br />
+        @*@string.Format("{0:g}", Convert.ToDateTime(ViewBag.Calendar.Start.DateTime).ToLocalTime())<br />
+        Organizer: @Html.Raw(ViewBag.Calendar.Organizer.EmailAddress.Name)*@
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model Subscriptions.Models.subscription_tbl
+
+<h2>Notes</h2>
+
+<hr />
+
+<div style="margin:0 20px;">
+
+    <p>@Html.Raw(Model.sub__Notes.Replace(System.Environment.NewLine, "<br />"))</p>
+
+</div>

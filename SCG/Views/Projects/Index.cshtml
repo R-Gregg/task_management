@@ -1,0 +1,182 @@
+﻿<div id="projects" class="project-holder" style="display: none;">
+  @model IEnumerable<SCG.Models.Project>
+
+  @{
+    ViewBag.Title = "Project Manager";
+    ViewBag.Page_Nav = "resources";
+    ViewBag.Page_Area = "project_manager_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_1";
+  }
+
+  <h2>Project Manager</h2>
+
+  <div class="my-projects">
+    <h3>My Projects<span id="create_project" onclick="loadModal('@Url.Action("Create", "Projects")', 'Create')" class="actions add-circle pull-right"><i class="glyphicon glyphicon-plus"></i></span></h3>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="wide">@Html.DisplayNameFor(model => model.Name)</th>
+          <th>Last Updated</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      @foreach (var project in Model)
+      {
+        <tr>
+          <td class="wide">@Html.ActionLink(project.Name, "SetSession", "Projects", new { id = project.Id }, null)</td>
+          <td>@string.Format("{0:d}", project.UpdatedAt)</td>
+          <td>
+            <span onclick="loadModal('@Url.Action("Settings", "Projects", new { id = project.Id }, null)', 'Settings')" class="actions" title="Settings"><i class="glyphicon glyphicon-cog"></i></span>
+            <span onclick="loadModal('@Url.Action("Delete", "Projects", new { id = project.Id }, null)', 'Delete')" class="actions" title="Delete"><i class="glyphicon glyphicon-trash"></i></span>
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+  <div class="shared-projects">
+    <h3>Shared Projects</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="wide">@Html.DisplayNameFor(model => model.Name)</th>
+          <th>Owner</th>
+          <th>Last Updated</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      @foreach (var sharedProject in ViewData["SharedProjects"] as IEnumerable<SCG.Models.Project>)
+      {
+        <tr>
+          <td class="wide">
+            @Html.ActionLink(sharedProject.Name, "SetSession", "Projects", new { id = sharedProject.Id }, null)
+          </td>
+          <td>
+            @sharedProject.User.FullName
+          </td>
+          <td>
+            @string.Format("{0:d}", sharedProject.UpdatedAt)
+          </td>
+          <td>
+            <span class="actions" onclick="deleteItem('@Url.Action("Delete", "SharedProjects", new { id = sharedProject.SharedProjects.Where(s => s.UserID == User.Identity.Name).First().Id })', 'na')" title="Remove Shared Project"><i class="glyphicon glyphicon-ban-circle"></i></span>
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+</div>
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryui")
+  <script type="text/javascript">
+    var s;
+    $(document).ready(function () {
+      var proj = parseInt('@Session["project"]') || 0;
+      if (proj != 0) {
+        var section = '@Session["project_view"]' || 'Tasks';
+        loadProject(parseInt('@Session["project"]'), section);
+      } else {
+        $("#projects").css("display", "block");
+      }
+
+      if (window.history && window.history.pushState) {
+        window.history.pushState('forward', null);
+        $(window).on('popstate', function () {
+          window.location.href = "/Projects/?c=1";
+        });
+      }
+
+      // Instance the tour
+      function projectTour(restart) {
+        var tour = new Tour({
+          name: 'ProjectTour',
+          delay: false,
+          autoscroll: false,
+          steps: [
+            {
+              title: "Project Manager",
+              content: "This sub-program of the Intranet is called the Project Manager. Here you'll be able to keep track of your to-do lists, event attendees/key people and a schedule.",
+              orphan: true,
+              backdrop: true
+            },
+            {
+              element: "#create_project",
+              title: "Create Project",
+              content: "This button will open up a dialog to begin the process of creating a new project.",
+              placement: 'right',
+              backdrop: true,
+              onNext: function () {
+                $('#create_project').click();
+              }
+            },
+            {
+              title: "Project Creation Dialog",
+              content: "",
+              orphan: true,
+              backdrop: true
+            },
+            {
+              element: "#nameField",
+              title: "Name",
+              content: "Add a name to your project. This will be used as an identifier for both your projects and those shared with you.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: "#yearField",
+              title: "Year",
+              content: "The year field is to track attendees year after year. The year selected will show the rsvp selection for that year. This field is only necessary for projects that has an event with attendees.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: "#taskColumns",
+              title: "Task Columns",
+              content: "You can select which columns to display in the Tasks part of the Project.",
+              placement: 'right',
+              backdrop: true
+            },
+            {
+              element: "#projectTabs",
+              title: "Year",
+              content: "The year field is to track attendees year after year. The year selected will show the rsvp selection for that year. This field is only necessary for projects that has an event with attendees.",
+              placement: 'right',
+              backdrop: true
+            }
+          ],
+          onStart: function () {
+            $('html, body').animate({ scrollTop: '0px' }, 300);
+          },
+          onShow: function (tour) {
+            $('body').addClass('stop-scrolling');
+          },
+          onHide: function (tour) {
+            $('body').removeClass('stop-scrolling');
+          }
+        });
+
+        // Initialize the tour
+        tour.init();
+
+        // Start the tour
+        if (restart == true) {
+          tour.restart();
+        } else {
+          tour.start();
+        }
+      }
+
+      projectTour(false);
+
+      $('#help').click(function () {
+        projectTour(true);
+      });
+
+      $('#modalBox').change(function () {
+        alert('Changed');
+      });
+    });
+  </script>
+}

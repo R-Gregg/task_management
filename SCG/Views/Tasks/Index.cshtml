@@ -1,0 +1,143 @@
+﻿<div class="project-holder">
+  @model IEnumerable<SCG.Models.Task>
+
+  <div class="fixed-header">
+    <h2 class="header">
+      <i onclick="viewProjects();" class="glyphicon glyphicon-chevron-left back"></i>
+      @ViewBag.Project.Name - Tasks
+      @if ((string)ViewData["Owner"] == "True")
+      {
+        <span id="project_settings" onclick="loadModal('@Url.Action("Settings", "Projects", new { id = Session["project"] }, null)', 'Settings')" class="actions pull-right" title="Project Settings"><i class="glyphicon glyphicon-cog" style="font-size: 30px;"></i></span>
+      }
+    </h2>
+    <div class="project-tabs">
+      <span id="task_tab" class="project-tabs-nav active">Tasks</span>
+      @if ((string)ViewData["Schedule"] == "True") {
+        <span class="project-tabs-nav">Schedule</span>
+      }
+      @if ((string)ViewData["Event"] == "True")
+      {
+        <span onclick="loadProject(@Session["project"], 'Attendees');" class="project-tabs-nav">Attendees</span>
+        <span onclick="loadProject(@Session["project"], 'KeyPersons');" class="project-tabs-nav">Key People</span>
+      }
+    </div>
+    <hr class="hr-grey" />
+  </div>
+
+  <div class="container-body-header">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="wide">Task <span class="actions" onclick="loadModal('@Url.Action("Create", "Tasks")', 'Create')"><i class="fa fa-plus-circle" style="color: #337ab7;"></i></span></th>
+          @if (ViewBag.Project.Assign == true)
+          {
+            <th>Assigned To</th>
+          }
+          @if (ViewBag.Project.DueDates == true)
+          {
+            <th>Due</th>
+          }
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Notes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tasks">
+        @foreach (var item in Model)
+        {
+          <tr id="@item.Id">
+            <td class="wide">
+              @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @if (ViewBag.Project.Assign == true)
+            {
+              <td>
+                @if (item.Project.CreatedBy == item.AssignedTo)
+                {
+                  @item.Project.User.FullName
+                }
+                else if (item.AssignedTo != null)
+                {
+                  @item.Project.SharedProjects.Where(p => p.UserID == item.AssignedTo).First().User.FullName
+                }
+              </td>
+            }
+            @if (ViewBag.Project.DueDates == true)
+            {
+              <td>@string.Format("{0:d}", item.DueDate)</td>
+            }
+            <td>
+              @Html.DisplayFor(modelItem => item.Priority.Name)
+            </td>
+            <td style="background-color:@item.Type.Color;">
+              @Html.DisplayFor(modelItem => item.Type.Name)
+            </td>
+            <td>
+              @if (item.TaskNotes.Count > 0)
+              {
+                <span onclick="loadModal('@Url.Action("Index", "TaskNotes", new { id = item.Id }, null)', 'Notes')" class="actions"><i class="glyphicon glyphicon-comment notes"></i></span>
+              }
+              else
+              {
+                <span onclick="loadModal('@Url.Action("Index", "TaskNotes", new { id = item.Id }, null)', 'Notes')" class="actions"><i class="glyphicon glyphicon-comment"></i></span>
+              }
+            </td>
+            <td>
+              @*<span onclick="loadModal('@Url.Action("Edit", "Tasks", new { id = item.Id }, null)', 'Edit')" class="actions" title="Edit"><i class="glyphicon glyphicon-pencil"></i></span>*@
+              <span onclick ="selectRow($(this), '@Url.Action("RowEdit", "Tasks", new { id = item.Id }, null)');" class="actions" title="Edit"><i class="glyphicon glyphicon-pencil"></i></span>
+              <span onclick="loadModal('@Url.Action("Delete", "Tasks", new { id = item.Id }, null)', 'Delete')" class="actions" title="Delete"><i class="glyphicon glyphicon-trash"></i></span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+}
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#tasks").sortable({
+      update: function (e) {
+        var i = 0;
+        $("tbody tr").each(function () {
+          $.ajax({
+            url: "/Tasks/OrderEdit/" + $(this).attr("id"),
+            method: "POST",
+            data: { Order: i }
+          });
+          i++;
+        });
+      }
+    });
+
+    //// Instance the tour
+    //var tour = new Tour({
+    //  steps: [
+    //    {
+    //      element: "#project_settings",
+    //      title: "Click this to go to settings",
+    //      content: "Content of my step",
+    //      placement: "left",
+    //      backdrop: true
+    //    },
+    //    {
+    //      element: "#task_tab",
+    //      title: "Click this to go to task tab",
+    //      content: "Content of my step",
+    //      backdrop: true
+    //    }
+    //  ]
+    //});
+
+    //// Initialize the tour
+    //tour.init();
+
+    //// Start the tour
+    //tour.start(true);
+  });
+</script>

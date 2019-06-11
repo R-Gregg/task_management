@@ -1,0 +1,66 @@
+﻿@model SCG.Models.Contact
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div id="openContacts" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Contacts</h4>
+      </div>
+      <div class="modal-body fixed">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-left">Contact Name</th>
+              <th class="col-center">Delete</th>
+            </tr>
+          </thead>
+          @foreach (var user in ViewData["AssignedList"] as IEnumerable<SCG.Models.User>)
+          {
+            <tr>
+              <td class="col-left">
+                @Html.DisplayFor(u => user.FirstName) @Html.DisplayFor(u => user.LastName)
+              </td>
+              <td class="col-center" onclick="deleteItem('@Url.Action("Delete", "Contacts", new { id = user.Contacts.Where(c => c.AttendeeID == (int)ViewData["FormID"]).First().Id }, null)', 'openContacts');"><a href="" title="Delete"><i class="glyphicon glyphicon-trash"></i></a></td>
+            </tr>
+          }
+        </table>
+      </div>
+      <div class="modal-footer">
+        @using (Html.BeginForm())
+        {
+          @Html.AntiForgeryToken()
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          <div class="form-group pull-left" style="display: inline-block; margin-bottom: 0px;">
+            <div class="col-md-10">
+              @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control", @style = "width: 350px" })
+              @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+          </div>
+          <input type="submit" value="Submit" class="btn btn-success pull-right" />
+          <input type="hidden" value="@ViewData["FormID"]" name="AttendeeID" />
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("form").submit(function (e) {
+      e.preventDefault();
+      data = $(this).serializeArray();
+      $.ajax({
+        method: "POST",
+        url: '/Contacts/Create',
+        data: data,
+        success: function () {
+          window.location.reload();
+        }
+      });
+    });
+  });
+</script>

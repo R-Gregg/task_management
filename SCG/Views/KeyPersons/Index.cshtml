@@ -1,0 +1,89 @@
+﻿<div class="project-holder">
+  @model IEnumerable<SCG.Models.KeyPerson>
+
+  @{
+    ViewBag.Title = "Index";
+  }
+
+  <div class="fixed-header">
+    <h2 class="header">
+      <i onclick="viewProjects();" class="glyphicon glyphicon-chevron-left back"></i>
+      @ViewBag.ProjectName
+      @if ((string)ViewData["Owner"] == "True")
+      {
+        <span id="project_settings" onclick="loadModal('@Url.Action("Settings", "Projects", new { id = Session["project"] }, null)', 'Settings')" class="actions pull-right" title="Project Settings"><i class="glyphicon glyphicon-cog" style="font-size: 30px;"></i></span>
+      }
+    </h2>
+    <div class="project-tabs">
+      <span onclick="loadProject(@Session["project"], 'Tasks');" class="project-tabs-nav">Tasks</span>
+      @if ((string)ViewData["Schedule"] == "True")
+      {
+        <span class="project-tabs-nav">Schedule</span>
+      }
+      <span onclick="loadProject(@Session["project"], 'Attendees');" class="project-tabs-nav">Attendees</span>
+      <span class="project-tabs-nav active">Key People</span>
+    </div>
+    <hr class="hr-grey" />
+  </div>
+
+  <div class="container-body-header">
+    <div style="display: inline-block;">
+      <p>
+        <span class="btn btn-primary" onclick="loadModal('@Url.Action("Create", "KeyPersons")', 'Create');" title="Create Attendee">New Key Person</span>
+      </p>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- Last Name -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'KeyPersons','sort=@ViewBag.LName')">Last Name</th>
+          <!-- First Name -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'KeyPersons','sort=@ViewBag.FName')">First Name</th>
+          <!-- Company -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'KeyPersons','sort=@ViewBag.Company')">@Html.DisplayNameFor(model => model.Company)</th>
+          <!-- Email -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'KeyPersons','sort=@ViewBag.Email')">@Html.DisplayNameFor(model => model.Email)</th>
+          <!-- Title -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'KeyPersons', 'sort=@ViewBag.KeyTitle')">@Html.DisplayNameFor(model => model.Title)</th>
+          <!-- Type -->
+          <th class="actions link" onclick="loadProject('@Session["project"]', 'KeyPersons', 'sort=@ViewBag.Role')">@Html.DisplayNameFor(model => model.Role)</th>
+          <!-- Last Updated -->
+          <th class="actions link" onclick="loadProject('@Session["project"]', 'KeyPersons','sort=@ViewBag.Date')">Last Updated</th>
+          <!-- Actions -->
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.LastName)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.FirstName)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.Company)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.Email)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.Title)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Role)
+          </td>
+          <td>
+            @string.Format("{0:d}", item.UpdatedAt)
+          </td>
+          <td>
+            <span class="actions" onclick="loadModal('@Url.Action("Edit", "KeyPersons", new { id = item.Id }, null)', 'Edit');" title="Edit"><i class="glyphicon glyphicon-pencil"></i></span>
+            <span class="actions" onclick="loadModal('@Url.Action("Delete", "KeyPersons", new { id = item.Id }, null)', 'Delete');" title="Delete"><i class="glyphicon glyphicon-trash"></i></span>
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+</div>

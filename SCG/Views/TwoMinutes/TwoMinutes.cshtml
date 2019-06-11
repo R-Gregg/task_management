@@ -1,0 +1,32 @@
+﻿
+
+@{
+    string vid = "";
+
+    foreach (var viditem in ViewBag.vidNodes)
+    {
+        vid = viditem.OuterHtml;
+    }
+
+    vid = vid
+        .Replace("autoplay=\"\"", "poster=\"/images/two-minutes-poster.png\"")
+        .Replace("playPause_0();", "playPause_1();")
+        .Replace("controls=\"\"", "")
+        .Replace("id=\"vid\"", "id=\"vid_1\"");
+}
+
+@Html.Raw(vid)
+
+<script>
+    var myVideo_1 = document.getElementById("vid_1");
+    function playPause_1() {
+        if (myVideo_1.paused) {
+            myVideo_1.play();
+        } else {
+            myVideo_1.pause();
+        }
+    }
+    $('#vid_1').click(function () {
+        $(this).attr({ 'controls': 'controls' });
+    });
+</script>

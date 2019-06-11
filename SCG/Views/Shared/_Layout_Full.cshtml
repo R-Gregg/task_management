@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - OneFirm</title>
+  @Styles.Render("~/Layout/css")
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/jquery")
+
+</head>
+<body class="@ViewBag.Page_Area @ViewBag.Page_Layout" id="@ViewBag.Page_ID">
+
+  <div id="header">
+    <div id="info-bar">
+      <div>
+        <span style="float: right;">
+          <span style="display:inline-block; border-right:#555 dashed 1px; margin-right: 20px; padding-right:10px;">
+            <a href="Javascript:void(0);">
+              <i id="full-screen" class="fa fa-arrows-alt" aria-hidden="true"></i>
+            </a>
+          </span>
+          <a href="Javascript:void(0);">
+            <i class="fa fa-user" aria-hidden="true"></i> - @Html.ActionLink("Hello, " + string.Join(" ", User.Identity.Name.Remove(0, 8).Split('.')) + "!", "UserProfile", "Home", new { @style = "text-transform: capitalize;" })
+          </a>
+        </span>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+
+    <div class="window_expand" id="hero">
+      <div id="hero-image">
+        <img id="logo" src="~/images/logo-wht-drp.svg" />
+        <i class="fa fa-angle-double-up" id="hero-down" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="window_expand" id="nav">
+      @Html.Partial("_Nav")
+    </div>
+  </div>
+
+  <div class="window_expand" id="hero-bumper" style="margin-bottom: 50px;"></div>
+
+  <div class="container body-content">
+    @RenderBody()
+  </div>
+
+  <div class="window_expand" id="footer">
+    <div>
+      <p style="font-family:'latolight'; font-size:18px; text-transform:uppercase; margin:5px;">Since 1944</p>
+      <p style="font-family:'abraham_lincolnregular'; font-size:32px;">“Achieving Success by Contributing to the Success of Others”</p>
+    </div>
+  </div>
+
+
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")
+  @Scripts.Render("~/bundles/tinymce")
+  @Scripts.Render("~/bundles/grendelfly")
+  @RenderSection("scripts", required: false)
+
+
+  <script type="text/javascript">
+    //  Universal Numeric Strip
+    function fNum_Strip(num) {
+      'use strict';
+
+      var n = 0;
+      if (num !== null && num !== undefined) {
+        n = num.replace(/[^0-9.-]/g, '');
+      }
+      return n;
+
+    }
+
+    //  Scroll Behaviors
+    function fHeroScroll() {
+      var top = $(this).scrollTop();
+      var hro = window.innerHeight * .60;
+      var ste = $('#hero-image').prop('state');
+      if (top < 460 && ste != 'off') {
+        $('#hero-image').stop(true, true, true).animate({ 'height': (hro - top) + 'px' }, 0);
+        $('#hero-down').removeClass('fa-angle-double-up').removeClass('fa-angle-double-down').addClass('fa-angle-double-down');
+      } else {
+        $('#hero-image,#hero-bumper').stop(true, true, true).css({ 'height': '110px' });
+        $('#hero-image').prop({ 'state': 'off' });
+      }
+
+    }
+
+    //$(window).on('scroll', function () {
+    //    fHeroScroll();
+    //});
+
+    //$(window).on('resize', function () {
+    //    fHeroScroll();
+    //});
+
+    function fHeroReset() {
+      $('#hero-image').removeProp('state');
+      $('#hero-down').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
+      $(window).scrollTop(0);
+      $('#hero-image,#hero-bumper').stop(true, true, true).animate({ 'height': (window.innerHeight * .60) + 'px' }, 80);
+    }
+
+
+    $('#hero-down').click(function () {
+      fHeroReset();
+    });
+
+    // Navigation Behaviors
+    $('.nav-1 li').mouseenter(function () {
+      var i = $(this).attr('id');
+      var o = $(this).attr('class');
+      if (o == undefined) { o = ''; }
+      if (o.indexOf('slt') == -1) {
+        $('.nav-1 li').removeClass('slt');
+        $(this).addClass('slt');
+        $('.nav-2').hide();
+        $('#' + i.replace('_nav', '') + '_subnav').fadeIn(200);
+      }
+    });
+
+    // Home Check - Remove
+    $('a').each(function (i, e) {
+      var u = $(e).attr('href');
+      if (u == '/') {
+        $(e).css({ 'opacity': '.3' });
+      }
+    });
+
+
+    // Full Screen
+    $('#full-screen').click(function () {
+      if ($(this).hasClass('fa-arrows-alt')) {
+        $(this).removeClass('fa-arrows-alt').addClass('fa-columns');
+        $('.window_expand').fadeOut(function () {
+          $('#body-2').css({ 'width': '100%', 'padding-top': '60px' });
+        });
+      } else {
+        $(this).removeClass('fa-columns').addClass('fa-arrows-alt');
+        $('.window_expand').fadeIn(function () {
+          $('#body-2').css({ 'width': '50%', 'padding-top': '0px' });
+        });
+
+      }
+    });
+
+
+    //  Disable Right Click
+    //$(document).bind("contextmenu", function (e) {
+    //    e.preventDefault();
+    //    return false;
+    //});
+
+
+    $(function () {
+      'use strict';
+      $(document).ready(function () {
+
+        //                fHeroReset();
+
+        //  Navigation Button Function
+        $('.f_nav').css({ 'cursor': 'pointer' });
+        $('.f_nav').click(function () {
+          var l = $(this).attr('url');
+          window.location.assign(l);
+        });
+
+        //  Scroll Up Footer
+        $('<div/>', {
+          'id': 'js_scrl_ftr',
+          'text': 'Scroll To Top',
+          click: function () {
+            $('html:not(:animated),body:not(:animated)').animate({ scrollTop: 0 }, 500);
+          }
+        }).appendTo('body');
+
+        $('<i/>', {
+          'class': 'fa fa-arrow-circle-o-up fa-fw fa-lg',
+        }).appendTo('#js_scrl_ftr');
+
+        $('#js_scrl_ftr').css({
+          'position': 'fixed', 'bottom': '0',
+          'width': '100%', 'padding': '10px 0',
+          'font-size': '16px',
+          'text-align': 'center', 'color': '#FFF', 'cursor': 'pointer',
+          'background-color': '#000'
+        }).hide();
+
+        $(window).scroll(function () {
+          var w = $(this).width();
+          var o = $(this).scrollTop();
+          if (w >= 1024 && o > 100) {
+            $('#js_scrl_ftr').fadeIn();
+          } else {
+            $('#js_scrl_ftr').hide();
+          }
+        });
+
+        //  Sub-Nav Scroll Effect
+        $('.scroll a').click(function (e) {
+          e.preventDefault();
+          var l = $(this).attr('href');			// Link
+          var a = l.split('#');					// Anchor Name
+          var t = $('a[name="' + a[1] + '"]'); 	// Target
+          var o = t.offset().top - 60; 				// Offset of Target
+          $('html:not(:animated),body:not(:animated)').animate({ scrollTop: o }, 500);
+        });
+
+        //  Toggle/Slide Function
+        $('.toggle-trg').css({ 'cursor': 'pointer' });
+        $('.toggle-trg').click(function () {
+
+          var trg = $(this).attr('rel');
+          $('#' + trg).slideToggle();
+
+        });
+
+        //  Resize Columns Trigger
+        $(window).on('resize', function () {
+          fMatchColumns();
+        }); fMatchColumns();
+
+        //  Match Column Heights
+        function fMatchColumns() {
+          'use strict';
+          var w = $(document).width();
+          var c1 = $('#col-1 div').height();
+          var c2 = $('#col-2 div').height();
+          var c3 = $('#col-3 div').height();
+          var h1 = (c1 > c2 ? c1 : c2);
+          var h2 = (c3 > h1 ? c3 : h1);
+
+          if (w > 1024) { // Not Phone View
+            $('#col-1 > div,#col-2 > div,#col-3 > div').css({ 'min-height': h2 + 'px' });
+          } else {
+            $('#col-1 > div,#col-2 > div,#col-3 > div').css({ 'min-height': 'inherit' });
+          }
+        }
+
+        //  IE8 Detection Though CSS / 2014.04.04
+        var ie8_check = $('.ie-test').css('display');
+        if (ie8_check !== 'block') { // No IE
+        }
+
+        // Cards Behavior
+        $(function () {
+          $("#cards").sortable({
+            revert: true,
+            containment: "#body-2"
+          });
+          //$("#draggable").draggable({
+          //    connectToSortable: "#sortable",
+          //    helper: "clone",
+          //    revert: "invalid"
+          //});
+          //$("ul, li").disableSelection();
+        });
+        $('#cards .check').click(function () {
+          $(this).closest('li').fadeOut();
+        });
+
+      }); // $(document).ready(function()
+    }); // $(function()
+
+
+  </script>
+
+</body>
+</html>

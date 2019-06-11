@@ -1,0 +1,28 @@
+﻿<div class="content-holder">
+  @model IEnumerable<string>
+  @{
+  ViewBag.Title = "Admin";
+  }
+
+  <h2>Admin</h2>
+
+  <ul>
+    @foreach (var fName in Model)
+    {
+      var name = fName;
+      var link = Url.Content("~/assets/IT/") + name.Replace(" ", "%20");
+
+      <li>
+        <a href="@link" target="_blank">@name</a>
+      </li>
+    }
+  </ul>
+
+  <div>
+    @using (Html.BeginForm("UploadFile", "IT", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <input type="File" name="file" id="file" value="Choose File" />
+    <input type="submit" value="Upload" class="btn btn-success" />
+    }
+  </div>
+</div>

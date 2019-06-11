@@ -1,0 +1,244 @@
+﻿.project-holder {
+  width: inherit;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.project-holder .my-projects {
+  display: inline-block;
+  width: 49%;
+}
+
+.project-holder .shared-projects {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+#openSettings .modal-header {
+  padding-bottom: 0px;
+}
+
+.project-tabs {
+  font-size: 13px;
+  overflow: hidden;
+  padding-top: 15px;
+}
+
+.project-tabs .project-tabs-nav {
+  display: inline-block;
+  color: #337ab7;
+  padding: 3px 8px;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-top: 1px solid #CCC;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  margin-right: 1px;
+  vertical-align: bottom;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-tabs .project-tabs-nav.active {
+  color: #FFF;
+  background-color: #337ab7;
+}
+
+.project-settings {
+  font-size: 13px;
+  overflow: hidden;
+  padding-top: 15px;
+}
+
+.project-settings .project-settings-nav {
+  display: inline-block;
+  color: #337ab7;
+  padding: 3px 8px;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-top: 1px solid #CCC;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  margin-right: 1px;
+  vertical-align: bottom;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-settings .project-settings-nav.active {
+  color: #FFF;
+  background-color: #337ab7;
+}
+
+table th {
+  text-align: center;
+}
+
+table td {
+  text-align: center;
+}
+
+table .wide {
+  width: 60%;
+  text-align: left;
+}
+
+table .highlight {
+  color: green;
+}
+
+table .ui-sortable-helper {
+  background-color: #CCC;
+  opacity: 1;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+table .sortable-ghost {
+  visibility: hidden;
+  opacity: 1;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+table .my-handle {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
+.glyphicon.glyphicon-comment.notes {
+  color: green;
+}
+
+#modalBox .modal-dialog {
+  overflow-y: initial !important;
+}
+
+#modalBox .modal-body.fixed {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#modalBox .fixed-scroll {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+#modalBox th {
+  border-top: none;
+}
+
+#modalBox td.no-wrap {
+  white-space: nowrap;
+}
+
+#modalBox .control-label {
+  white-space: nowrap;
+}
+
+#modalBox .form-control {
+  float: left;
+}
+
+#modalBox fieldset {
+  display: inline-block;
+  float: left;
+  margin-left: 35px;
+  padding: 5px;
+}
+
+#modalBox fieldset .radio-title {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+#modalBox fieldset .radio-title.attend-header {
+  display: inline-block;
+  text-align: center;
+  font-size: 15px;
+}
+
+#modalBox fieldset legend {
+  display: inline-block;
+  width: initial;
+  margin-bottom: 0px;
+  border-bottom: none;
+}
+
+#modalBox fieldset div {
+  display: inline-block;
+}
+
+#modalBox .select-styling {
+  height: 30px;
+  width: 125px;
+  float: none;
+  margin: 0 auto;
+}
+
+#modalBox input {
+  border-color: #CCC;
+}
+
+#modalBox .project-left-col {
+  display: inline-block;
+  width: 35%;
+}
+
+#modalBox .project-right-col {
+  display: inline-block;
+  width: 64%;
+  vertical-align: top;
+}
+
+#modalBox .share-holder {
+  padding: 5px;
+  display: inline-block;
+  width: 160px;
+}
+
+#modalBox .group-inline {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#modalBox .input-middle {
+  padding-top: 7px;
+}
+
+#modalBox .text-label {
+  margin-left: 35px;
+  margin-right: 20px;
+  width: 40px;
+}
+
+#modalBox .modal-checkbox-holder {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0px 20px 10px 20px;
+}
+
+#modalBox .modal-checkbox-holder-title {
+  margin-left: 20px;
+}
+
+#modalBox .modal-group {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+}
+
+#modalBox .modal-group .c-item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#modalBox .modal-group .c-item-label {
+  padding: 0px 10px;
+}

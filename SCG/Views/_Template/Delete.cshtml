@@ -1,0 +1,42 @@
+﻿@model Subscriptions.Models.subscription_tbl
+
+<h2 style="color:#900;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Delete</h2>
+
+<h4>Are you sure you want to delete this?</h4>
+<hr class="css_tbl_spc" />
+<div style="margin-left:20px;">
+    <p>
+        <strong>Account:</strong> @Html.DisplayFor(model => model.account_tbl.acnt__Name)
+    </p>
+    <p>
+        <strong>Vendor:</strong> @Html.DisplayFor(model => model.vendor_tbl.vndr__Name)
+    </p>
+    <p>
+        <strong>Product Type:</strong> @Html.DisplayFor(model => model.product_tbl.prod__Name)
+    </p>
+    <p>
+        <strong>Product Level:</strong> @Html.DisplayFor(model => model.product_lvl_tbl.prod_lvl__Name)
+    </p>
+    <p>
+        <strong>Date Created:</strong> @Html.DisplayFor(model => model.Date_Created)
+    </p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <hr class="css_tbl_spc" />
+
+    <div class="css_tbl css_tbl_sbmt">
+
+        <div class="css_tbl_tr">
+            <div class="css_tbl_td">
+                <input type="submit" value="Delete" />
+                <input type="button" value="Cancel / Clear" onclick="fPopup_Kill();" />
+            </div>
+        </div>
+
+    </div>
+
+}

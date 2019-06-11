@@ -1,0 +1,232 @@
+﻿@model SCG.Models.Profile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Creds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Creds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Phone_Ext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Phone_Ext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Shareholder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Shareholder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Areas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Areas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Bio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Original_Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Original_Width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Original_Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Original_Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__File_Resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__File_Resume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__File_VCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__File_VCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__LinkedIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__LinkedIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Meta_Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Meta_Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Meta_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Meta_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Meta_Keywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Meta_Keywords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pro__Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro__Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created_IP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created_IP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Updated_IP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Updated_IP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Guid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Guid)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

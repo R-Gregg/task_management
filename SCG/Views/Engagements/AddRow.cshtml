@@ -1,0 +1,249 @@
+﻿@model SCG.Models.Engagement
+
+<td class="col-left">@Html.DropDownList("BankID")</td>
+<input type="hidden" id="EngageTypeID" name="EngageTypeID" value="@ViewBag.TypeID" />
+<input type="hidden" id="Year" name="Year" value="@Session["EngageYear"]" />
+@if (ViewBag.ShowType == 1)
+{
+  <td class="col-left">@Html.DisplayFor(modelItem => Model.EngageType.Name)</td>
+}
+@if (User.IsInRole("SCG-CPA\\MJL") && User.IsInRole("SCG-CPA\\MJL Admins"))
+{
+  <td class="col-left">@Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })</td>
+  <td class="col-left">@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })</td>
+  <td>@Html.EditorFor(model => model.Visits, new { htmlAttributes = new { @class = "form-control" } })</td>
+}
+else
+{
+  <td class="col-left">@Html.DisplayFor(modelItem => Model.Location)</td>
+  @Html.HiddenFor(modelItem => Model.Location, Model.Location)
+  <td class="col-left">@Html.DisplayFor(modelItem => Model.Description)</td>
+  @Html.HiddenFor(modelItem => Model.Description, Model.Description)
+  <td>@Html.DisplayFor(modelItem => Model.Visits)</td>
+  @Html.HiddenFor(modelItem => Model.Visits, Model.Visits)
+}
+<td>
+</td>
+@if (User.IsInRole("SCG-CPA\\MJL") && User.IsInRole("SCG-CPA\\MJL Admins"))
+{
+  if (ViewBag.ShowType == 1)
+  {
+    if (ViewBag.Types.Contains("Loan Review") == true || ViewBag.Types.Contains("Int Audit") == true || ViewBag.Types.Contains("DP Compliance") == true || ViewBag.Types.Contains("Ln Compliance") == true || ViewBag.Types.Contains("BSA Reviews") == true || ViewBag.Types.Contains("ALM & Liquidity") == true || ViewBag.Types.Contains("IS Reviews") == true || ViewBag.Types.Contains("Other") == true)
+    {
+      <td><input type="text" class="review-form form-control dt_pckr" name="Date" /></td>
+    }
+    if (ViewBag.Types.Contains("ACH Reviews") == true || ViewBag.Types.Contains("Ext Audit") == true)
+    {
+      <td><input type="text" class="review-form form-control dt_pckr" name="OffStartDate" /></td>
+      <td><input type="text" class="review-form form-control dt_pckr" name="OffEndDate" /></td>
+    }
+    if (ViewBag.Types.Contains("ACH Reviews") == true)
+    {
+      <td><input type="text" class="review-form form-control dt_pckr" name="OnStartDate" /></td>
+      <td><input type="text" class="review-form form-control dt_pckr" name="OnEndDate" /></td>
+    }
+    <td>@Html.EditorFor(model => model.FileReviewYN)</td>
+    if (ViewBag.Types.Contains("ALM & Liquidity") == true)
+    {
+      <td>@Html.EditorFor(model => model.ReportModel, new { htmlAttributes = new { @class = "form-control" } })</td>
+      <td>@Html.EditorFor(model => model.BackTest)</td>
+    }
+    <td>@Html.EditorFor(model => model.Exp, new { htmlAttributes = new { @class = "form-control" } })</td>
+    <td>@Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control", @type = "text" } })</td>
+    if (ViewBag.Types.Contains("IS Reviews") == true)
+    {
+      <td>@Html.EditorFor(model => model.IsReview)</td>
+      <td>@Html.EditorFor(model => model.PenTest)</td>
+      <td>@Html.EditorFor(model => model.VulA)</td>
+      <td>@Html.EditorFor(model => model.Core, new { htmlAttributes = new { @class = "form-control" } })</td>
+      <td>@Html.EditorFor(model => model.Software, new { htmlAttributes = new { @class = "form-control" } })</td>
+    }
+    <td>@Html.EditorFor(model => model.LetterMailed)</td>
+    <td>@Html.EditorFor(model => model.LetterSigned)</td>
+    if (ViewBag.Types.Contains("ACH Reviews") == true)
+    {
+      <td>@Html.EditorFor(model => model.NachaFull, new { htmlAttributes = new { @class = "form-control" } })</td>
+    }
+  }
+  else
+  {
+    if (ViewBag.Type == "Loan Review" || ViewBag.Type =="Int Audit" || ViewBag.Type == "DP Compliance" || ViewBag.Type == "Ln Compliance" || ViewBag.Type == "BSA Reviews" || ViewBag.Type == "ALM & Liquidity" || ViewBag.Type == "IS Reviews" || ViewBag.Type == "Other")
+    {
+      <td><input type="text" class="review-form form-control dt_pckr" name="Date" /></td>
+    }
+    if (ViewBag.Type == "ACH Reviews" || ViewBag.Type == "Ext Audit")
+    {
+      <td><input type="text" class="review-form form-control dt_pckr" name="OffStartDate" /></td>
+      <td><input type="text" class="review-form form-control dt_pckr" name="OffEndDate" /></td>
+    }
+    if (ViewBag.Type == "ACH Reviews")
+    {
+      <td><input type="text" class="review-form form-control dt_pckr" name="OnStartDate" /></td>
+      <td><input type="text" class="review-form form-control dt_pckr" name="OnEndDate" /></td>
+    }
+    <td>@Html.EditorFor(model => model.FileReviewYN)</td>
+    if (ViewBag.Type == "ALM & Liquidity")
+    {
+      <td>@Html.EditorFor(model => model.ReportModel, new { htmlAttributes = new { @class = "form-control" } })</td>
+      <td>@Html.EditorFor(model => model.BackTest)</td>
+    }
+    <td>@Html.EditorFor(model => model.Exp, new { htmlAttributes = new { @class = "form-control" } })</td>
+    <td>@Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control", @type = "text" } })</td>
+    if (ViewBag.Type == "IS Reviews")
+    {
+      <td>@Html.EditorFor(model => model.IsReview)</td>
+      <td>@Html.EditorFor(model => model.PenTest)</td>
+      <td>@Html.EditorFor(model => model.VulA)</td>
+      <td>@Html.EditorFor(model => model.Core, new { htmlAttributes = new { @class = "form-control" } })</td>
+      <td>@Html.EditorFor(model => model.Software, new { htmlAttributes = new { @class = "form-control" } })</td>
+    }
+    <td>@Html.EditorFor(model => model.LetterMailed)</td>
+    <td>@Html.EditorFor(model => model.LetterSigned)</td>
+    if (ViewBag.Type == "ACH Reviews")
+    {
+      <td>@Html.EditorFor(model => model.NachaFull, new { htmlAttributes = new { @class = "form-control" } })</td>
+    }
+  }
+}
+else
+{
+  if (ViewBag.ShowType == 1)
+  {
+    if (ViewBag.Types.Contains("Loan Review") == true || ViewBag.Types.Contains("Int Audit") == true || ViewBag.Types.Contains("DP Compliance") == true || ViewBag.Types.Contains("Ln Compliance") == true || ViewBag.Types.Contains("BSA Reviews") == true || ViewBag.Types.Contains("ALM & Liquidity") == true || ViewBag.Types.Contains("IS Reviews") == true || ViewBag.Types.Contains("Other") == true)
+    {
+      <td>@string.Format("{0:d}", Model.Date)</td>
+      @Html.HiddenFor(modelItem => Model.Date, Model.Date)
+    }
+    if (ViewBag.Types.Contains("ACH Reviews") == true || ViewBag.Types.Contains("Ext Audit") == true)
+    {
+      <td>@string.Format("{0:d}", Model.OffStartDate)</td>
+      @Html.HiddenFor(modelItem => Model.OffStartDate, Model.OffStartDate)
+      <td>@string.Format("{0:d}", Model.OffEndDate)</td>
+      @Html.HiddenFor(modelItem => Model.OffEndDate, Model.OffEndDate)
+    }
+    if (ViewBag.Types.Contains("ACH Reviews") == true)
+    {
+      <td>@string.Format("{0:d}", Model.OnStartDate)</td>
+      @Html.HiddenFor(modelItem => Model.OnStartDate, Model.OnStartDate)
+      <td>@string.Format("{0:d}", Model.OnEndDate)</td>
+      @Html.HiddenFor(modelItem => Model.OnEndDate, Model.OnEndDate)
+    }
+    <td>@Html.DisplayFor(model => model.FileReviewYN)</td>
+    @Html.HiddenFor(modelItem => Model.FileReviewYN, Model.FileReviewYN)
+    if (ViewBag.Types.Contains("ALM & Liquidity") == true)
+    {
+      <td>@Html.DisplayFor(modelItem => Model.ReportModel)</td>
+      @Html.HiddenFor(modelItem => Model.ReportModel, Model.ReportModel)
+      <td>@Html.DisplayFor(modelItem => Model.BackTest)</td>
+      @Html.HiddenFor(modelItem => Model.BackTest, Model.BackTest)
+    }
+    if (User.IsInRole("SCG-CPA\\MJL") && User.IsInRole("SCG-CPA\\MJL Admins"))
+    {
+      <td>@Html.DisplayFor(modelItem => Model.Exp)</td>
+      @Html.HiddenFor(modelItem => Model.Exp, Model.Exp)
+      <td>@string.Format("{0:C0}", Model.Fee)</td>
+      @Html.HiddenFor(modelItem => Model.Fee, Model.Fee)
+    }
+    if (ViewBag.Types.Contains("IS Reviews") == true)
+    {
+      <td>@Html.DisplayFor(modelItem => Model.IsReview)</td>
+      @Html.HiddenFor(modelItem => Model.IsReview, Model.IsReview)
+      <td>@Html.DisplayFor(modelItem => Model.PenTest)</td>
+      @Html.HiddenFor(modelItem => Model.PenTest, Model.PenTest)
+      <td>@Html.DisplayFor(modelItem => Model.VulA)</td>
+      @Html.HiddenFor(modelItem => Model.VulA, Model.VulA)
+      <td>@Html.DisplayFor(modelItem => Model.Core)</td>
+      @Html.HiddenFor(modelItem => Model.Core, Model.Core)
+      <td>@Html.DisplayFor(modelItem => Model.Software)</td>
+      @Html.HiddenFor(modelItem => Model.Software, Model.Software)
+    }
+    <td>@Html.DisplayFor(modelItem => Model.LetterMailed)</td>
+    @Html.HiddenFor(modelItem => Model.LetterMailed, Model.LetterMailed)
+    <td>@Html.DisplayFor(modelItem => Model.LetterSigned)</td>
+    @Html.HiddenFor(modelItem => Model.LetterSigned, Model.LetterSigned)
+    if (ViewBag.Types.Contains("ACH Reviews") == true)
+    {
+      <td>@Html.DisplayFor(modelItem => Model.NachaFull)</td>
+      @Html.HiddenFor(modelItem => Model.NachaFull, Model.NachaFull)
+    }
+  }
+  else
+  {
+    if (ViewBag.Types.Contains("Loan Review") == true || ViewBag.Types.Contains("Int Audit") == true || ViewBag.Types.Contains("DP Compliance") == true || ViewBag.Types.Contains("Ln Compliance") == true || ViewBag.Types.Contains("BSA Reviews") == true || ViewBag.Types.Contains("ALM & Liquidity") == true || ViewBag.Types.Contains("IS Reviews") == true || ViewBag.Types.Contains("Other") == true)
+    {
+      <td>@string.Format("{0:d}", Model.Date)</td>
+      @Html.HiddenFor(modelItem => Model.Date, Model.Date)
+    }
+    if (ViewBag.Type == "ACH Reviews" || ViewBag.Type == "Ext Audit")
+    {
+      <td>@string.Format("{0:d}", Model.OffStartDate)</td>
+      @Html.HiddenFor(modelItem => Model.OffStartDate, Model.OffStartDate)
+      <td>@string.Format("{0:d}", Model.OffEndDate)</td>
+      @Html.HiddenFor(modelItem => Model.OffEndDate, Model.OffEndDate)
+    }
+    if (ViewBag.Type == "ACH Reviews")
+    {
+      <td>@string.Format("{0:d}", Model.OnStartDate)</td>
+      @Html.HiddenFor(modelItem => Model.OnStartDate, Model.OnStartDate)
+      <td>@string.Format("{0:d}", Model.OnEndDate)</td>
+      @Html.HiddenFor(modelItem => Model.OnEndDate, Model.OnEndDate)
+    }
+    <td>@Html.DisplayFor(model => model.FileReviewYN)</td>
+    @Html.HiddenFor(modelItem => Model.FileReviewYN, Model.FileReviewYN)
+    if (ViewBag.Type == "ALM & Liquidity")
+    {
+      <td>@Html.DisplayFor(modelItem => Model.ReportModel)</td>
+      @Html.HiddenFor(modelItem => Model.ReportModel, Model.ReportModel)
+      <td>@Html.DisplayFor(modelItem => Model.BackTest)</td>
+      @Html.HiddenFor(modelItem => Model.BackTest, Model.BackTest)
+    }
+    if (User.IsInRole("SCG-CPA\\MJL") && User.IsInRole("SCG-CPA\\MJL Admins"))
+    {
+      <td>@Html.DisplayFor(modelItem => Model.Exp)</td>
+      @Html.HiddenFor(modelItem => Model.Exp, Model.Exp)
+      <td>@string.Format("{0:C0}", Model.Fee)</td>
+      @Html.HiddenFor(modelItem => Model.Fee, Model.Fee)
+    }
+    if (ViewBag.Type == "IS Reviews")
+    {
+      <td>@Html.DisplayFor(modelItem => Model.IsReview)</td>
+      @Html.HiddenFor(modelItem => Model.IsReview, Model.IsReview)
+      <td>@Html.DisplayFor(modelItem => Model.PenTest)</td>
+      @Html.HiddenFor(modelItem => Model.PenTest, Model.PenTest)
+      <td>@Html.DisplayFor(modelItem => Model.VulA)</td>
+      @Html.HiddenFor(modelItem => Model.VulA, Model.VulA)
+      <td>@Html.DisplayFor(modelItem => Model.Core)</td>
+      @Html.HiddenFor(modelItem => Model.Core, Model.Core)
+      <td>@Html.DisplayFor(modelItem => Model.Software)</td>
+      @Html.HiddenFor(modelItem => Model.Software, Model.Software)
+    }
+    <td>@Html.DisplayFor(modelItem => Model.LetterMailed)</td>
+    @Html.HiddenFor(modelItem => Model.LetterMailed, Model.LetterMailed)
+    <td>@Html.DisplayFor(modelItem => Model.LetterSigned)</td>
+    @Html.HiddenFor(modelItem => Model.LetterSigned, Model.LetterSigned)
+    if (ViewBag.Type == "ACH Reviews")
+    {
+      <td>@Html.DisplayFor(modelItem => Model.NachaFull)</td>
+      @Html.HiddenFor(modelItem => Model.NachaFull, Model.NachaFull)
+    }
+  }
+}
+<td>
+  <span id="add_engage" url="@Url.Action("AddRow", "Engagements")" class="actions" title="Submit"><i class="glyphicon glyphicon-ok"></i></span>
+  <span onclick="$(this).closest('tr').remove();" class="actions" title="Cancel"><i class="glyphicon glyphicon-remove"></i></span>
+</td>
+
+<script type="text/javascript">
+  $('.dt_pckr').datepicker();
+
+  $("#add_engage").click(function () {
+    $.ajax({
+      method: 'POST',
+      url: '/Engagements/AddRow/',
+      data: $(this).closest('tr').find('input, select').serializeArray(),
+      success: function () {
+        window.location.reload();
+      }
+    });
+  });
+</script>

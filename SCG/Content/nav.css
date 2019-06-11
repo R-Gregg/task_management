@@ -1,0 +1,45 @@
+﻿.navbar {
+  border: none;
+}
+
+.navbar .navbar-header {
+  padding-left: 20px;
+}
+
+.navbar .navbar-collapse {
+  padding-right: 20px;
+}
+
+.navbar-inverse #sub_nav {
+  background-color: #333333;
+  width: 100%;
+  height: 50px;
+  padding-left: 30px;
+}
+
+.navbar .department-nav {
+  display: none;
+}
+
+.navbar .department-nav.active {
+  display: block;
+}
+
+.navbar .department-nav ul {
+  position: relative;
+  border-top: 1px solid #999999;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #CCC;
+  position: absolute;
+  top: 42px;
+}
+
+.arrow-up.initial {
+  left: 151px;
+}

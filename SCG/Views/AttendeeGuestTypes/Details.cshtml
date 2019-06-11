@@ -1,0 +1,35 @@
+﻿@model SCG.Models.AttendeeGuestType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AttendeeGuestType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attendee.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attendee.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuestType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuestType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

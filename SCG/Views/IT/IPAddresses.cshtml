@@ -1,0 +1,42 @@
+﻿<div class="it-holder">
+  @model SCG.Models.Page
+
+@{
+    ViewBag.Title = "IP Addresses";
+    ViewBag.Page_Nav = "departments";
+    ViewBag.Page_Area = "it_area";
+    ViewBag.Page_ID = "ip_addresses_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+  <div class="fixed-header-three-col">
+    <h2 class="header">@ViewBag.Title</h2>
+    <div class="it-tabs">
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Pensacola IP Addresses" }, null)');" class="it-tabs-nav active">Pensacola</span>
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Tampa IP Addresses" }, null)');" class="it-tabs-nav">Tampa</span>
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Ft Walton IP Addresses" }, null)');" class="it-tabs-nav">Ft. Walton</span>
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Orlando IP Addresses" }, null)');" class="it-tabs-nav">Orlando</span>
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Coastal IP Addresses" }, null)');" class="it-tabs-nav">Coastal IR</span>
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Audit IP Addresses" }, null)');" class="it-tabs-nav">Audit Wireless</span>
+      <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Phone IP Addresses" }, null)');" class="it-tabs-nav">Phones</span>
+    </div>
+    <hr class="hr-grey" />
+  </div>
+
+  <div class="container-body-header">
+    <div id="ip_holder" style="text-align: center;">
+      @Html.Raw(Model.Text)
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  <script type="text/javascript">
+    $("document").ready(function () {
+      $(".it-tabs-nav").click(function () {
+        $(".it-tabs-nav").removeClass("active");
+        $(this).addClass("active");
+      });
+    });
+  </script>  
+}

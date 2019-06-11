@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SCG.Models.Profile>
+
+@{
+    ViewBag.Title = "Social Roster";
+    ViewBag.Page_Nav = "onefirm";
+    ViewBag.Page_Area = "social_roster_area";
+    ViewBag.Page_ID = "social_roster_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<style>
+    #Roster {
+        font-size: 0;
+    }
+
+        #Roster .roster-profile {
+            width: 25%;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            cursor: pointer;
+        }
+
+
+        #Roster .roster-photo {
+            display: block;
+            width: 92%;
+            height: 330px;
+            margin: 4%;
+            background: #CCC url(/images/silhouette.png) center top no-repeat;
+            background-size: cover;
+            border-radius: 8px;
+        }
+</style>
+
+<div class="page-holder">
+    <h2>@ViewBag.Title</h2>
+    <div id="Roster">
+        <span style="color:pink;"><i class="fa fa-clock-o fa-spin" aria-hidden="true" style="color:pink;"></i> Loading...</span>
+        @*@{ 
+            var Photo = "";
+        }
+
+        @{  foreach (var user in ViewBag.Users as IEnumerable<SCG.Models.User>)
+            {
+                var p = user.Profiles.FirstOrDefault();
+                if (p != null)
+                {
+
+                    if (p.pro__Photo != null && p.pro__Photo != "")
+                    {
+                        Photo = "/assets/Employees/" + p.pro__Photo;
+                    }
+                    else {
+                        Photo = "/images/silhouette.png";
+                    }
+
+                    <div class="roster-profile f_nav" url="/Profiles/Details/@p.pro__ID">
+                        <span class="roster-photo" style="background-image:url(@Html.Raw(Photo))"></span>
+                        <h3>
+                            @Html.Raw(p.pro__First_Name) @Html.Raw(p.pro__Last_Name)
+                            <span>@Html.Raw(p.pro__Creds)</span>
+                            <span>@Html.Raw(p.pro__Title)</span>
+                        </h3>
+                    </div>
+                }
+
+            }
+        }*@
+    </div>
+
+</div>
+
+<script>
+    $('#Roster').load('/Profiles/Roster');
+</script>

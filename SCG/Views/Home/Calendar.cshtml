@@ -1,0 +1,121 @@
+﻿<h1 class="room-title">Training Room Schedule<i class="fa fa-caret-down pull-right"></i></h1>
+<div class="room-schedule open" style="margin-bottom: 50px;">
+  @if (ViewBag.TrainingCount > 0)
+  {
+    foreach (var e in ViewBag.Training)
+    {
+      <hr />
+      <div class="event">
+        <i class="fa fa-calendar"></i> @Html.Raw(e.Subject)<br />
+        <i class="fa fa-clock-o"></i> @string.Format("{0:g}", Convert.ToDateTime(e.Start.DateTime).ToLocalTime())<br />
+        <i class="fa fa-user"></i> @Html.Raw(e.Organizer.EmailAddress.Name)<br />
+        @if (e.Body.Content != null)
+        {
+          <div class="more actions">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> <span>More Information</span>
+            <div class="content" style="display: none; padding-top: 10px;">
+              @{ 
+                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("\n");
+                System.Text.RegularExpressions.Regex rgx2 = new System.Text.RegularExpressions.Regex("<style>.*</style>");
+                String body = rgx2.Replace(rgx.Replace(e.Body.Content, ""), "");
+              }
+              @Html.Raw(body)
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+  else
+  {
+    <hr />
+    <div class="event">No Meetings Scheduled</div>
+  }
+</div>
+
+<h1 class="room-title">Founders Room Schedule<i class="fa fa-caret-right pull-right"></i></h1>
+<div class="room-schedule" style="margin-bottom: 50px;">
+  @if (ViewBag.FoundersCount > 0)
+  {
+    foreach (var e in ViewBag.Founders)
+    {
+      <hr />
+      <div class="event">
+        <i class="fa fa-calendar"></i> @Html.Raw(e.Subject)<br />
+        <i class="fa fa-clock-o"></i> @string.Format("{0:g}", Convert.ToDateTime(e.Start.DateTime).ToLocalTime())<br />
+        <i class="fa fa-user"></i> @Html.Raw(e.Organizer.EmailAddress.Name)
+        @if (e.Body.Content != null)
+        {
+          <div class="more actions">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> <span>More Information</span>
+            <div class="content" style="display: none; padding-top: 10px;">
+              @{
+                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("\n");
+                System.Text.RegularExpressions.Regex rgx2 = new System.Text.RegularExpressions.Regex("<style>.*</style>");
+                String body = rgx2.Replace(rgx.Replace(e.Body.Content, ""), "");
+              }
+              @Html.Raw(body)
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+  else
+  {
+    <hr />
+    <div class="event">No Meetings Scheduled</div>
+  }
+</div>
+
+<h1 class="room-title">Room 119 Schedule<i class="fa fa-caret-right pull-right"></i></h1>
+<div class="room-schedule" style="margin-bottom: 50px;">
+  @if (ViewBag.R119Count > 0)
+  {
+    foreach (var e in ViewBag.R119)
+    {
+      <hr />
+      <div class="event">
+        <i class="fa fa-calendar"></i> @Html.Raw(e.Subject)<br />
+        <i class="fa fa-clock-o"></i> @string.Format("{0:g}", Convert.ToDateTime(e.Start.DateTime).ToLocalTime())<br />
+        <i class="fa fa-user"></i> @Html.Raw(e.Organizer.EmailAddress.Name)
+        @if (e.Body.Content != null)
+        {
+          <div class="more actions">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> <span>More Information</span>
+            <div class="content" style="display: none; padding-top: 10px;">
+              @{
+                System.Text.RegularExpressions.Regex rgx = new System.Text.RegularExpressions.Regex("\n");
+                System.Text.RegularExpressions.Regex rgx2 = new System.Text.RegularExpressions.Regex("<style>.*</style>");
+                String body = rgx2.Replace(rgx.Replace(e.Body.Content, ""), "");
+              }
+              @Html.Raw(body)
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+  else
+  {
+    <hr />
+    <div class="event">No Meetings Scheduled</div>
+  }
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.room-title').click(function () {
+      $(this).next().fadeToggle();
+      if ($(this).children('i').hasClass('fa-caret-right')) {
+        $(this).children('i').removeClass('fa-caret-right');
+        $(this).children('i').addClass('fa-caret-down');
+      } else {
+        $(this).children('i').removeClass('fa-caret-down');
+        $(this).children('i').addClass('fa-caret-right');
+      }
+    });
+    $('.more').click(function () {
+      $(this).find('.content').fadeToggle();
+    });
+  });
+</script>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Two Minutes";
+    ViewBag.Page_Nav = "onefirm";
+    ViewBag.Page_Area = "two_minutes_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<div class="page-holder">
+  <h2>Two Minutes</h2>
+
+  <div style="width: 100%; text-align: center;">
+    <video id="two_minutes0" autoplay="" controls controlsList="nodownload" style="max-width: 100%; cursor:pointer;" onClick="playPause0();" >
+      <source src="http://www.saltmarshcpa.com/2-minutes/_vid/Two%20Minutes%20-%20Sept%202017.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+</div>
+
+<script>
+    var myVideo0 = document.getElementById("two_minutes0");
+
+    function playPause0() {
+        if (myVideo0.paused)
+            myVideo0.play();
+      else
+            myVideo0.pause();
+    }
+</script>

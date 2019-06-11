@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SCG.Models.Profile>
+
+@{
+    var Photo = "";
+}
+
+@{  foreach (var user in ViewBag.Users as IEnumerable<SCG.Models.User>)
+    {
+        var p = user.Profiles.FirstOrDefault();
+        if (p != null)
+        {
+
+            if (p.pro__Photo != null && p.pro__Photo != "")
+            {
+                Photo = "/assets/Employees/" + p.pro__Photo;
+            }
+            else
+            {
+                Photo = "/images/silhouette.png";
+            }
+
+            <div class="roster-profile f_nav" url="/Profiles/Details/@p.pro__ID">
+                <span class="roster-photo" style="background-image:url(@Html.Raw(Photo))"></span>
+                <h3>
+                    @Html.Raw(p.pro__First_Name) @Html.Raw(p.pro__Last_Name)
+                    <span>@Html.Raw(p.pro__Creds)</span>
+                    <span>@Html.Raw(p.pro__Title)</span>
+                </h3>
+            </div>
+        }
+
+    }
+}
+
+<script>
+    //  Navigation Button Function
+    $('.f_nav').css({ 'cursor': 'pointer' });
+    $('.f_nav').click(function () {
+        var l = $(this).attr('url');
+        window.location.assign(l);
+    });
+</script>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<SCG.Models.Page>
+
+@{
+    ViewBag.Title = "Administration";
+    ViewBag.Page_Area = "pages_area";
+    ViewBag.Page_ID = "pages_pge";
+    ViewBag.Page_Layout = "columns_2";
+}
+
+<style>
+    .table {
+        border-bottom: #E2E2E2 solid 1px;
+    }
+
+        .table th {
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .table td {
+            text-align: left;
+        }
+
+            .table td:nth-child(1) {
+                width: 10%;
+            }
+
+            .table td:nth-child(2) {
+                width: 40%;
+            }
+
+            .table td:nth-child(3) {
+                width: 25%;
+            }
+
+            .table td:nth-child(4) {
+                width: 25%;
+                text-align: right;
+            }
+
+            .table th:nth-last-child(1),
+            .table td:nth-last-child(1) {
+                white-space: nowrap;
+                text-align: right;
+            }
+</style>
+
+<div class="page-holder">
+
+    <h2>Administration</h2>
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>Dept.</th>
+            <th>Page</th>
+            <th>Aministrator</th>
+            <th>Last Updated</th>
+            <th class="tools" style="text-align:right;">
+                <!--
+                <i class="fa fa-plus add js_popup" w="60%" h="40%" rel="/Pages/Create/" aria-hidden="true"></i>
+                    -->
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @string.Format("{0:d}", item.UpdatedAt)
+                </td>
+                <td class="tools">
+                    <i class="fa fa-pencil-square edt" aria-hidden="true" onclick="fPopup('/Pages/Edit/@Html.Raw(item.Id)','60%','80%');" title="Edit Subscription"></i>
+                    <!--
+                        <i class="fa fa-minus-square dlt" aria-hidden="true" onclick="fPopup('/Pages/Delete/@Html.Raw(item.Id)','30%','40%');" title="Delete Subscription"></i>
+                        -->
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

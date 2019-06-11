@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SCG.Models.Touch>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<div id="openTouches" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Touches</h4>
+      </div>
+      <div class="modal-body fixed">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-left">@Html.DisplayNameFor(model => model.Description)</th>
+              <th class="col-center">Date</th>
+              <th class="col-center">By</th>
+              <th class="col-center"></th>
+            </tr>
+          </thead>
+
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td class="col-left">@Html.DisplayFor(modelItem => item.Description)</td>
+              <td class="col-center">@string.Format("{0:MM/dd/yyy}", item.TouchedAt)</td>
+              <td class="col-center no-wrap">@Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)</td>
+              <td class="col-center"><a href="@Url.Action("Delete", new { id = item.Id })" title="Delete"><i class="glyphicon glyphicon-trash"></i></a></td>
+            </tr>
+          }
+        </table>
+      </div>
+      <div class="modal-footer">
+        @using (Html.BeginForm())
+        {
+          @Html.AntiForgeryToken()
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          @Html.TextBox("Description", "", new { @class = "form-control pull-left", @style = "display: inline-block; width: 50%;", @placeholder = "Notes" })
+          @Html.TextBox("TouchedAt", string.Format("{0:MM/dd/yyy}", DateTime.Now), new { @class = "form-control pull-left date-picker", @style = "display: inline-block; width: 100px;", @placeholder = "Date" })
+          <input type="submit" value="Submit" class="btn btn-success pull-right" />
+          <input type="hidden" value="@ViewData["FormID"]" name="AttendeeId" />
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.date-picker').datepicker();
+
+  $(document).ready(function () {
+    $("form").submit(function (e) {
+      e.preventDefault();
+      data = $(this).serializeArray();
+      $.ajax({
+        method: "POST",
+        url: '/Touches/Create',
+        data: data,
+        success: function () {
+          $("#openTouches").modal('hide');
+        }
+      });
+    });
+  });
+</script>

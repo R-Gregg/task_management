@@ -1,0 +1,234 @@
+﻿@model SCG.Models.Profile
+
+@{
+    ViewBag.Title = "Social Roster";
+    ViewBag.Page_Nav = "onefirm";
+    ViewBag.Page_Area = "social_roster_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_3";
+
+    string[] Area = new string[100];
+
+    Area[10] = "Construction & Real Estate Development";
+    Area[4] = "Audit & Assurance";
+    Area[7] = "Business Valuation";
+    Area[8] = "Financial Institutions";
+    Area[31] = "Post-Acute & Acute Healthcare";
+    Area[20] = "Flexible Spending Plan Administration";
+    Area[23] = "Human Resources Consulting";
+    Area[32] = "Hospitality";
+    Area[24] = "Information Technology";
+    Area[33] = "Manufacturing & Distribution";
+    Area[37] = "Non-Profit Organizations";
+    Area[25] = "Investment Management & Financial Planning";
+    Area[26] = "Litigation Support";
+    Area[63] = "Professional Employer Organizations";
+    Area[6] = "Outsourced Accounting & Advisory";
+    Area[28] = "Research & Development Tax Credits";
+    Area[21] = "Retirement Plan Administration";
+    Area[29] = "Tax";
+}
+
+<style>
+    .roster-photo {
+        display: block;
+        width: 225px;
+        height: 330px;
+        margin-left: 40px;
+        float: right;
+        background: #CCC url() center top no-repeat;
+        background-size: cover;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="page-holder">
+
+    <h2>@ViewBag.Title</h2>
+    @{ if (Model.pro__Photo != null)
+        {
+            <div class="roster-photo" style="background-image:url(/assets/Employees/@Html.DisplayFor(model => model.pro__Photo))"></div>
+        } }
+
+    <h2>
+        @Html.DisplayFor(model => model.pro__First_Name)
+        @Html.DisplayFor(model => model.pro__Last_Name)<br />
+        @Html.DisplayFor(model => model.pro__Creds)<br />
+        @Html.DisplayFor(model => model.pro__Title)
+    </h2>
+    <p>
+        @Html.DisplayFor(model => model.pro__Phone)<br />
+        <a href="mailto:@Html.DisplayFor(model => model.pro__Email)">@Html.DisplayFor(model => model.pro__Email)</a>
+    </p>
+
+
+    @Html.Raw(Model.pro__Bio)
+
+    @{
+        if (Model.pro__Personal_Bio != null)
+        {
+            <h2>Personal Profile</h2>
+            @Html.Raw(Model.pro__Personal_Bio)
+        }
+    }
+
+    @{
+        if (Model.pro__Areas != null)
+        {
+            <h2>Areas Of Practice</h2>
+            <ul>
+                @{
+                    if (Model.pro__Areas != null)
+                    {
+                        string Str = Model.pro__Areas.Replace("||", "*").Replace("|", "");
+                        String[] Arr = Str.Split('*');
+                        foreach (string e in Arr)
+                        {
+                            <li>@Area[Convert.ToInt32(e)]</li>
+                        }
+                    }
+                }
+            </ul>
+                    } }
+
+    @{
+        if (Model.pro__Education != null && Model.pro__Education.Replace("|", "") != "")
+        {
+            <h2>Education</h2>
+
+            String[] ArrEducation = Model.pro__Education.Split('|');
+            <ul>
+                @{foreach (string e in ArrEducation)
+                    {
+                        if (e != "")
+                        {
+                            <li>@e</li>
+                        }
+                    }
+                }
+            </ul>
+                    }
+
+    }
+
+    @{
+        if (Model.pro__Certifications != null && Model.pro__Certifications.Replace("|", "") != "")
+        {
+            <h2>Certifications</h2>
+
+            String[] ArrCertifications = Model.pro__Certifications.Split('|');
+            <ul>
+                @{foreach (string e in ArrCertifications)
+                    {
+                        if (e != "")
+                        {
+                            <li>@e</li>
+                        }
+                    }
+                }
+            </ul>
+                    }
+    }
+
+    @{
+        if (Model.pro__Professional_Affiliations != null && Model.pro__Professional_Affiliations.Replace("|", "") != "")
+        {
+            <h2>Professional Affiliations</h2>
+
+            String[] ArrProfessional = Model.pro__Professional_Affiliations.Split('|');
+            <ul>
+                @{foreach (string e in ArrProfessional)
+                    {
+                        if (e != "")
+                        {
+                            <li>@e</li>
+                        }
+                    }
+                }
+            </ul>
+                    }
+    }
+
+    @{
+        if (Model.pro__Community_Affiliations != null && Model.pro__Community_Affiliations.Replace("|", "") != "")
+        {
+            <h2>Community Affiliations</h2>
+
+            String[] ArrCommunity = Model.pro__Community_Affiliations.Split('|');
+            <ul>
+                @{foreach (string e in ArrCommunity)
+                    {
+                        if (e != "")
+                        {
+                            <li>@e</li>
+                        }
+                    }
+                }
+            </ul>
+                    }
+    }
+
+    @{
+        if (Model.pro__Anniv_Month != null && Model.pro__Anniv_Year != null)
+        {
+            <h2>Work Anniversary</h2>
+            <ul>
+                <li>@Html.Raw(Model.pro__Anniv_Month) @Html.Raw(Model.pro__Anniv_Year)</li>
+            </ul>
+        }
+    }
+
+    @{
+        if (Model.pro__Spouse != null)
+        {
+            <h2>Spouse</h2>
+            <ul>
+                <li>@Html.Raw(Model.pro__Spouse)</li>
+            </ul>
+        }
+    }
+
+    @{
+        if (Model.pro__Kids != null && Model.pro__Kids.Replace("|", "") != "")
+        {
+            <h2>Children</h2>
+
+            String[] ArrKids = Model.pro__Kids.Split('|');
+            <ul>
+                @{foreach (string e in ArrKids)
+                    {
+                        if (e != "")
+                        {
+                            <li>@e</li>
+                        }
+                    }
+                }
+            </ul>
+                    }
+    }
+
+    @{ if (Model.pro__File_Resume != null || Model.pro__File_VCard != null || Model.pro__LinkedIn != null)
+        {
+            <h2>Downloads</h2>
+            <ul>
+                @{if (Model.pro__File_Resume != null)
+                    {
+
+                        <li><a href="/assets/Employees/@Html.DisplayFor(model => model.pro__File_Resume)">Resume</a></li>
+                    } }
+                @{if (Model.pro__File_VCard != null)
+                    {
+
+                        <li><a href="/assets/Employees/@Html.DisplayFor(model => model.pro__File_VCard)">VCard</a></li>
+                    } }
+                @{if (Model.pro__LinkedIn != null)
+                    {
+
+                        <li><a href="/assets/Employees/@Html.DisplayFor(model => model.pro__LinkedIn)">LinkedIn</a></li>
+                    } }
+
+            </ul>
+
+                    } }
+
+</div>

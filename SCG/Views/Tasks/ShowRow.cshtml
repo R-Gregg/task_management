@@ -1,0 +1,46 @@
+﻿@model SCG.Models.Task
+
+<td class="wide">
+  @Html.DisplayFor(modelModel => Model.Description)
+</td>
+@if (Model.Project.Assign == true)
+{
+  <td>
+    @if (Model.Project.CreatedBy == Model.AssignedTo)
+    {
+      @Model.Project.User.FullName
+    }
+    else if (Model.AssignedTo != null)
+    {
+      @Model.Project.SharedProjects.Where(p => p.UserID == Model.AssignedTo).First().User.FullName
+    }
+  </td>
+}
+@if (Model.Project.DueDates == true)
+{
+  <td>@string.Format("{0:d}", Model.DueDate)</td>
+}
+<td>
+  @Html.DisplayFor(modelModel => Model.Priority.Name)
+</td>
+<td id="updated_@Model.Id">
+  @Html.DisplayFor(modelModel => Model.Type.Name)
+</td>
+<td>
+  @if (Model.TaskNotes.Count > 0)
+  {
+    <span onclick="loadModal('@Url.Action("Index", "TaskNotes", new { id = Model.Id }, null)', 'Notes')" class="actions"><i class="glyphicon glyphicon-comment notes"></i></span>
+  }
+  else
+  {
+    <span onclick="loadModal('@Url.Action("Index", "TaskNotes", new { id = Model.Id }, null)', 'Notes')" class="actions"><i class="glyphicon glyphicon-comment"></i></span>
+  }
+</td>
+<td>
+  <span onclick="selectRow($(this), '@Url.Action("RowEdit", "Tasks", new { id = Model.Id }, null)');" class="actions" title="Edit"><i class="glyphicon glyphicon-pencil"></i></span>
+  <span onclick="loadModal('@Url.Action("Delete", "Tasks", new { id = Model.Id }, null)', 'Delete')" class="actions" title="Delete"><i class="glyphicon glyphicon-trash"></i></span>
+</td>
+<script type="text/javascript">
+  var td = $('#updated_@Model.Id');
+  td.animate({ "background-color": "@Model.Type.Color" }, 1000);
+</script>

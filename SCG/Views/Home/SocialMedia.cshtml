@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Social Media";
+    ViewBag.Page_Area = "onefirm_area";
+    ViewBag.Page_ID = "social_media_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .rss-holder {
+    height: 500px;
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 400px;
+    max-height: 500px;
+    overflow-y: scroll;
+    margin-bottom: 50px;
+    margin-right: 25px;
+  }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div class="rss-holder">
+  <div>Tweets by <a href="https://twitter.com/saltmarshcpa">@Html.Raw("@SaltmarshCPA")</a></div>
+  <hr />
+  <div>
+    @foreach (var tweet in ViewBag.Twitter)
+    {
+      <div>@Html.Raw(tweet.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>Healthcare Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.Healthcare)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>Technology Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.Technology)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>Tax Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.Tax)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>Audit Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.Audit)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>HR Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.HR)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>Marketing Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.Marketing)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+<div class="rss-holder">
+  <div>Accounting Articles</div>
+  <hr />
+  <div>
+    @foreach (var article in ViewBag.Accounting)
+    {
+      <div>@Html.Raw(article.Summary.Text)</div>
+      <hr />
+    }
+  </div>
+</div>
+@*<div id="fb-root"></div>
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<h2>Social Media</h2>
+
+<div>
+  <div class="facebook" style="display: inline-block; vertical-align: top;">
+    <div class="fb-page" data-href="https://www.facebook.com/saltmarshcpa" data-tabs="timeline" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/saltmarshcpa" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/saltmarshcpa">Saltmarsh</a></blockquote></div>
+  </div>
+  <div class="twitter" style="display: inline-block; vertical-align: top; height: 100%; overflow-y: scroll; max-height: 600px;">
+    <a class="twitter-timeline" href="https://twitter.com/saltmarshcpa?ref_src=twsrc%5Etfw">Tweets by Saltmarsh</a>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</div>*@

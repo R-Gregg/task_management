@@ -1,0 +1,122 @@
+﻿@model Subscriptions.Models.subscription_tbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>subscription_tbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sub__Units)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sub__Units)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sub__Price_Override)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sub__Price_Override)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sub__Annv_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sub__Annv_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sub__Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sub__Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Created_IP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Created_IP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Updated_IP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Updated_IP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.account_tbl.acnt__Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.account_tbl.acnt__Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anniversary_lst.annv__Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anniversary_lst.annv__Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product_lvl_tbl.prod_lvl__Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_lvl_tbl.prod_lvl__Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_tbl.srv__Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_tbl.srv__Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status_lst.stat__Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status_lst.stat__Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.sub__ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

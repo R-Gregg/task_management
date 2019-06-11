@@ -1,0 +1,26 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+  ViewBag.Title = "Error";
+  ViewBag.Page_Layout = "columns_3";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+@*<div>
+  @{
+    if (Model != null && Model.Exception != null)
+    {
+      <h5>Here is some information you can pass on to the administrator</h5>
+                    <h3>Path: ~/@string.Format("{0}/{1}", Model.ControllerName, Model.ActionName)</h3>
+                    <h4>Error: @Model.Exception.GetType().Name</h4>
+      if (Request.IsLocal)
+      {
+        <h4>Message: @Model.Exception.Message</h4>
+                        <h5>@Model.Exception.StackTrace</h5>
+      }
+    }
+  }
+</div>*@
+<div class="text-danger">@ViewBag.Error</div>
+

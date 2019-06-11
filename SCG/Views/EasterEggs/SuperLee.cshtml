@@ -1,0 +1,89 @@
+﻿
+<style>
+    #EasterEgg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 100;
+        background: url(/assets/EasterEggs/confetti-1.gif);
+    }
+
+        #EasterEgg .egg-lee-super {
+            position: absolute;
+            z-index: 100;
+            right: -500px;
+            bottom: -500px;
+            width: 396px;
+            height: 293px;
+            background: url(/assets/EasterEggs/super-lee1.png);
+        }
+
+        #EasterEgg .egg-bubble {
+            position: absolute;
+            left: 25vw;
+            top: 60px;
+            width: 50vw;
+            height: 347px;
+            padding: 60px;
+            background: url(/assets/EasterEggs/bubble-1.png) center no-repeat;
+            background-size: contain;
+            text-align: center;
+        }
+
+            #EasterEgg .egg-bubble h1 {
+                font-family: 'Comic Sans MS';
+                color: white;
+                font-size: 28px;
+            }
+
+            #EasterEgg .egg-bubble p {
+                font-family: 'Comic Sans MS';
+                color: white;
+                font-size: 16px;
+            }
+
+            #EasterEgg .egg-bubble i {
+                color: white;
+                font-size: 48px;
+            }
+</style>
+
+<script>
+
+    $.post('/Email/SendEmail', { 'form__EmailSubject': 'Finished Tutorial - Easter Egg Fired', 'form__EmailFrom': 'info@saltmarshcpa.com', 'form__EmailTo': 'stephen.reyes@saltmarshcpa.com', 'form__EmailAddTo': 'george@grendelfly.com','Winner':'@string.Join(" ", User.Identity.Name.Remove(0, 8).Split('.'))'});
+
+    var egg = '<div id="EasterEgg"></div>';
+    $('body').append(egg);
+
+    var lee = '<div class="egg-lee-super"></div>';
+    $('#EasterEgg').append(lee);
+
+    var audio = '<audio id="lee-audio" autoplay="autoplay" loop="loop"><source src="/assets/EasterEggs/applause-1.mp3" /></audio>';
+    $('#EasterEgg').append(audio);
+
+    var bbl = '<div class="egg-bubble"></div>';
+    $('#EasterEgg').append(bbl);
+
+    var msg = '<i class="fa fa-smile-o" aria-hidden="true"></i><h1>Congratulations!</h1><p>You\'ve found an Easter Egg and you win a prize!</p>';
+    $('#EasterEgg .egg-bubble').html(msg);
+
+    var w = $(window).width();
+    var h = $(window).height();
+    $('.egg-lee-super').animate({ 'right': w / 2 + 'px', 'bottom': h / 2 + 'px' }, 2000, function () {
+        setTimeout(function () {
+            $('.egg-lee-super').css({ 'background-image': 'url(/assets/EasterEggs/super-lee2.png)' });
+            setTimeout(function () {
+                $('.egg-lee-super').css({ 'background-image': 'url(/assets/EasterEggs/super-lee1.png)' });
+                $('.egg-lee-super').animate({ 'right': (w + 500) + 'px', 'bottom': (h + 500) + 'px' }, 800, function () {
+                    $('#EasterEgg').remove();
+                });
+            }, 2000);
+        }, 1000);
+    });
+
+    $('body').removeClass('stop-scrolling');
+
+</script>

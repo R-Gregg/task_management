@@ -1,0 +1,744 @@
+﻿@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - OneFirm</title>
+
+  <link type="text/css" media="screen,print" rel="stylesheet" href="~/Content/font-awesome.min.css" />
+  <link type="text/css" media="screen,print" rel="stylesheet" href="~/Content/webfonts.css" />
+  <link type="text/css" media="screen,print" rel="stylesheet" href="~/Content/css-frm-tbl.css" />
+  <script type="text/javascript" src="/Scripts/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "open_sansregular", Arial, Helvetica, sans-serif;
+      font-size: 0;
+      color: #333;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 20px 0;
+      font-family: "quicksandbook",Arial, Helvetica, sans-serif;
+      text-transform: capitalize;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    h4 {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    p, ul, ol {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    #header {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    #info-bar {
+      position: relative;
+      z-index: 10;
+    }
+
+      #info-bar > div {
+        padding: 5px 20px;
+        font-size: 12px;
+        color: white;
+        background-color: #1f2122;
+      }
+
+      #info-bar a, #info-bar i {
+        padding: 0 1px;
+        font-size: 12px;
+        color: #888;
+        text-decoration: none;
+      }
+
+        #info-bar a:hover, #info-bar i:hover {
+          color: #FFF;
+        }
+
+    #hero {
+    }
+
+      #hero #hero-image {
+        width: 100vw;
+        height: 60vh;
+        background: url(/images/Saltmarsh-7874.JPG) no-repeat center right;
+        background: url(/images/Saltmarsh-7516.JPG) no-repeat center right;
+        background-size: cover;
+        border-bottom: #000 solid 1px;
+      }
+
+        #hero #hero-image #logo {
+          position: absolute;
+          top: 50px;
+          left: 20px;
+          height: 27%;
+          max-height: 150px;
+          padding-top: 0px;
+        }
+
+        #hero #hero-image #hero-down {
+          position: absolute;
+          top: 50px;
+          right: 20px;
+          font-size: 24px;
+          padding: 5px 10px;
+          color: white;
+          background-color: #000;
+          border-radius: 50px;
+          opacity: .65;
+        }
+
+
+    #hero-bumper {
+      height: 60vh;
+      margin-bottom: 100px;
+    }
+
+    #nav {
+    }
+
+      #nav #nav-1 {
+        background-color: #1f2122;
+      }
+
+        #nav #nav-1 ul {
+          list-style: none;
+          text-align: center;
+          margin: 0;
+        }
+
+          #nav #nav-1 ul li {
+            display: inline-block;
+          }
+
+            #nav #nav-1 ul li a {
+              display: block;
+              padding: 10px 2vw;
+              font-size: 14px;
+              color: white;
+              text-decoration: none;
+              text-shadow: 1px 1px 2px #000;
+            }
+
+              #nav #nav-1 ul li a:hover {
+                background-color: #4b4e4e;
+              }
+
+      #nav #nav-2 {
+        background-color: #FFF;
+        border-top: darkgoldenrod solid 2px;
+      }
+
+        #nav #nav-2 ul {
+          list-style: none;
+          text-align: center;
+          margin: 0;
+        }
+
+          #nav #nav-2 ul li {
+            display: inline-block;
+          }
+
+            #nav #nav-2 ul li a {
+              display: block;
+              padding: 10px 2vw;
+              font-size: 14px;
+              color: darkgoldenrod;
+              text-decoration: none;
+              font-weight: bold;
+            }
+
+              #nav #nav-2 ul li a:hover {
+                color: #1f2122;
+                background: url(/images/caret.png) center top -24px no-repeat;
+              }
+
+    #body {
+    }
+
+      #body > div {
+        display: inline-block;
+        vertical-align: top;
+      }
+
+        #body > div > div {
+          margin: 0 10px;
+          padding: 20px;
+          background-color: #ebdfc2;
+        }
+
+      #body #body-1 {
+        width: 25%;
+      }
+
+        #body #body-1 > div {
+        }
+
+      #body #body-2 {
+        width: 50%;
+      }
+
+        #body #body-2 > div {
+          background-color: #FFF;
+        }
+
+      #body #body-3 {
+        width: 25%;
+      }
+
+        #body #body-3 > div {
+        }
+
+    #footer {
+      background-color: #8d7535;
+    }
+
+      #footer > div {
+        padding: 20px 20px 60px 20px;
+      }
+
+      #footer p {
+        text-align: center;
+        color: white;
+      }
+
+
+    #cards {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+      #cards li {
+        position: relative;
+        float: left;
+        width: 31%;
+        min-height: 340px;
+        margin: 1%;
+        padding: 0;
+        font-size: 14px;
+        background-color: white;
+        border: #CCC solid 1px;
+        border-radius: 8px;
+      }
+
+        #cards li .handle {
+          display: block;
+          padding: 10px 20px;
+          font-size: 14px;
+          background-color: #ebdfc2;
+          border-radius: 4px;
+          cursor: move;
+        }
+
+        #cards li .check {
+          position: absolute;
+          top: 6px;
+          right: 7px;
+          display: block;
+          padding: 5px 10px;
+          font-size: 12px;
+          background-color: #dfcca3;
+          border: white solid 1px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+          #cards li .check:hover {
+            border-color: darkgoldenrod;
+          }
+
+        #cards li .content {
+          display: block;
+          padding: 20px;
+          font-size: 14px;
+          max-height: 261px;
+          overflow-y: auto;
+        }
+
+        #cards li .content img {
+          height: auto;
+          max-width: 100%;
+        }
+
+        #cards li .content hr {
+          margin: 15px;
+        }
+  </style>
+
+</head>
+<body>
+
+  <div id="header">
+    <div id="info-bar">
+      <div>
+        <span style="display:inline-block; border-right:#555 dashed 1px; padding-right:20px;">
+          <a href="Javascript:void(0);">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </a>
+          <a href="Javascript:void(0);">
+            <i class="fa fa-bell-o" aria-hidden="true"></i>
+          </a>
+          <a href="Javascript:void(0);">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:red;"></i>
+          </a>
+          <a href="Javascript:void(0);">
+            <i style="color:darkorange;">2</i>
+          </a>
+        </span>
+        <span style="float: right;">
+          <span style="display:inline-block; border-right:#555 dashed 1px; margin-right: 20px; padding-right:10px;">
+            <a href="Javascript:void(0);">
+              <i id="full-screen" class="fa fa-arrows-alt" aria-hidden="true"></i>
+            </a>
+          </span>
+          <a href="Javascript:void(0);">
+            <i class="fa fa-user" aria-hidden="true"></i> - George Johnson
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <div class="hide" id="hero">
+      <div id="hero-image">
+        <img id="logo" src="~/images/logo-wht-drp.svg" />
+        <i class="fa fa-angle-double-up" id="hero-down" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="hide" id="nav">
+
+      <div id="nav-1">
+        <ul>
+          <li><a href="">OneFirm</a></li>
+          <li><a href="">Administration</a></li>
+          <li><a href="">Audit</a></li>
+          <li><a href="">FA</a></li>
+          <li><a href="">Healthcare</a></li>
+          <li><a href="">HR</a></li>
+          <li><a href="">IT</a></li>
+          <li><a href="">Marketing</a></li>
+          <li><a href="">Tax</a></li>
+        </ul>
+      </div>
+
+      <div id="nav-2">
+        <ul>
+          <li><a href="">OneFirm</a></li>
+          <li><a href="">Administration</a></li>
+          <li><a href="">Audit</a></li>
+          <li><a href="">FA</a></li>
+          <li><a href="">Healthcare</a></li>
+          <li><a href="">Marketing</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="hide" id="hero-bumper"></div>
+
+  <div id="body">
+
+    <div class="hide body" id="body-1"><div></div></div>
+
+    <div class="body" id="body-2">
+      <div>
+
+
+        <ul id="cards">
+          @foreach (var feed in ViewBag.Feeds)
+          {
+            <li class="ui-state-default" url="https://twitrss.me/twitter_user_to_rss/?user=saltmarshcpa">
+              <span class="handle">@feed[0]</span>
+              <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+              <span class="content">
+                @foreach (var item in feed[1])
+                {
+                  @Html.Raw(item.Summary.Text + "<hr />")
+                }
+              </span>
+            </li>
+          }
+          @*<li class="ui-state-default" url="http://www.healthcarefinancenews.com/content-feed/all">
+            <span class="handle"><i class="fa fa-facebook-square" aria-hidden="true"></i> SCG Facebook</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content">Item 2</span>
+          </li>
+          <li class="ui-state-default" url="http://feeds.feedburner.com/TechCrunchIT">
+            <span class="handle"><i class="fa fa-twitter-square" aria-hidden="true"></i> SCG Twitter Feed</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content">Item 3</span>
+          </li>
+          <li class="ui-state-default" url="http://news.cchgroup.com/category/accounting-audit/a-a-hot-topics/feed/">
+            <span class="handle"><i class="fa fa-twitter-square" aria-hidden="true"></i> SCG Twitter Feed</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content">Item 4</span>
+          </li>
+          <li class="ui-state-default" url="https://www.federalreserve.gov/feeds/press_all.xml">
+            <span class="handle"><i class="fa fa-twitter-square" aria-hidden="true"></i> SCG Twitter Feed</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content">Item 5</span>
+          </li>
+          <li class="ui-state-default" url="http://feeds.feedburner.com/shrm/hrnews">
+            <span class="handle"><i class="fa fa-twitter-square" aria-hidden="true"></i> SCG Twitter Feed</span>
+            <span class="check"><i class="fa fa-times" aria-hidden="true"></i></span>
+            <span class="content">Item 6</span>
+          </li>*@
+        </ul>
+
+        <div style="clear:both;"></div>
+        <hr style="margin:40px 0" />
+
+        <h1>Support</h1>
+
+        <h2>IMPORTANT MESSAGE TO ALL HUB USERS</h2>
+        <p>Please note that the old version of HUB by Magoo&reg; is still running at http://freersvp.co.uk. For technical reasons we could not migrate your records across to the new version</p>
+        <p>Please note that all your submissions have to be authenticated through this new version of the system. On entering a successful eventID and password the system will check the old version of HUB to see if your submissions exists. If not you will be provided with instruction to visit the old site where they can retrieved. </p>
+        <p>We are sorry for any inconvenience this may have caused.</p>
+
+        <hr style="margin:40px 0" />
+
+        <h2>Let Us Hear From You</h2>
+
+        <div id="frm">
+          <form id="js_frmval_form_0" action="/_inc/frm-in.asp" method="post">
+            <div class="css_tbl css_tbl_frm">
+              <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="eml__Name"><span class="js_frmval_mrk" style="color: red; vertical-align: top; display: inline;">* </span>Name:</label></div>
+                <div class="css_tbl_td"><input name="eml__Name" title="Name" class="required" id="eml__Name" type="text"></div>
+              </div>
+              <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="eml__Company"><span class="js_frmval_mrk" style="color: red; vertical-align: top; display: inline;">* </span>Company:</label></div>
+                <div class="css_tbl_td"><input name="eml__Company" title="Company" class="required" id="eml__Company" type="text"></div>
+              </div>
+              <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="eml__Username"><span class="js_frmval_mrk" style="color: red; vertical-align: top; display: inline;">* </span>Username:</label></div>
+                <div class="css_tbl_td"><input name="eml__Username" title="Username" class="required" id="eml__Username" type="text"></div>
+              </div>
+              <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="eml__Email"><span class="js_frmval_mrk" style="color: red; vertical-align: top; display: inline;">* </span>Email:</label></div>
+                <div class="css_tbl_td"><input name="eml__Email" title="Email" class="required" id="eml__Email" type="text"></div>
+              </div>
+              <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="eml__Phone">Phone:</label></div>
+                <div class="css_tbl_td"><input name="eml__Phone" title="Phone" id="eml__Phone" type="text"></div>
+              </div>
+              <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="eml__Comments">Comments:</label></div>
+                <div class="css_tbl_td"><textarea name="eml__Comments" title="Comments" id="eml__Comments"></textarea></div>
+              </div>
+
+            </div>
+
+            <div class="css_tbl css_tbl_sbmt">
+
+              <div class="css_tbl_tr">
+                <div class="css_tbl_td">
+                  <input type="submit" value="Submit">
+                  <input onclick="window.location.reload();" type="button" value="Cancel">
+                  <input name="Frm_Rtn" id="Frm_Rtn" type="hidden" value="/support.asp">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="body hide" id="body-3"><div></div></div>
+  </div>
+
+  <div class="hide" id="footer">
+    <div>
+      <p style="font-family:'latolight'; font-size:18px; text-transform:uppercase; margin:5px;">Since 1944</p>
+      <p style="font-family:'abraham_lincolnregular'; font-size:32px;">“Achieving Success by Contributing to the Success of Others”</p>
+    </div>
+  </div>
+
+
+  @*<div class="jumbotron">
+      <div>
+        <div class="jumbo-text">The Living Vision</div>
+        <video id="two_minutes" autoplay="" style="width:900px;" controls>
+          <source src="http://www.saltmarshcpa.com/2-minutes/_vid/Two%20Minutes%20-%20Sept%202017.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div style="height: 600px; width: 100%;">
+          <div class="quadrant-center">
+            <div class="quadrant-center-text">
+              Integrity & Honesty<br />
+              Respect<br />
+              Creativity<br />
+              Quality Service
+            </div>
+          </div>
+          <div class="quadrant-container">
+            <div style="margin-bottom: 3px;">
+              <div class="quadrant quadrant-top-left">
+                <div class="quadrant-top-left-text">
+                  Blah Blah Blah
+                </div>
+              </div>
+              <div class="quadrant quadrant-top-right">
+                <div class="quadrant-top-right-text">
+                  Blah Blah Blah
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="quadrant quadrant-bottom-left">
+                <div class="quadrant-bottom-left-text">
+                  Blah Blah Blah
+                </div>
+              </div>
+              <div class="quadrant quadrant-bottom-right">
+                <div class="quadrant-bottom-right-text">
+                  Blah Blah Blah
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="jumbo-text">Achieving success by contributing to the success of others.</div>
+      </div>
+    </div>*@
+
+  <script type="text/javascript">
+
+    //$('.ui-state-default').each(function () {
+    //  parseRSS($(this).attr('url'), $(this));
+    //});
+
+    //function parseRSS(url, sel) {
+    //  $.ajax({
+    //    url: url,
+    //    xhrFields: {withCredentials: false},
+    //    type: "GET",
+    //    dataType: 'json',
+    //    success: function (data) {
+    //      console.log(data);
+    //      data.find("item").each(function () {
+    //        sel.find('.content').append($(this).find("description").text() + "<hr />");
+    //      });
+    //    }
+    //  });
+    //}
+
+    //  Universal Numeric Strip
+    function fNum_Strip(num) {
+      'use strict';
+
+      var n = 0;
+      if (num !== null && num !== undefined) {
+        n = num.replace(/[^0-9.-]/g, '');
+      }
+      return n;
+
+    }
+
+    //  Scroll Behaviors
+    function fHeroScroll() {
+      var top = $(this).scrollTop();
+      var hro = window.innerHeight * .60;
+      var ste = $('#hero-image').prop('state');
+      if (top < 460 && ste != 'off') {
+        $('#hero-image').stop(true, true, true).animate({ 'height': (hro - top) + 'px' }, 0);
+        $('#hero-down').removeClass('fa-angle-double-up').removeClass('fa-angle-double-down').addClass('fa-angle-double-down');
+      } else {
+        $('#hero-image,#hero-bumper').stop(true, true, true).css({ 'height': '110px' });
+        $('#hero-image').prop({ 'state': 'off' });
+      }
+
+    }
+
+    $(window).on('scroll', function () {
+      fHeroScroll();
+    });
+
+    $(window).on('resize', function () {
+      fHeroScroll();
+    });
+
+    function fHeroReset() {
+      $('#hero-image').removeProp('state');
+      $('#hero-down').removeClass('fa-angle-double-down').addClass('fa-angle-double-up');
+      $(window).scrollTop(0);
+      $('#hero-image,#hero-bumper').stop(true, true, true).animate({ 'height': (window.innerHeight * .60) + 'px' }, 80);
+    }
+
+
+    $('#hero-down').click(function () {
+      fHeroReset();
+    });
+
+    // Full Screen
+    $('#full-screen').click(function () {
+      if ($(this).hasClass('fa-arrows-alt')) {
+        $(this).removeClass('fa-arrows-alt').addClass('fa-columns');
+        $('.hide').fadeOut(function () {
+          $('#body-2').css({ 'width': '100%', 'padding-top': '60px' });
+        });
+      } else {
+        $(this).removeClass('fa-columns').addClass('fa-arrows-alt');
+        $('.hide').fadeIn(function () {
+          $('#body-2').css({ 'width': '50%', 'padding-top': '0px' });
+        });
+
+      }
+    });
+
+
+    //  Disable Right Click
+    //$(document).bind("contextmenu", function (e) {
+    //    e.preventDefault();
+    //    return false;
+    //});
+
+
+    $(function () {
+      'use strict';
+      $(document).ready(function () {
+
+        fHeroReset();
+
+        //  Navigation Button Function
+        $('.f_nav').css({ 'cursor': 'pointer' });
+        $('.f_nav').click(function () {
+          var l = $(this).attr('url');
+          window.location.assign(l);
+        });
+
+        //  Scroll Up Footer
+        $('<div/>', {
+          'id': 'js_scrl_ftr',
+          'text': 'Scroll To Top',
+          click: function () {
+            $('html:not(:animated),body:not(:animated)').animate({ scrollTop: 0 }, 500);
+          }
+        }).appendTo('body');
+
+        $('<i/>', {
+          'class': 'fa fa-arrow-circle-o-up fa-fw fa-lg',
+        }).appendTo('#js_scrl_ftr');
+
+        $('#js_scrl_ftr').css({
+          'position': 'fixed', 'bottom': '0',
+          'width': '100%', 'padding': '10px 0',
+          'font-size': '16px',
+          'text-align': 'center', 'color': '#FFF', 'cursor': 'pointer',
+          'background-color': '#000'
+        }).hide();
+
+        $(window).scroll(function () {
+          var w = $(this).width();
+          var o = $(this).scrollTop();
+          if (w >= 1024 && o > 100) {
+            $('#js_scrl_ftr').fadeIn();
+          } else {
+            $('#js_scrl_ftr').hide();
+          }
+        });
+
+        //  Sub-Nav Scroll Effect
+        $('.scroll a').click(function (e) {
+          e.preventDefault();
+          var l = $(this).attr('href');			// Link
+          var a = l.split('#');					// Anchor Name
+          var t = $('a[name="' + a[1] + '"]'); 	// Target
+          var o = t.offset().top - 60; 				// Offset of Target
+          $('html:not(:animated),body:not(:animated)').animate({ scrollTop: o }, 500);
+        });
+
+        //  Toggle/Slide Function
+        $('.toggle-trg').css({ 'cursor': 'pointer' });
+        $('.toggle-trg').click(function () {
+
+          var trg = $(this).attr('rel');
+          $('#' + trg).slideToggle();
+
+        });
+
+        //  Resize Columns Trigger
+        $(window).on('resize', function () {
+          fMatchColumns();
+        }); fMatchColumns();
+
+        //  Match Column Heights
+        function fMatchColumns() {
+          'use strict';
+          var w = $(document).width();
+          var c1 = $('#body-1 div').height();
+          var c2 = $('#body-2 div').height();
+          var c3 = $('#body-3 div').height();
+          var h1 = (c1 > c2 ? c1 : c2);
+          var h2 = (c3 > h1 ? c3 : h1);
+
+          if (w > 1024) { // Not Phone View
+            $('#body-1 > div,#body-2 > div,#body-3 > div').css({ 'min-height': h2 + 'px' });
+          } else {
+            $('#body-1 > div,#body-2 > div,#body-3 > div').css({ 'min-height': 'inherit' });
+          }
+        }
+
+        //  IE8 Detection Though CSS / 2014.04.04
+        var ie8_check = $('.ie-test').css('display');
+        if (ie8_check !== 'block') { // No IE
+        }
+
+        // Cards Behavior
+        $(function () {
+          $("#cards").sortable({
+            revert: true,
+            containment: "#body-2"
+          });
+          //$("#draggable").draggable({
+          //    connectToSortable: "#sortable",
+          //    helper: "clone",
+          //    revert: "invalid"
+          //});
+          //$("ul, li").disableSelection();
+        });
+        $('#cards .check').click(function () {
+          $(this).closest('li').fadeOut();
+        });
+
+      }); // $(document).ready(function()
+    }); // $(function()
+
+
+  </script>
+
+</body>
+</html>

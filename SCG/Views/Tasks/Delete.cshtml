@@ -1,0 +1,62 @@
+﻿@model SCG.Models.Task
+
+@{
+  ViewBag.Title = "Delete";
+}
+
+<div id="openDelete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure you want to delete this Task?</h4>
+      </div>
+      <div class="modal-body">
+        <dl class="dl-horizontal">
+          <dt>
+            @Html.DisplayNameFor(model => model.Description)
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Description)
+          </dd>
+
+          <dt>
+            Last Updated
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+          </dd>
+
+          <dt>
+            Priority
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Priority.Name)
+          </dd>
+
+          <dt>
+            Status
+          </dt>
+
+          <dd>
+            @Html.DisplayFor(model => model.Type.Name)
+          </dd>
+
+        </dl>
+      </div>
+      <div class="modal-footer">
+        @using (Html.BeginForm())
+        {
+          @Html.AntiForgeryToken()
+
+          <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

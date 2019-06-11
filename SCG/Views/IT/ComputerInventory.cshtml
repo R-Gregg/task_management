@@ -1,0 +1,12 @@
+﻿@model SCG.Models.Page
+
+@{
+  ViewBag.Title = "Computer Inventory";
+  ViewBag.Page_Area = "it_area";
+  ViewBag.Page_ID = "computer_inventory_pge";
+  ViewBag.Page_Layout = "columns_3";
+}
+
+<div class="it-page-holder" style="text-align: center;">
+  @Html.Raw(Model.Text)
+</div>

@@ -1,0 +1,480 @@
+﻿@model SCG.Models.Profile
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.Page_Nav = "onefirm";
+    ViewBag.Page_Area = "social_roster_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<style>
+    .chk_bx_wrp div {
+        display: inline-block;
+        width: 48%;
+        margin-right: 1%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .chk_bx_wrp {
+        padding: 0 !important;
+    }
+
+    #pro__Photo {
+        cursor: pointer;
+    }
+
+    #photo_box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+        width: 162px;
+        height: 238px;
+        background: url() center no-repeat;
+        background-size: cover;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="page-holder">
+    <h2>@ViewBag.Title</h2>
+
+    <div class="it-tabs">
+        <span class="it-tabs-nav active">Resume</span>
+        <span class="it-tabs-nav">Personal</span>
+    </div>
+    <hr class="hr-grey" />
+
+
+    @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { enctype = "multipart/form-data", id="EditProfile" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.pro__ID)
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl" id="Resume">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__First_Name, "First Name:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__First_Name, new { htmlAttributes = new { @class = "form-control", required = string.Empty } })
+                    @Html.ValidationMessageFor(model => model.pro__First_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Last_Name, "Last Name:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Last_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Last_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Photo, "Photo:", htmlAttributes: new { @class = "control-label" })
+                </div><div class="css_tbl_td">
+                    @{
+                        if (Model.pro__Photo != null && Model.pro__Photo != "")
+                        {
+                            <input type="text" id="pro__Photo" name="pro__Photo" value="@Model.pro__Photo" style="width:90%;" />
+                            <i class="fa fa-trash-o" id="dlt_photo" aria-hidden="true" style="font-size:16px; color:#FFF; padding:10px 10px; background-color:#900; border-radius:4px; cursor:pointer;"></i>
+                        }
+                        else
+                        {
+                            <input type="file" id="pro__Photo" name="pro__Photo" value="" />
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Creds, "Credits:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Creds, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Creds, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Title, "Title:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Phone, "Phone:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Email, "Email:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Shareholder, "Shareholder:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <select id="pro__Shareholder" name="pro__Shareholder" rel="@Html.Raw(Model.pro__Shareholder)">
+                        <option value="">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Areas, "Areas:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+
+                    <div class="css_tbl_td chk_bx_wrp">
+                        <div><input type="checkbox" id="em__Areas_0" value="10"> <label for="em__Areas_0">Construction &amp; Real Estate Development</label></div>
+                        <div><input type="checkbox" id="em__Areas_1" value="4"> <label for="em__Areas_1">Audit &amp; Assurance</label></div>
+                        <div><input type="checkbox" id="em__Areas_2" value="7"> <label for="em__Areas_2">Business Valuation</label></div>
+                        <div><input type="checkbox" id="em__Areas_3" value="8"> <label for="em__Areas_3">Financial Institutions</label></div>
+                        <div><input type="checkbox" id="em__Areas_4" value="31"> <label for="em__Areas_4">Post-Acute &amp; Acute Healthcare</label></div>
+                        <div><input type="checkbox" id="em__Areas_5" value="20"> <label for="em__Areas_5">Flexible Spending Plan Administration</label></div>
+                        <div><input type="checkbox" id="em__Areas_6" value="23"> <label for="em__Areas_6">Human Resources Consulting</label></div>
+                        <div><input type="checkbox" id="em__Areas_7" value="32"> <label for="em__Areas_7">Hospitality</label></div>
+                        <div><input type="checkbox" id="em__Areas_8" value="24"> <label for="em__Areas_8">Information Technology</label></div>
+                        <div><input type="checkbox" id="em__Areas_9" value="33"> <label for="em__Areas_9">Manufacturing &amp; Distribution</label></div>
+                        <div><input type="checkbox" id="em__Areas_10" value="37"> <label for="em__Areas_10">Non-Profit Organizations</label></div>
+                        <div><input type="checkbox" id="em__Areas_11" value="25"> <label for="em__Areas_11">Investment Management &amp; Financial Planning</label></div>
+                        <div><input type="checkbox" id="em__Areas_12" value="26"> <label for="em__Areas_12">Litigation Support</label></div>
+                        <div><input type="checkbox" id="em__Areas_13" value="63"> <label for="em__Areas_13">Professional Employer Organizations</label></div>
+                        <div><input type="checkbox" id="em__Areas_14" value="6"> <label for="em__Areas_14">Outsourced Accounting &amp; Advisory</label></div>
+                        <div><input type="checkbox" id="em__Areas_15" value="28"> <label for="em__Areas_15">Research &amp; Development Tax Credits</label></div>
+                        <div><input type="checkbox" id="em__Areas_16" value="21"> <label for="em__Areas_16">Retirement Plan Administration</label></div>
+                        <div><input type="checkbox" id="em__Areas_17" value="29"> <label for="em__Areas_17">Tax</label></div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.pro__Areas, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Areas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Bio, "Bio:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <textarea class="tiny" name="pro__Bio" id="pro__Bio" style="height:500px;">@Html.Raw(Model.pro__Bio)</textarea>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Education, "Education:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <div class="list_wrp">
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                    <textarea class="" name="pro__Education" id="pro__Education">@Html.Raw(Model.pro__Education)</textarea>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Certifications, "Certifications:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <div class="list_wrp">
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                    <textarea class="" name="pro__Certifications" id="pro__Certifications">@Html.Raw(Model.pro__Certifications)</textarea>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Professional_Affiliations, "Professional Affiliations:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <div class="list_wrp">
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                    <textarea class="" name="pro__Professional_Affiliations" id="pro__Professional_Affiliations">@Html.Raw(Model.pro__Professional_Affiliations)</textarea>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Community_Affiliations, "Community Affiliations:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <div class="list_wrp">
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                    <textarea class="" name="pro__Community_Affiliations" id="pro__Community_Affiliations">@Html.Raw(Model.pro__Community_Affiliations)</textarea>
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__LinkedIn, "LinkedIn:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__LinkedIn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__LinkedIn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl" id="Personal" style="display:none;">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Personal_Bio, "Personal Bio:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <textarea class="tiny" name="pro__Personal_Bio" id="pro__Personal_Bio" style="height:500px;">@Html.Raw(Model.pro__Personal_Bio)</textarea>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Anniv_Month, "Work Anniversary Month:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Anniv_Month, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Anniv_Month, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Anniv_Year, "Work Anniversary Year:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Anniv_Year, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Anniv_Year, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Spouse, "Spouse:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__Spouse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__Spouse, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__Kids, "Kids:", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="css_tbl_td">
+                    <div class="list_wrp">
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                    <textarea class="" name="pro__Kids" id="pro__Kids">@Html.Raw(Model.pro__Kids)</textarea>
+                </div>
+            </div>
+
+            <div class="css_tbl_tr" style="display:none;">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__File_Resume, htmlAttributes: new { @class = "control-label" })
+                </div><div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__File_Resume, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__File_Resume, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="css_tbl_tr" style="display:none;">
+                <div class="css_tbl_th">
+                    @Html.LabelFor(model => model.pro__File_VCard, htmlAttributes: new { @class = "control-label" })
+                </div><div class="css_tbl_td">
+                    @Html.EditorFor(model => model.pro__File_VCard, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pro__File_VCard, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="css_tbl_spc" />
+
+        <div class="css_tbl css_tbl_sbmt">
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_td">
+                    <input type="submit" value="Submit" />
+                    <input type="button" value="Cancel / Clear" onclick="window.location.assign('/');" />
+                    <input type="hidden" name="pro__User_ID" value="@Html.Raw(Model.pro__User_ID)" />
+                </div>
+            </div>
+
+        </div>
+
+                        }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/forms")
+    <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+
+    <script>
+        // Check Box
+        $('.chk_bx_wrp').each(function (i, e) {
+            var str = $(e).next('input').val().replace(/\|\|/g, '*').replace(/\|/g, '');
+            var arr = str.split('*');
+            arr.forEach(fCheck);
+        });
+        function fCheck(e, i) {
+            $('.chk_bx_wrp input[value="' + e + '"]').prop({ 'checked': 'checked' });
+        }
+        $('.chk_bx_wrp input').change(function () {
+            var str = '';
+            $(this).closest('.chk_bx_wrp').children('div').children('input:checked').each(function (i, e) {
+                str = str + '|' + $(e).val() + '|';
+            });
+            $(this).closest('.chk_bx_wrp').next('input').val(str);
+        });
+
+        // Lists
+        $('.list_wrp').next('textarea').hide();
+        $('.list_wrp').each(function (i, e) {
+            var str = $(e).next('textarea').val();
+            if (str.indexOf('|') != -1) {
+                var arr = str.split('|');
+                $(e).find('input:nth-child(1)').val(arr[0]);
+                $(e).find('input:nth-child(2)').val(arr[1]);
+                $(e).find('input:nth-child(3)').val(arr[2]);
+                $(e).find('input:nth-child(4)').val(arr[3]);
+                $(e).find('input:nth-child(5)').val(arr[4]);
+                $(e).find('input:nth-child(6)').val(arr[5]);
+            }
+        });
+        $('.list_wrp input').change(function () {
+            var str = '';
+            $(this).closest('.list_wrp').children('input').each(function (i, e) {
+                str = str + $(e).val() + '|';
+            });
+            $(this).closest('.list_wrp').next('textarea').val(str);
+        });
+
+        $("document").ready(function () {
+
+            $('form').click(function () {
+                tinyMCE.triggerSave();
+            });
+            tinymce.init({
+                selector: '.tiny',
+                menubar: false,
+                statusbar: false,
+                toolbar_items_size: 'small',
+                relative_urls: false,
+                remove_script_host: false,
+                document_base_url: "http://www.saltmarshcpa.com/",
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor textcolor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code help'
+                ],
+                toolbar: 'undo redo |  bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | code | help'
+            });
+
+        });
+
+        // Tabs
+        $('.it-tabs span').click(function () {
+            var v = $(this).html();
+            $('.it-tabs span').removeClass('active');
+            $(this).addClass('active');
+            $('.css_tbl_frm').hide();
+            $('#' + v).show();
+        });
+
+        // Photo Functions
+        $('#pro__Photo').mouseenter(function (e) {
+            var x = e.pageX;
+            var y = e.pageY;
+            var img = $(this).val();
+            var box = '<div id="photo_box" style="background-image:url(/assets/Employees/' + img + ')"></div>';
+            $('body').append(box);
+            $('#photo_box').css({ 'left': (x - 81) + 'px', 'top': (y - 240) + 'px' });
+        });
+        $('#pro__Photo').mouseleave(function () {
+            $('#photo_box').remove();
+        });
+
+        $('#dlt_photo').click(function () {
+            var c = confirm('Do you wish to delete this photo?');
+            if (c) {
+                $.post('/Profiles/DeletePhoto/', { d: true }, function (r) {
+                    //alert(r);
+                    window.location.reload();
+                });
+            }
+        });
+        
+        // Personal Bio - Easter Egg
+        var bio = $('#pro__Personal_Bio').val();
+        if (bio == '') {
+
+            $('form').submit(function (e) {
+                bio = $('#pro__Personal_Bio').val();
+                if (bio != '') {
+                    e.preventDefault();
+                    $.post('/Profiles/Edit/', $('form#EditProfile').serialize(), function () {
+                        window.location.assign('/EasterEggs/DancingJayme/');
+                    })
+                }
+            });
+
+        }
+
+        
+    </script>
+
+}

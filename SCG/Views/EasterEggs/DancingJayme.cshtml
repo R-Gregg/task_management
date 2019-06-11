@@ -1,0 +1,88 @@
+﻿<html>
+<body>
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <style>
+        #EasterEgg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 100;
+            background: url(/assets/EasterEggs/confetti-1.gif);
+        }
+
+            #EasterEgg .egg-lee-dance {
+                position: absolute;
+                right: -400px;
+                bottom: 0;
+                width: 283px;
+                height: 302px;
+                background: url(/assets/EasterEggs/jayme-2.gif);
+            }
+
+            #EasterEgg .egg-bubble {
+                position: absolute;
+                left: 25vw;
+                top: 60px;
+                width: 50vw;
+                height: 347px;
+                padding: 60px;
+                background: url(/assets/EasterEggs/bubble-1.png) center no-repeat;
+                background-size: contain;
+                text-align: center;
+            }
+
+                #EasterEgg .egg-bubble h1 {
+                    font-family: 'Comic Sans MS';
+                    color: white;
+                    font-size: 28px;
+                }
+
+                #EasterEgg .egg-bubble p {
+                    font-family: 'Comic Sans MS';
+                    color: white;
+                    font-size: 16px;
+                }
+
+                #EasterEgg .egg-bubble i {
+                    color: white;
+                    font-size: 48px;
+                }
+    </style>
+
+
+    <script>
+
+    $('html:not(:animated),body:not(:animated)').animate({ scrollTop: 0 }, 0);
+
+    $.post('/Email/SendEmail', { 'form__EmailSubject': 'Personal Bio - Easter Egg Fired', 'form__EmailFrom': 'info@saltmarshcpa.com', 'form__EmailTo': 'stephen.reyes@saltmarshcpa.com', 'form__EmailAddTo':'george@grendelfly.com','Winner':'@User.Identity.Name.Replace("SCG-CPA","").Replace("."," ")'});
+
+    var egg = '<div id="EasterEgg"></div>';
+    $('body').append(egg);
+
+    var lee = '<div class="egg-lee-dance"></div>';
+    $('#EasterEgg').append(lee);
+
+    var audio = '<audio id="lee-audio" autoplay="autoplay" loop="loop"><source src="/assets/EasterEggs/applause-1.mp3" /></audio>';
+    $('#EasterEgg').append(audio);
+
+    var bbl = '<div class="egg-bubble"></div>';
+    $('#EasterEgg').append(bbl);
+
+    var msg = '<i class="fa fa-smile-o" aria-hidden="true"></i><h1>Congratulations!</h1><p>You\'ve found an Easter Egg and you win a prize!</p>';
+    $('#EasterEgg .egg-bubble').html(msg);
+
+
+    $('.egg-lee-dance').animate({ 'right': '45vw' }, 8000, 'linear', function () {
+        setTimeout(function () {
+            // $('#EasterEgg').remove();
+            window.location.assign('/Profiles/');
+        }, 8000);
+    });
+
+    </script>
+
+</body>
+</html>

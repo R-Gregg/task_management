@@ -1,0 +1,32 @@
+﻿@model SCG.Models.Task
+
+<td class="wide">@Html.EditorFor(modelItem => Model.Description, new { htmlAttributes = new { @style = "width: 97%;" } }) <input type="hidden" id="Id" name="Id" value="@Model.Id" /></td>
+@if (Model.Project.Assign == true)
+{
+  <td>@Html.DropDownList("AssignedTo", null, "-- Choose Assignee --", htmlAttributes: new { @class = "form-control" })</td>
+}
+@if (Model.Project.DueDates == true)
+{
+  <td>@Html.EditorFor(model => model.DueDate, null, new { htmlAttributes = new { @class = "form-control dt_pckr", @Value = string.Format("{0:d}", Model.DueDate) } })</td>
+}
+<td>@Html.DropDownList("PriorityID", null, htmlAttributes: new { @class = "form-control" })</td>
+<td>@Html.DropDownList("TypeID", null, htmlAttributes: new { @class = "form-control" })</td>
+<td></td>
+<td>
+  <span id="submit_@Model.Id" url="@Url.Action("RowEdit", "Tasks", new { id = Model.Id }, null)" class="actions" title="Submit"><i class="glyphicon glyphicon-ok"></i></span>
+  <span onclick="loadModal('@Url.Action("Delete", "Tasks", new { id = Model.Id }, null)', 'Delete');" class="actions" title="Delete"><i class="glyphicon glyphicon-trash"></i></span>
+</td>
+
+<script type="text/javascript">
+  $('.dt_pckr').datepicker();
+
+  $("#submit_@Model.Id").click(function () {
+    console.log($(this).closest('tr').find('input, select').serializeArray());
+    $.ajax({
+      method: 'POST',
+      url: '/Tasks/RowEdit/@Model.Id',
+      data: $(this).closest('tr').find('input, select').serializeArray(),
+      success: selectRow($(this), '@Url.Action("ShowRow", "Tasks", new { id = Model.Id }, null)')
+    });
+  });
+</script>

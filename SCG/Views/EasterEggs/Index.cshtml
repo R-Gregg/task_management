@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Audit Overview";
+    ViewBag.Page_Nav = "departments";
+    ViewBag.Page_Area = "audit_area";
+    ViewBag.Page_ID = "audit_index_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<div class="page-holder">
+    <ul id="EasterEgg_Nav">
+        <li><a href="Javascript:void(0);" egg="DancingLee">Dancing Lee</a></li>
+        <li><a href="Javascript:void(0);" egg="SuperLee">Super Lee</a></li>
+        <li><a href="Javascript:void(0);" egg="DancingJayme">Dancing Jayme</a></li>
+    </ul>
+</div>
+
+
+<script>
+    $('#EasterEgg_Nav li a').click(function (e) {
+        e.preventDefault();
+        var e = $(this).attr('egg');
+        $('#eggBasket').load('/EasterEggs/' + e);
+    });
+</script>

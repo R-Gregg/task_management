@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SCG.Models.Department>
+
+@{
+    ViewBag.Title = "Extensions";
+    ViewBag.Page_Area = "onefirm_area";
+    ViewBag.Page_ID = "extension_list_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var department in Model)
+{
+  <h3>@department.Name</h3>
+  foreach (var location in ViewData["Locations"] as IEnumerable<SCG.Models.Location>)
+  {
+    System.Collections.Generic.List<SCG.Models.User> users = ViewBag.Users;
+    var list = users.Where(u => u.DepartmentID == department.Id && u.LocationID == location.Id);
+    if (list.Count() > 0)
+    {
+      <h4>@location.Name</h4>
+    }
+    foreach (var user in list as IEnumerable<SCG.Models.User>)
+    {
+      if (user.DepartmentID == department.Id && user.LocationID == location.Id)
+      {
+        <div>@user.FirstName @user.LastName - @user.Title - @user.Extension</div>
+      }
+    }
+  }
+}

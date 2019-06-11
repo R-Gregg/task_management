@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SCG.Models.MessageOfTheDay>
+
+@{
+    ViewBag.Title = "MOTD";
+    ViewBag.Page_Nav = "departments";
+    ViewBag.Page_Area = "marketing_area";
+    ViewBag.Page_ID = "motd_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+<style>
+  .table th {
+    white-space: nowrap;
+  }
+</style>
+<h2>MOTD</h2>
+
+<p><a href="javascript:void(0);" onclick="fPopup('/MessageOfTheDays/Create','40%','40%');">Create New</a></p>
+<table class="table table-hover table-striped">
+  <tr>
+    <th class="col-left">@Html.DisplayNameFor(model => model.Title)</th>
+    <th class="col-left">Message</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td class="col-left">@Html.DisplayFor(modelItem => item.Title)</td>
+      <td class="col-left">@Html.DisplayFor(modelItem => item.Description)</td>
+      <td>@string.Format("{0:d}", item.CreatedAt)</td>
+      <td>@string.Format("{0:d}", item.UpdatedAt)</td>
+      <td class="tools">
+        <i class="fa fa-pencil-square edt" aria-hidden="true" onclick="fPopup('/MessageOfTheDays/Edit/@Html.Raw(item.Id)','40%','40%');" title="Edit MOTD"></i>
+      </td>
+    </tr>
+  }
+
+</table>

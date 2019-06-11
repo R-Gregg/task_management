@@ -1,0 +1,63 @@
+﻿@{
+  ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+<div>
+  @foreach (var item in ViewBag.Objects)
+  {
+    <div>@item</div>
+  }
+</div>
+
+<hr />
+
+<div>
+  <span>Count: @ViewBag.Users.Count</span>
+  @foreach (var item in ViewBag.Users)
+  {
+    if (item.Properties.Contains("cn"))
+    {
+      <div>
+        @item.Properties["cn"].Value.ToString()
+      </div>
+      if (item.Properties.Contains("sAMAccountName"))
+      {
+        <div style="margin-left: 20px;">Account Name: @item.Properties["sAMAccountName"].Value.ToString()</div>
+      }
+      <div style="margin-left: 20px;">First Name: @item.Properties["cn"].Value.ToString().Split(' ')[0]</div>
+      <div style="margin-left: 20px;">Last Name: @item.Properties["cn"].Value.ToString().Split(' ')[1]</div>
+      if (item.Properties.Contains("mail"))
+      {
+        <div style="margin-left: 20px;">Email: @item.Properties["mail"].Value.ToString()</div>
+      }
+      if (item.Properties.Contains("telephoneNumber"))
+      {
+        <div style="margin-left: 20px;">Extension: @item.Properties["telephoneNumber"].Value.ToString()</div>
+      }
+      if (item.Properties.Contains("physicalDeliveryOfficeName"))
+      {
+        <div style="margin-left: 20px;">Office: @item.Properties["physicalDeliveryOfficeName"].Value.ToString()</div>
+      }
+      if (item.Properties.Contains("department"))
+      {
+        <div style="margin-left: 20px;">Department: @item.Properties["department"].Value.ToString()</div>
+      }
+      <div style="margin-left: 20px;">GUID: @item.Guid</div>
+      <div style="margin-left: 20px;">Native GUID: @item.NativeGuid</div>
+    }
+  }
+</div>
+
+<hr />
+
+<div>
+  @foreach (var result in ViewBag.Results)
+  {
+    <div>@result.Path</div>
+    foreach (var prop in result.Properties)
+    {
+      <div style="margin-left: 50px;">@prop.Key - @prop.Value</div>
+    }
+  }
+</div>

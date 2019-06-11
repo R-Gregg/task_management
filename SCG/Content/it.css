@@ -1,0 +1,35 @@
+﻿.it-holder {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.it-tabs {
+  font-size: 13px;
+  overflow: hidden;
+  padding-top: 15px;
+}
+
+  .it-tabs .it-tabs-nav {
+    display: inline-block;
+    color: #1f2122;
+    padding: 3px 8px;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-right: 1px;
+    vertical-align: bottom;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .it-tabs .it-tabs-nav.active {
+    color: #FFF;
+    background-color: #1f2122;
+  }
+
+.it-page-holder {
+  margin-top: 25px;
+}

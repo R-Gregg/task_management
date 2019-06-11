@@ -1,0 +1,88 @@
+﻿@model SCG.Models.User
+
+<h2 style="margin-bottom: 20px;">RSS Feed</h2>
+
+<div id="ProfileRssFeeds" class="settings-holder">
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="">
+      @foreach (var feed in Model.RssFeeds.OrderBy(r => r.Order))
+      {
+        <div class="form-horizontal" style="display: inline-block; min-width: 30%; margin-left: 15px;">
+          <div class="form-group rss-box">
+            <div class="rss">
+              <input type="hidden" name="Title" class="form-control rss-title" style="display: inline-block; width: 25%; max-width: none; margin-right: 20px;" value="@feed.Title" />
+              @*<input type="text" name="Title" class="form-control" style="display: inline-block; width: 25%; max-width: none; margin-right: 20px;" value="@feed.Title" />*@
+              @*<input type="text" name="Url" class="form-control" style="display: inline-block; width: 45%;" value="@feed.Url" />*@
+              @Html.DropDownListFor(item => Url, new SelectList(ViewBag.RssList, "Value", "Text", "Group.Name", (System.Object)feed.Url), htmlAttributes: new { @class = "rss-url", @style = "display: inline-block; width: 45%;" })
+              @Html.LabelFor(model => model.RssFeeds.Where(r => r.Id == feed.Id).First().Display, "Display:", htmlAttributes: new { @style = "margin-left: 10px;" })
+              @Html.EditorFor(model => model.RssFeeds.Where(r => r.Id == feed.Id).First().Display, new { htmlAttributes = new { @class = "", type = "checkbox" } })
+              <input type="hidden" name="Id" value="@feed.Id" />
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+
+        <hr class="css_tbl_spc" />
+
+        <div class="css_tbl css_tbl_sbmt">
+
+          <div class="css_tbl_tr">
+            <div class="css_tbl_td">
+              <input id="RssSubmit" type="submit" value="Submit" />
+              <input type="button" value="Cancel" onclick="fPopup_Kill();" />
+            </div>
+          </div>
+
+        </div>
+
+  }
+</div>
+
+
+
+@Scripts.Render("~/bundles/forms")
+
+<script type="text/javascript">
+
+  $('.rss-url').change(function () {
+    $(this).siblings('.rss-title').first().val($(this).find('option:selected').text());
+  });
+
+  $("#RssSubmit").click(function (e) {
+    e.preventDefault();
+    $(".rss").each(function () {
+      id = $(this).find("input[name=Id]").val();
+      title = $(this).find("input[name=Title]").val();
+      url = $(this).find("select[name=Url]").val();
+      display = $(this).find("input[name=Display]").val();
+      data = $(this).find("input, select").serializeArray();
+      if (title != undefined && title != "") {
+        if (id == undefined || id == "") {
+          $.ajax({
+            url: '/RssFeeds/Create',
+            method: 'POST',
+            data: data,
+            success: function () {
+              fPopup_Kill();
+            }
+          });
+        } else {
+          $.ajax({
+            url: '/RssFeeds/Edit/' + id,
+            method: 'POST',
+            data: data
+          });
+        }
+      }
+    });
+    window.location.reload();
+  });
+
+</script>

@@ -1,0 +1,36 @@
+﻿@model SCG.Models.Page
+
+@{
+    ViewBag.Title = "Inventory";
+    ViewBag.Page_Nav = "departments";
+    ViewBag.Page_Area = "it_area";
+    ViewBag.Page_ID = "inventory_pge";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<div class="fixed-header-three-col">
+  <h2 class="header">@ViewBag.Title</h2>
+  <div class="it-tabs">
+    <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Printers" }, null)');" class="it-tabs-nav active">Printers</span>
+    <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Computer Inventory" }, null)');" class="it-tabs-nav">Computer Inventory</span>
+    <span onclick="loadPage('@Url.Action("GetPage", "IT", new { t = "Server Inventory" }, null)');" class="it-tabs-nav">Server Inventory</span>
+  </div>
+  <hr class="hr-grey" />
+</div>
+
+<div class="container-body-header">
+  <div id="ip_holder" style="text-align: center;">
+    @Html.Raw(Model.Text)
+  </div>
+</div>
+
+@section Scripts {
+  <script type="text/javascript">
+    $("document").ready(function () {
+      $(".it-tabs-nav").click(function () {
+        $(".it-tabs-nav").removeClass("active");
+        $(this).addClass("active");
+      });
+    });
+  </script>
+}

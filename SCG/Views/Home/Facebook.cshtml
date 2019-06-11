@@ -1,0 +1,84 @@
+﻿<style>
+  #facebook .photo {
+    display: block;
+    margin: 10px 0;
+  }
+
+    #facebook .photo img {
+      max-width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+  #facebook hr {
+    margin: 40px 0;
+    border-color: white;
+    background-color: white;
+  }
+
+  #facebook a {
+    text-decoration: none;
+    color: darkgoldenrod;
+    font-weight: bold;
+  }
+</style>
+
+<div id="facebook">
+  <div>
+    <h2><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</h2>
+  </div>
+</div>
+
+<div id="facebook-holding" style="display:none;">
+
+  @{
+    foreach (var fbitem in ViewBag.fbNodes)
+    {
+      <div>@Html.Raw(fbitem.InnerHtml)</div>
+    }
+  }
+
+</div>
+
+<script>
+  $(document).ready(function () {
+    // Scrape All Content From Facebook
+    $('#facebook-holding img').ready(function () {
+      $('#facebook-holding > div').each(function (i, e) {
+        var img = $(e).find('img.scaledImageFitWidth');
+        var p = $(e).find('p');
+
+        img.each(function () {
+          $('#facebook > div').append('<span class="photo"><img src="' + $(this).attr('src') + '"/><span>');
+        });
+
+        p.each(function () {
+          $('#facebook > div').append($(this));
+        });
+
+        $('#facebook > div').append('<hr />');
+      });
+
+      $('#facebook img').click(function () {
+        window.open('https://www.facebook.com/saltmarshcpa');
+      });
+    });
+
+    //$('#facebook-holding img').ready(function () {
+    //  $('#facebook-holding > div').each(function (i, e) {
+    //    var img = $(e).find('img');
+    //    var p = $(e).find('p');
+
+    //    for (var o = 1; o < img.length; o++) {
+    //      // console.log(img[o].currentSrc);
+    //      $('#facebook > div').append('<span class="photo"><img src="' + img[o].currentSrc + '"/><span>');
+    //    }
+    //    for (var o = 0; o < p.length; o++) {
+    //      // console.log(p[o].innerHTML);
+    //      $('#facebook > div').append(p);
+    //    }
+    //    $('#facebook > div').append('<hr />');
+    //  });
+    //});
+  });
+</script>

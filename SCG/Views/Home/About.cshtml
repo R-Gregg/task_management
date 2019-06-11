@@ -1,0 +1,40 @@
+﻿@{
+  ViewBag.Title = "About";
+  ViewBag.Page_Layout = "columns_3";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+<div>
+  @ViewBag.User
+</div>
+<hr />
+  @foreach (var r in Roles.GetRolesForUser())
+  {
+    <div>@r</div>
+  }
+<hr />
+<div>
+  @foreach (var role in ViewBag.Roles)
+  {
+    <div>@role</div>
+  }
+</div>
+<hr />
+<div>
+  @ViewBag.Directory
+</div>
+<div style="display: inline-block; width: 49%;">
+  @foreach (var user in ViewBag.Objects)
+  {
+    <div>@user</div>
+  }
+</div>
+
+<div style="display: inline-block; width: 49%; vertical-align: top;">
+  @foreach (var user in ViewBag.NewObjects)
+  {
+    <div>@user</div>
+  }
+</div>

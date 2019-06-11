@@ -1,0 +1,4 @@
+﻿@foreach (var item in ViewBag.Feeds)
+{
+  @Html.Raw("<h3><a href='" + item.Links[0].Uri + "'>" + item.Title.Text + "<span class='hidden-dot hide'>.</span></a></h3><br/>" + item.Summary.Text + "<hr />")
+}

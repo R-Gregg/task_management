@@ -1,0 +1,35 @@
+﻿@{
+  ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div>
+  @ViewBag.Result
+</div>
+
+<div>
+  @ViewBag.OtherResult
+</div>
+
+<div>
+  @ViewBag.NewResult
+</div>
+
+<hr />
+
+<div>
+  @foreach (var role in ViewBag.Roles)
+  {
+    <div>@role</div>
+  }
+</div>
+
+<hr />
+
+<div>
+  @foreach (var item in ViewBag.Objects)
+  {
+    <div>@item</div>
+  }
+</div>

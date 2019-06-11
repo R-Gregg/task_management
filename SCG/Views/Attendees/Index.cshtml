@@ -1,0 +1,144 @@
+﻿<div class="project-holder">
+  @model IEnumerable<SCG.Models.Attendee>
+
+  <div class="fixed-header">
+    <h2 class="header">
+      <i onclick="viewProjects();" class="glyphicon glyphicon-chevron-left back"></i>
+      @ViewBag.ProjectName
+      @if ((string)ViewData["Owner"] == "True")
+      {
+        <span id="project_settings" onclick="loadModal('@Url.Action("Settings", "Projects", new { id = Session["project"] }, null)', 'Settings')" class="actions pull-right" title="Project Settings"><i class="glyphicon glyphicon-cog" style="font-size: 30px;"></i></span>
+      }
+    </h2>
+    <div class="project-tabs">
+      <span onclick="loadProject(@Session["project"], 'Tasks');" class="project-tabs-nav">Tasks</span>
+      @if ((string)ViewData["Schedule"] == "True")
+      {
+        <span class="project-tabs-nav">Schedule</span>
+      }
+      <span class="project-tabs-nav active">Attendees</span>
+      <span onclick="loadProject(@Session["project"], 'KeyPersons');" class="project-tabs-nav">Key People</span>
+    </div>
+    <hr class="hr-grey" />
+  </div>
+
+  <div class="container-body-header">
+    <div style="display: inline-block;">
+      <p>
+        <span class="btn btn-primary" onclick="loadModal('@Url.Action("Create", "Attendees")', 'Create');" title="Create Attendee">New Attendee</span>
+      </p>
+    </div>
+    <div class="pull-right" style="display: inline-block; margin-bottom: 10px;">
+      <p style="display: inline-block; vertical-align: top;">
+        @Html.DropDownList("GuestTypeID", null, "-- Filter By GuestType --", htmlAttributes: new { @id = "guestTypes", @class = "form-control", @style = "width: 350px" })
+      </p>
+      <p style="display: inline-block; vertical-align: top;">
+        @Html.DropDownList("UserID", null, "-- Filter By Contact --", htmlAttributes: new { @id = "users", @class = "form-control", @style = "width: 350px" })
+        <span class="actions link" style="font-size: 11px; float: right;" onclick="loadProject(@Session["project"], 'Attendees')">Clear All Filters</span>
+      </p>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- Last Name -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.LName&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">Last Name</th>
+          <!-- First Name -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.FName&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">First Name</th>
+          <!-- Company -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.Company&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">@Html.DisplayNameFor(model => model.Company)</th>
+          <!-- Email -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.Email&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">@Html.DisplayNameFor(model => model.Email)</th>
+          <!-- Contacts -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.User&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">Contacts</th>
+          <!-- Guest Types -->
+          <th class="col-left actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.Guest&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">Guest Types</th>
+          <!-- Attending -->
+          <th class="actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.Attending&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">Attending</th>
+          <!-- Last Updated -->
+          <th class="actions link" onclick="loadProject('@Session["project"]', 'Attendees','sort=@ViewBag.Date&contact=@ViewBag.SelectedContact&guestType=@ViewBag.GuestType')">Last Updated</th>
+          <!-- Actions -->
+          <th>Actions</th>
+          <th class="actions link"><i class="glyphicon glyphicon-download" title="Download Emails"></i></th>
+        </tr>
+      </thead>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.LastName)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.FirstName)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.Company)
+          </td>
+          <td class="col-left">
+            @Html.DisplayFor(modelItem => item.Email)
+          </td>
+          <td class="col-left">
+            @foreach (var contact in item.Contacts)
+            {
+              if (item.Contacts.First() == contact)
+              {
+                @Html.Raw(contact.User.FirstName + " " + contact.User.LastName)
+              }
+              else
+              {
+                @Html.Raw(", " + contact.User.FirstName + " " + contact.User.LastName)
+              }
+            }
+          </td>
+          <td class="col-left">
+            @foreach (var type in item.AttendeeGuestTypes)
+            {
+              if (item.AttendeeGuestTypes.First() == type)
+              {
+                @Html.Raw(type.GuestType.Name)
+              }
+              else
+              {
+                @Html.Raw(", " + type.GuestType.Name)
+              }
+            }
+          </td>
+          <td>
+            @if (item.Rsvps.Where(r => r.Year == item.Project.Year).Count() >= 1)
+            {
+              <span>@item.Rsvps.Where(r => r.Year == item.Project.Year).First().Attending</span>
+            }
+            else
+            {
+              <span>No</span>
+            }
+          </td>
+          <td>
+            @string.Format("{0:d}", item.UpdatedAt)
+          </td>
+          <td>
+            <span class="actions touches" onclick="loadModal('@Url.Action("Index", "Touches", new { id = item.Id }, null)', 'Touches');" title="Touches"><i class="glyphicon glyphicon-hand-up"></i></span>
+            <span class="actions rsvp" onclick="loadModal('@Url.Action("Index", "Rsvps", new { id = item.Id }, null)', 'Rsvps');" title="Rsvps"><i class="glyphicon glyphicon-calendar"></i></span>
+            <span class="actions contacts" onclick="loadModal('@Url.Action("Create", "Contacts", new { id = item.Id }, null)', 'Contacts');" title="Add Contacts"><i class="glyphicon glyphicon-user"></i></span>
+            <span class="actions" onclick="loadModal('@Url.Action("Create", "AttendeeGuestTypes", new { id = item.Id }, null)', 'GuestTypes');" title="Guest Types"><i class="glyphicon glyphicon-tags"></i></span>
+            <span class="actions" onclick="loadModal('@Url.Action("Edit", "Attendees", new { id = item.Id }, null)', 'Edit');" title="Edit"><i class="glyphicon glyphicon-pencil"></i></span>
+            <span class="actions" onclick="loadModal('@Url.Action("Delete", "Attendees", new { id = item.Id }, null)', 'Delete');" title="Delete"><i class="glyphicon glyphicon-trash"></i></span>
+          </td>
+          <td><i class="glyphicon glyphicon-envelope"></i></td>
+        </tr>
+      }
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      $("#users").change(function () {
+        loadProject(@Session["project"], 'Attendees', "sort=" + "@ViewBag.Sort" + "&contact=" + $(this).val() + "&guestType=" + $('#guestTypes').val());
+      });
+
+      $("#guestTypes").change(function () {
+        loadProject(@Session["project"], 'Attendees', "sort=" + "@ViewBag.Sort" + "&contact=" + $('#users').val() + "&guestType=" + $(this).val());
+      });
+    });
+</script>

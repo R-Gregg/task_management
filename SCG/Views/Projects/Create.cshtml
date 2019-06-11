@@ -1,0 +1,89 @@
+﻿@model SCG.Models.Project
+
+@{
+  ViewBag.Title = "Create";
+}
+
+<div id="openCreate" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Project</h4>
+      </div>
+      @using (Html.BeginForm())
+      {
+        <div class="modal-body">
+          @Html.AntiForgeryToken()
+
+          <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="nameField" class="form-group">
+              @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "text-label group-inline input-middle" })
+              <div class="group-inline">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @style = "width: 463px;" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+              </div>
+            </div>
+            <div id="yearField" class="form-group">
+              @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "text-label group-inline input-middle" })
+              <div class="group-inline">
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", @style = "width: 463px;" } })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+              </div>
+            </div>
+            <div class="modal-checkbox-holder-title">Columns</div>
+            <div id="taskColumns" class="modal-checkbox-holder">
+              <div class="modal-group">
+                <div class="form-group">
+                  <label class="c-item c-item-label" for="Assign">Display 'Assign To' Column?</label>
+                  <div class="c-item">
+                    @Html.EditorFor(model => model.Assign)
+                    @Html.ValidationMessageFor(model => model.Assign, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="form-group">
+                  <label class="c-item c-item-label" for="DueDates">Display 'Due Date' Column?</label>
+                  <div class="c-item">
+                    @Html.EditorFor(model => model.DueDates)
+                    @Html.ValidationMessageFor(model => model.DueDates, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-checkbox-holder-title">Tabs</div>
+            <div id="projectTabs" class="modal-checkbox-holder">
+              <div class="modal-group">
+                <div class="form-group">
+                  <label class="c-item c-item-label" for="Schedule">Display 'Schedule' Tab?</label>
+                  <div class="c-item">
+                    @Html.EditorFor(model => model.Schedule)
+                    @Html.ValidationMessageFor(model => model.Schedule, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+              </div>
+              <div class="modal-group">
+                <div class="form-group">
+                  <label class="c-item c-item-label" for="Event">Display 'Event' Tabs?</label>
+                  <div class="c-item">
+                    @Html.EditorFor(model => model.Event)
+                    @Html.ValidationMessageFor(model => model.Event, "", new { @class = "text-danger" })
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

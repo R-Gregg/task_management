@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SCG.Models.Rsvp>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<div id="openRsvps" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Rsvps</h4>
+      </div>
+      <div class="modal-body fixed">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-center">@Html.DisplayNameFor(model => model.Year)</th>
+              <th class="col-center">@Html.DisplayNameFor(model => model.Attending)</th>
+              <th class="col-center">@Html.DisplayNameFor(model => model.Attended)</th>
+              <th class="col-center">Delete</th>
+            </tr>
+          </thead>
+
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td class="col-center">@Html.DisplayFor(modelItem => item.Year)</td>
+              <td class="col-center">@Html.DisplayFor(modelItem => item.Attending)</td>
+              <td class="col-center">
+                <select id="@item.Id" rel="@item.Attended" class="form-control select-styling">
+                  <option value=""></option>
+                  <option value="No Show">No Show</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Event">Event</option>
+                  <option value="Both">Both</option>
+                </select>
+              </td>
+              <td class="col-center" onclick="deleteItem('@Url.Action("Delete", "Rsvps", new { id = item.Id }, null)', 'openRsvps');"><i class="glyphicon glyphicon-trash"></i></td>
+            </tr>
+          }
+
+        </table>
+      </div>
+      <div class="modal-footer">
+        @using (Html.BeginForm())
+        {
+          @Html.AntiForgeryToken()
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          @Html.TextBox("Year", "", new { @class = "form-control", @style = "display: inline-block; width: 100px;", @placeholder = "Year" })
+          <fieldset>
+            <span class="radio-title attend-header">Attending:</span>
+            <div>
+              <input class="radio-input" type="radio" name="Attending" value="Lunch" />
+              <label class="radio-label">Lunch</label>
+              <input class="radio-input" type="radio" name="Attending" value="Event" />
+              <label class="radio-label">Event</label>
+              <input class="radio-input" type="radio" name="Attending" value="Both" checked />
+              <label class="radio-label">Both</label>
+            </div>
+          </fieldset>
+          <input type="submit" value="Submit" class="btn btn-success pull-right" />
+          <input type="hidden" value="@ViewData["FormID"]" name="AttendeeId" />
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("form").submit(function (e) {
+      e.preventDefault();
+      data = $(this).serializeArray();
+      $.ajax({
+        method: "POST",
+        url: '/Rsvps/Create',
+        data: data,
+        success: function () {
+          $("#openRsvps").modal('hide');
+        }
+      });
+    });
+
+    $("select").each(function () {
+      var selected = $(this).attr('rel') || "";
+      $("#" + $(this).attr('id') + " option[value='" + selected + "']").prop('selected', true);
+    });
+
+    $("select").change(function (e) {
+      e.preventDefault;
+      var select = $(this);
+      var id = select.attr('id');
+      var selected = select.val();
+      var token = $("input[name='__RequestVerificationToken']").val();
+      $.ajax({
+        method: "POST",
+        url: '/Rsvps/Edit/' + id,
+        data: { "Attended": selected, "__RequestVerificationToken": token },
+        success: function () {
+          select.closest('tr').animate({ "background-color": "#5cb85c" }, 1000, function () {select.closest('tr').animate({ "background-color": "none"}, 1000); });
+        }
+      });
+    });
+  });
+</script>

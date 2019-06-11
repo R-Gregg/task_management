@@ -1,0 +1,650 @@
+﻿@charset "utf-8";
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*  
+/*    Custom CSS Template/Library - Forms & Tables - TBLFRMS.V1.R2.2013
+/*    [c] 2013 Grendelfly - A Division of SC&G Technology Solutions
+/*    Author(s):  George T Johnson
+/*    Created:    2013.08.26
+/*  
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+
+/* -- Forms Elements -- */
+
+form * {
+    vertical-align: middle;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+fieldset {
+    padding: 5px 0;
+    text-align: right;
+    border: none;
+}
+
+label {
+    font-size: 14px;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+    label span {
+        font-size: 11px;
+        color: #999;
+        display: block;
+    }
+
+input[type='text'],
+input[type='password'],
+input[type='file'],
+input[type='phone'],
+input[type='number'],
+select, textarea {
+    width: 100%;
+    max-width: none !important;
+    padding: 8px;
+    color: #333;
+    font-size: 14px;
+    border: #999 solid 1px;
+    border-radius: 4px;
+}
+
+select {
+    padding: 9px;
+}
+
+textarea {
+    height: 100%;
+}
+
+    input[readonly], input[disabled],
+    select[readonly], select[disabled],
+    textarea[readonly], textarea[disabled] {
+        background-color: #dee7ca;
+    }
+
+    input[type='text']:hover, input[type='password']:hover, input[type='file']:hover, select:hover, textarea:hover,
+    input[type='text']:focus, input[type='password']:focus, input[type='file']:focus, select:focus, textarea:focus {
+        border-color: #C0C081;
+        background-color: #FFFFE6;
+    }
+
+input[type='text'].dt_pckr {
+    width: 90%;
+}
+
+input[type='checkbox'], input[type='radio'] {
+    margin: 0 2px 0 0px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type='submit'], input[type='button'], input[type='reset'] {
+    margin: 5px 0px 5px 5px;
+    padding: 8px 30px;
+    font-size: 14px;
+    color: #FFF;
+    background-color: #a5a15d;
+    border: none;
+    border-radius: 3px;
+}
+
+    input[type='submit']:hover, input[type='button']:hover, input[type='reset']:hover {
+        color: #09F;
+        cursor: pointer;
+        color: #FFF;
+        background-color: #252c2b;
+    }
+
+textarea {
+    height: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset.frm_chk_box_wrp {
+}
+
+    fieldset.frm_chk_box_wrp label {
+        margin-right: 24px;
+        vertical-align: middle;
+    }
+
+        fieldset.frm_chk_box_wrp label:hover {
+            cursor: pointer;
+            color: #F60;
+        }
+
+    fieldset.frm_chk_box_wrp span {
+        float: right;
+        padding: 5px;
+    }
+
+    fieldset.frm_chk_box_wrp div {
+        width: 400px;
+        float: right;
+        padding: 5px;
+        text-align: left;
+    }
+
+#Log-In fieldset {
+    padding: 10px 0;
+    text-align: left;
+    border: none;
+}
+
+#Log-In label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+#Log-In input[type='submit'], #Log-In input[type='button'], #Log-In input[type='reset'] {
+    margin: 0;
+    padding: 10px 40px;
+    font-size: 18px;
+}
+
+    #Log-In input[type='submit']:hover, #Log-In input[type='button']:hover, #Log-In input[type='reset']:hover {
+        color: #09F;
+        cursor: pointer;
+        background: none;
+    }
+
+form hr {
+    color: #FFF;
+    background-color: #FFF;
+    margin: 5px 10px;
+}
+
+form h2 {
+    margin: 7px 0 3px 0;
+    padding: 10px 5px 10px 5px;
+    border-bottom: #CCC solid 1px;
+}
+
+/* -- General Table Elements -- */
+
+.css_tbl * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.css_tbl {
+    width: 100%;
+    display: table;
+    font-size: 14px;
+    background-color:#FFFFFF;
+    border-spacing: 2px; /* Cell Spacing */
+}
+
+@media only screen and (min-width: 568px) {
+    .css_tbl_tr {
+        display: table-row;
+    }
+
+    .css_tbl_th {
+        display: table-cell;
+        text-align: right;
+    }
+
+    .css_tbl_td {
+        display: table-cell;
+    }
+}
+
+/* -- Header Row -- */
+
+.css_tbl_hdr {
+}
+
+    .css_tbl_hdr .css_tbl_th {
+        text-align: center;
+    }
+
+    .css_tbl_hdr .css_tbl_td {
+    }
+
+/* -- Body Row -- */
+
+.css_tbl_bdy {
+}
+
+    .css_tbl_bdy .css_tbl_th {
+    }
+
+    .css_tbl_bdy .css_tbl_td {
+        vertical-align: top;
+    }
+
+/* -- Footer Row -- */
+
+.css_tbl_ftr {
+}
+
+    .css_tbl_ftr .css_tbl_th {
+    }
+
+    .css_tbl_ftr .css_tbl_td {
+    }
+
+
+/* -- Custom Tables -- */
+/* -- Form Table -- */
+.css_tbl_frm {
+    padding: 0;
+}
+
+    .css_tbl_frm .css_tbl_th {
+        margin: 5px 0 0 0;
+        padding: 8px;
+        background-color: #e7daca;
+    }
+
+    .css_tbl_frm .css_tbl_td {
+        background-color: #FFF;
+    }
+
+        .css_tbl_frm .css_tbl_td span {
+            display: block;
+            padding-left: 10px;
+        }
+
+@media only screen and (min-width: 568px) {
+    .css_tbl_frm .css_tbl_th {
+        width: 25%;
+        padding: 8px;
+        vertical-align: top;
+        border-right: #8a8989 solid 3px;
+    }
+
+    .css_tbl_frm .css_tbl_td {
+        width: 75%;
+        padding: 0 0 0 4px;
+    }
+
+    .css_tbl_sgl .css_tbl_th {
+        width: 35%;
+    }
+
+    .css_tbl_sgl .css_tbl_td {
+        width: 65%;
+    }
+
+    .css_tbl_sgl_lng .css_tbl_th {
+        width: 60%;
+    }
+
+    .css_tbl_sgl_lng .css_tbl_td {
+        width: 40%;
+    }
+
+    .css_tbl_dbl .css_tbl_th {
+        width: 20%;
+    }
+
+    .css_tbl_dbl .css_tbl_td {
+        width: 30%;
+    }
+
+    .css_tbl_3col .hdr .css_tbl_th {
+        border: none;
+        text-align: center;
+    }
+
+    .css_tbl_3col .css_tbl_th {
+        width: 20%;
+    }
+
+    .css_tbl_3col .css_tbl_td {
+        width: 26%;
+    }
+
+    .css_tbl_col {
+        background-color: #dee7ca;
+    }
+
+    .css_tbl_col_2_wrp {
+        font-size: 0;
+    }
+
+        .css_tbl_col_2_wrp .css_tbl_col {
+            display: inline-block;
+            width: 50%;
+            vertical-align: top;
+        }
+}
+
+.css_tbl_th.css_tbl_empty {
+    background-color: #E3E3E3;
+    border: none !important;
+    height: 41px;
+}
+
+.css_tbl_td.css_tbl_empty {
+    background-color: #E3E3E3;
+    border: none !important;
+}
+
+/* -- List Table -- */
+.css_tbl_lst {
+}
+
+    .css_tbl_lst .css_tbl_hdr .css_tbl_th {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .css_tbl_lst .css_tbl_hdr .css_tbl_th {
+        padding: 10px 10px 14px 10px;
+        border: none;
+        background-color: #c2d2a0;
+    }
+
+    .css_tbl_lst .css_tbl_hdr .css_tbl_td {
+        padding: 0 10px;
+    }
+
+    .css_tbl_lst .css_tbl_bdy:nth-child(odd) {
+        background-color: #dee7ca;
+    }
+
+    .css_tbl_lst .css_tbl_bdy:nth-child(even) {
+        background-color: #F9F9F9;
+    }
+
+    .css_tbl_lst .css_tbl_bdy:hover {
+        background-color: #e3e3e3;
+    }
+
+    .css_tbl_lst .css_tbl_bdy .css_tbl_th {
+        padding: 0 10px;
+        background: none;
+    }
+
+    .css_tbl_lst .css_tbl_bdy .css_tbl_td {
+        padding: 5px 10px;
+        background: none;
+    }
+
+.hglt {
+    background-color: #E9ECB3 !important;
+}
+
+/* -- List Table ALT -- */
+.css_tbl table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-spacing: 4px 4px;
+}
+
+    .css_tbl table thead {
+    }
+
+        .css_tbl table thead tr {
+            background-color: #dee7ca;
+        }
+
+        .css_tbl table thead th {
+            padding: 8px;
+            font-size: 14px;
+            font-weight: normal;
+            border-bottom: #c2d2a0 solid 2px;
+        }
+
+        .css_tbl table thead td {
+        }
+
+    .css_tbl table tbody {
+    }
+
+        .css_tbl table tbody tr {
+        }
+
+        .css_tbl table tbody th {
+            padding: 0 8px;
+            text-align: left;
+            font-weight: normal;
+            background-color: #dee7ca;
+        }
+
+        .css_tbl table tbody td {
+        }
+
+    .css_tbl table tfoot {
+    }
+
+        .css_tbl table tfoot tr {
+            background-color: #dee7ca;
+        }
+
+        .css_tbl table tfoot th {
+            padding: 8px;
+            font-size: 14px;
+            font-weight: normal;
+            text-align: right;
+            border-top: #c2d2a0 solid 2px;
+        }
+
+    .css_tbl table label:hover {
+        color: orange;
+        cursor: pointer;
+    }
+
+
+/* -- Tools -- */
+.css_tbl_lst .css_tbl_bdy .css_tbl_td.tools {
+    text-align: center;
+    cursor: not-allowed;
+    background-color: #DDD;
+    color: #999;
+}
+
+.css_tbl_lst .css_tbl_bdy .css_tbl_td.f_lck {
+    text-align: center;
+    cursor: default;
+    background-color: #DDD;
+}
+
+.css_tbl_lst .css_tbl_bdy .css_tbl_td.f_qck_lck {
+    text-align: center;
+    cursor: pointer;
+    background-color: #FFF;
+}
+
+/* -- Tools -- */
+.tools i {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 6px 8px;
+    cursor: pointer;
+    background-color: darkgrey;
+    border-radius: 3px;
+}
+
+.tools .dlt { /* -- Delete -- */
+    color: #a4232e;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ECD0D0;
+}
+
+    .tools .dlt:hover { /* -- Delete Hover -- */
+        color: #FFF;
+        background: #c73838;
+        cursor: pointer;
+    }
+
+.tools .edt { /* -- Edit -- */
+    color: #778c46;
+    text-align: center;
+    cursor: pointer;
+    background-color: #bfc9a8;
+}
+
+    .tools .edt:hover { /* -- Edit Hover -- */
+        color: #FFF;
+        background: #778c46;
+        cursor: pointer;
+    }
+
+.tools .add { /* -- Add -- */
+    color: #2f5377;
+    text-align: center;
+    cursor: pointer;
+    background-color: #9eaebf;
+    margin: -5px 0;
+}
+
+    .tools .add:hover { /* -- Add Hover -- */
+        color: #FFF;
+        background: #2f5377;
+        cursor: pointer;
+    }
+
+/* -- View List in Category -- */
+.css_tbl_lst .css_tbl_bdy .css_tbl_td.f_lst:hover {
+    background: #F9F9E0;
+    cursor: pointer;
+}
+
+/* -- Photo Gallery -- */
+.css_tbl_lst .css_tbl_bdy .css_tbl_td.f_pht {
+    color: #FC0 !important;
+    text-align: center;
+    cursor: pointer;
+    background-color: #FFF;
+}
+
+    .css_tbl_lst .css_tbl_bdy .css_tbl_td.f_pht:hover {
+        color: #FFF !important;
+        background: #FC0;
+        cursor: pointer;
+    }
+
+/* -- Delete File -- */
+span.f_fle {
+    float: right;
+    display: block;
+    margin: 0 5px !important;
+    padding: 5px 10px !important;
+    color: #a4232e !important;
+    background-color: #F7DFDF;
+}
+
+    span.f_fle:hover {
+        color: #FFF !important;
+        background: #c73838;
+        cursor: pointer;
+    }
+
+/* -- Description Table - One Cell -- */
+.css_tbl_dsc {
+    margin: -40px 0 40px 0;
+}
+
+    .css_tbl_dsc .css_tbl_td {
+        padding: 10px 0px;
+        font-size: 10px;
+        text-align: center;
+        color: #888;
+    }
+
+/* -- Submit Table - One Cell -- */
+.css_tbl_sbmt {
+}
+
+    .css_tbl_sbmt .css_tbl_td {
+        padding: 2px 0px;
+        text-align: right;
+        color: #888;
+    }
+
+/* -- Special Cells - Check Boxes & Radio Buttons  -- */
+.css_tbl_td_chck_bx, .chk_bx_wrp {
+    padding-left: 15px !important;
+    font-size: 0;
+}
+
+    .css_tbl_td_chck_bx, .chk_bx_wrp label {
+        margin-left: 5px;
+    }
+
+        .css_tbl_td_chck_bx, .chk_bx_wrp label:hover {
+            color: #F90;
+            cursor: pointer;
+        }
+
+            .css_tbl_td_chck_bx div, .chk_bx_wrp div {
+                width: 50%;
+                display: inline-block;
+                vertical-align: top;
+                padding: 3px 0;
+            }
+
+.chk_bx_wrp_trg {
+    display: block;
+    font-size: 85%;
+    cursor: pointer;
+    padding: 5px 0;
+    color: grey;
+}
+
+.spacer {
+    margin: 1px;
+    background-color: #dee7ca;
+    color: #dee7ca;
+}
+
+/* -- Re-Order -- */
+.css_tbl_td.order {
+    width: 40px;
+    padding: 1px !important;
+}
+
+    .css_tbl_td.order input {
+        width: 40px;
+        padding: 4px;
+        color: #999 !important;
+        text-align: center;
+    }
+
+
+/* -- Miscelaneous --*/
+.fa.fa-letter {
+    padding: 2px 5px;
+    margin: 6px 0px 6px 10px;
+    font-family: "open_sansregular",Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #FFF;
+    background-color: #333;
+    border-radius: 3px;
+}
+
+.history_log {
+    font-size: 12px;
+}
+
+/* -- Placeholder --*/
+::-webkit-input-placeholder {
+    color: #333 !important;
+}
+
+input:-moz-placeholder {
+    color: #333 !important;
+}
+
+
+:-ms-input-placeholder {
+    color: #333 !important;
+}

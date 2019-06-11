@@ -1,0 +1,98 @@
+﻿<div class="nav-1" id="onefirm">
+  <ul>
+    <li id="onefirm_nav">@Html.ActionLink("One Firm", "Index", "Home")</li>
+    <li id="vision_statement_nav">@Html.ActionLink("Vision Statement", "VisionStatement", "Home")</li>
+    <li id="two_minutes_nav">@Html.ActionLink("Two Minutes", "Index", "TwoMinutes")</li>
+    <li id="conference_rooms_nav">@Html.ActionLink("Conference Rooms", "ConferenceRooms", "Home")</li>
+    <li id="social_roster_nav">@Html.ActionLink("Social Roster", "Index", "Profiles")</li>
+    <li id="growth_nav">@Html.ActionLink("Growth", "Growth", "Home")</li>
+  </ul>
+</div>
+
+<div class="nav-1" id="departments">
+  <ul>
+    <li id="hr_nav">@Html.ActionLink("Administration", "Index", "HR")</li>
+    <li id="audit_nav"><a href="Javascript:void(0);">Audit</a></li>
+    <li id="banking_nav"><a href="Javascript:void(0);">Banking</a></li>
+    <li id="fa_nav"><a href="Javascript:void(0);">FA</a></li>
+    <li id="healthcare_nav"><a href="Javascript:void(0);">Healthcare</a></li>
+    <li id="it_nav">@Html.ActionLink("IT", "Index", "IT")</li>
+    <li id="marketing_nav">@Html.ActionLink("Marketing", "Index", "Marketing")</li>
+    <li id="ramp_nav"><a href="Javascript:void(0);">RAMP</a></li>
+    <li id="tax_nav">@Html.ActionLink("Tax", "Index", "Tax")</li>
+  </ul>
+</div>
+
+<div class="nav-1" id="resources">
+  <ul>
+    <li id="resources_nav">@Html.ActionLink("Resources", "Index", "Resources")</li>
+    <li id="project_manager_nav">@Html.ActionLink("Project Manager", "Index", "Projects")</li>
+    <li id="new_client_nav">@Html.ActionLink("New Client", "Form_NewClient", "Home")</li>
+    @if (User.IsInRole("SCG-CPA\\MJL"))
+    {
+      <li id="mjl_nav">@Html.ActionLink("MJL", "Index", "Mjl")</li>
+      <li id="knowledge_base_nav"><a href="Javascript:void(0);">Knowledge Base</a></li>
+    }
+  </ul>
+</div>
+
+<div style="background-color:white; height:40px;">
+  <div id="hr_subnav" class="nav-2">
+    <ul>
+      <li id="forms_pge_nav">@Html.ActionLink("Forms", "Forms", "HR")</li>
+      <li id="informative_links_pge_nav">@Html.ActionLink("Informative Links", "InformativeLinks", "HR")</li>
+      <li id="personnel_policy_pge_nav">@Html.ActionLink("Personnel Policies", "PersonnelPolicies", "HR")</li>
+      <li id="employee_benefits_pge_nav">@Html.ActionLink("Employee Benefits", "EmployeeBenefits", "HR")</li>
+      <li id="employee_discounts_pge_nav">@Html.ActionLink("Employee Discounts", "EmployeeDiscounts", "HR")</li>
+    </ul>
+  </div>
+  <div id="admin_subnav" class="nav-2">
+    <ul></ul>
+  </div>
+  <div id="audit_subnav" class="nav-2">
+    <ul></ul>
+  </div>
+  <div id="banking_subnav" class="nav-2">
+    <ul>
+      @*<li id="banks_pge_nav">@Html.ActionLink("Banks", "Index", "Banks")</li>*@
+    </ul>
+  </div>
+  <div id="fa_subnav" class="nav-2">
+    <ul></ul>
+  </div>
+  <div id="healthcare_subnav" class="nav-2">
+    <ul></ul>
+  </div>
+  <div id="it_subnav" class="nav-2">
+    <ul>
+      <li id="inventory_pge_nav">@Html.ActionLink("Inventory", "Inventory", "IT")</li>
+      <li id="server_map_pge_nav">@Html.ActionLink("Server Map", "ServerMap", "IT")</li>
+      <li id="mapped_drives_pge_nav">@Html.ActionLink("Mapped Drives", "MappedDrives", "IT")</li>
+      <li id="program_locations_pge_nav">@Html.ActionLink("Program Locations", "ProgramLocations", "IT")</li>
+      <li id="ip_addresses_pge_nav">@Html.ActionLink("IP Addresses", "IPAddresses", "IT")</li>
+    </ul>
+  </div>
+  <div id="marketing_subnav" class="nav-2">
+    <ul>
+      <li id="employee_resources_pge_nav">@Html.ActionLink("Employee Resources", "EmployeeResources", "Marketing")</li>
+      <li id="marketing_materials_pge_nav">@Html.ActionLink("Marketing Materials", "MarketingMaterials", "Marketing")</li>
+      <li id="social_media_pge_nav">@Html.ActionLink("Social Media", "SocialMedia", "Marketing")</li>
+      @if (User.IsInRole("SCG-CPA\\Intranet Admins"))
+      {
+        <li id="motd_pge_nav">@Html.ActionLink("MOTD", "MOTD", "Marketing")</li>
+      }
+    </ul>
+  </div>
+  <div id="ramp_subnav" class="nav-2">
+    <ul></ul>
+  </div>
+  <div id="tax_subnav" class="nav-2">
+    <ul>
+      <li id="tax_policies_pge_nav">@Html.ActionLink("Policies/Procedures", "PoliciesProcedures", "Tax")</li>
+      <li id="form_1040_pge_nav">@Html.ActionLink("Form 1040", "Form1040", "Tax")</li>
+      <li id="cpe_opportunities_pge_nav">@Html.ActionLink("CPE Opportunities", "CPEOpportunities", "Tax")</li>
+      <li id="additional_resources_pge_nav">@Html.ActionLink("Additional Resources", "AdditionalResources", "Tax")</li>
+    </ul>
+  </div>
+
+</div>

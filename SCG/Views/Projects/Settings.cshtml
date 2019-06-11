@@ -1,0 +1,343 @@
+﻿@model SCG.Models.Project
+
+@{
+  ViewBag.Title = "Details";
+}
+<div id="openSettings" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Project Settings</h4>
+        <div class="project-settings">
+          <span class="project-settings-nav active">Edit</span>
+          <span class="project-settings-nav">Statuses</span>
+          <span class="project-settings-nav">Priorities</span>
+          <span class="project-settings-nav">Guest Types</span>
+          <span class="project-settings-nav">Shared</span>
+        </div>
+      </div>
+      <div id="ProjectEdit" class="settings-holder">
+        @using (Html.BeginForm("Edit", "Projects", FormMethod.Post, new { id = Model.Id }))
+        {
+          <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+              @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+              @Html.HiddenFor(model => model.Id)
+              <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "text-label group-inline input-middle" })
+                <div class="group-inline">
+                  @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @style = "width: 463px;" } })
+                  @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+              </div>
+              <div class="form-group">
+                @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "text-label group-inline input-middle" })
+                <div class="group-inline">
+                  @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", @style = "width: 463px;" } })
+                  @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                </div>
+              </div>
+              <div class="modal-checkbox-holder-title">Columns</div>
+              <div class="modal-checkbox-holder">
+                <div class="modal-group">
+                  <div class="form-group">
+                    <label class="c-item c-item-label" for="Assign">Display 'Assign To' Column?</label>
+                    <div class="c-item">
+                      @Html.EditorFor(model => model.Assign)
+                      @Html.ValidationMessageFor(model => model.Assign, "", new { @class = "text-danger" })
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-group">
+                  <div class="form-group">
+                    <label class="c-item c-item-label" for="DueDates">Display 'Due Date' Column?</label>
+                    <div class="c-item">
+                      @Html.EditorFor(model => model.DueDates)
+                      @Html.ValidationMessageFor(model => model.DueDates, "", new { @class = "text-danger" })
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-checkbox-holder-title">Tabs</div>
+              <div class="modal-checkbox-holder">
+                <div class="modal-group">
+                  <div class="form-group">
+                    <label class="c-item c-item-label" for="Schedule">Display 'Schedule' Tab?</label>
+                    <div class="c-item">
+                      @Html.EditorFor(model => model.Schedule)
+                      @Html.ValidationMessageFor(model => model.Schedule, "", new { @class = "text-danger" })
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-group">
+                  <div class="form-group">
+                    <label class="c-item c-item-label" for="Event">Display 'Event' Tabs?</label>
+                    <div class="c-item">
+                      @Html.EditorFor(model => model.Event)
+                      @Html.ValidationMessageFor(model => model.Event, "", new { @class = "text-danger" })
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-10">
+                <input id="EditSubmit" type="submit" value="Save" class="btn btn-success" />
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+      <div id="ProjectStatuses" class="settings-holder" style="display: none;">
+        <div class="modal-body">
+          @foreach (var type in Model.Types)
+          {
+            <div class="form-horizontal">
+              <div class="form-group type-box">
+                <div class="col-md-10 type">
+                  <input type="text" name="Name" class="form-control" style="display: inline-block; width: 70%; max-width: none; margin-right: 20px;" value="@type.Name" />
+                  <input type="text" placeholder="Color" name="Color" class="form-control bfh-colorpicker" data-name="colorpicker" style="display: inline-block; width: 20%;" value="@type.Color" />
+                  <input type="hidden" name="Id" value="@type.Id" />
+                  <input type="hidden" name="ProjectID" value="@type.ProjectID" />
+                  @if (type.Sticky != true)
+                  {
+                    <i class="glyphicon glyphicon-trash pull-right actions input-middle" onclick="deleteItem('@Url.Action("Delete", "Types", new { id = type.Id }, null)', 'openSettings');"></i>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div id="AddStatus" class="actions add-button"><i class="glyphicon glyphicon-plus"></i> Add Status</div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input id="StatusesSubmit" type="submit" value="Update Statuses" class="btn btn-success" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ProjectPriorities" class="settings-holder" style="display: none;">
+        <div class="modal-body">
+          @foreach (var priority in Model.Priorities)
+          {
+            <div class="form-horizontal">
+              <div class="form-group priority-box">
+                <div class="col-md-10 priority">
+                  <input type="text" name="Name" class="form-control" style="display: inline-block; width: 90%; max-width: none;" value="@priority.Name" />
+                  <input type="hidden" name="Id" value="@priority.Id" />
+                  <input type="hidden" name="ProjectID" value="@priority.ProjectID" />
+                  @if (priority.Sticky != true)
+                  {
+                    <i class="glyphicon glyphicon-trash pull-right actions input-middle" onclick="deleteItem('@Url.Action("Delete", "Priorities", new { id = priority.Id }, null)', 'openSettings');"></i>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div id="AddPriority" class="actions add-button"><i class="glyphicon glyphicon-plus"></i> Add Priority</div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input id="PrioritiesSubmit" type="submit" value="Update Priorities" class="btn btn-success" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ProjectGuestTypes" class="settings-holder" style="display: none;">
+        <div class="modal-body fixed-scroll">
+          @foreach (var guestType in Model.GuestTypes)
+          {
+            <div class="form-horizontal">
+              <div class="form-group guest-type-box">
+                <div class="col-md-10 guest-type">
+                  <input type="text" name="Name" class="form-control" style="display: inline-block; width: 90%; max-width: none;" value="@guestType.Name" />
+                  <input type="hidden" name="Id" value="@guestType.Id" />
+                  <input type="hidden" name="ProjectID" value="@guestType.ProjectID" />
+                  @if (guestType.Sticky != true)
+                  {
+                    <i class="glyphicon glyphicon-trash pull-right actions input-middle" onclick="deleteItem('@Url.Action("Delete", "GuestTypes", new { id = guestType.Id }, null)', 'openSettings');"></i>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div id="AddGuestType" class="actions add-button"><i class="glyphicon glyphicon-plus"></i> Add Guest Type</div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input id="GuestTypesSubmit" type="submit" value="Update Guest Types" class="btn btn-success" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ProjectShared" class="settings-holder" style="display: none;">
+        <div class="modal-body">
+          <div class="project-left-col fixed-scroll">
+            <h4 style="border-bottom: 1px solid #CCC;">Shared With</h4>
+            @foreach (var user in ViewData["Shared"] as IEnumerable<SCG.Models.User>)
+            {
+              <div>@Html.Raw(user.FirstName + " " + user.LastName)</div>
+            }
+          </div>
+          <div class="project-right-col fixed-scroll">
+            <h4 style="border-bottom: 1px solid #CCC;">Select Users to Share</h4>
+            @foreach (var user in ViewData["Unshared"] as IEnumerable<SCG.Models.User>)
+            {
+              <div class="share-holder">
+                <input type="checkbox" value="@user.Id" /><span class="share-name">@Html.Raw(user.FirstName + " " + user.LastName)</span>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input id="ShareSubmit" type="submit" value="Share Project" class="btn btn-success" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@Scripts.Render("~/bundles/jqueryui")
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".project-settings-nav").click(function () {
+      $(".project-settings-nav").removeClass("active");
+      $(this).addClass("active");
+      if ($("#Project" + $(this).text()).is(":visible") == false) {
+        $(".settings-holder").slideUp();
+        $("#Project" + $(this).text().replace(/\s/g,'')).slideDown();
+      }
+    });
+
+    $("#EditSubmit").click(function (e) {
+      $("#openSettings").modal('hide');
+    });
+
+    $("#StatusesSubmit").click(function (e) {
+      e.preventDefault();
+      $(".type").each(function () {
+        id = $(this).find("input[name=Id]").val();
+        name = $(this).find("input[name=Name]").val();
+        data = $(this).find("input").serializeArray();
+        if (name != undefined && name != "") {
+          if (id == undefined || id == "") {
+            $.ajax({
+              url: '/Types/Create',
+              method: 'POST',
+              data: data,
+              success: function () {
+                $("#openSettings").modal('hide');
+              }
+            });
+          } else {
+            $.ajax({
+              url: '/Types/Edit/' + id,
+              method: 'POST',
+              data: data,
+              success: function () {
+                $("#openSettings").modal('hide');
+              }
+            });
+          }
+        }
+      });
+    });
+
+    $("#PrioritiesSubmit").click(function (e) {
+      e.preventDefault();
+      $(".priority").each(function () {
+        id = $(this).find("input[name=Id]").val();
+        name = $(this).find("input[name=Name]").val();
+        data = $(this).find("input").serializeArray();
+        if (name != undefined && name != "") {
+          if (id == undefined || id == "") {
+            $.ajax({
+              url: '/Priorities/Create',
+              method: 'POST',
+              data: data,
+              success: function () {
+                $("#openSettings").modal('hide');
+              }
+            });
+          } else {
+            $.ajax({
+              url: '/Priorities/Edit/' + id,
+              method: 'POST',
+              data: data,
+              success: function () {
+                $("#openSettings").modal('hide');
+              }
+            });
+          }
+        }
+      });
+    });
+
+    $("#GuestTypesSubmit").click(function (e) {
+      e.preventDefault();
+      $(".guest-type").each(function () {
+        id = $(this).find("input[name=Id]").val();
+        name = $(this).find("input[name=Name]").val();
+        data = $(this).find("input").serializeArray();
+        if (name != undefined && name != "") {
+          if (id == undefined || id == "") {
+            $.ajax({
+              url: '/GuestTypes/Create',
+              method: 'POST',
+              data: data,
+              success: function () {
+                $("#openSettings").modal('hide');
+              }
+            });
+          } else {
+            $.ajax({
+              url: '/GuestTypes/Edit/' + id,
+              method: 'POST',
+              data: data,
+              success: function () {
+                $("#openSettings").modal('hide');
+              }
+            });
+          }
+        }
+      });
+    });
+
+    $("#ShareSubmit").click(function (e) {
+      e.preventDefault();
+      $("#ProjectShared input:checkbox:checked").each(function () {
+        $.ajax({
+          url: '/SharedProjects/Create',
+          method: 'POST',
+          data: { 'ProjectID': @Model.Id, 'UserID': $(this).val() },
+          success: function () {
+            $("#openSettings").modal('hide');
+          }
+        });
+      });
+    });
+
+    $("#AddStatus").click(function () {
+      $("#ProjectStatuses .modal-body").append('<div class="form-horizontal"><div class="form-group type-box" ><div class="col-md-10 type"><input type="text" name="Name" class="form-control" style="display: inline-block; width: 70%; max-width: none; margin-right: 20px;" value="" /><input type="text" placeholder="Color" name="Color" class="form-control bfh-colorpicker" data-name="colorpicker" style="display: inline-block; width: 20%;" /><input type="hidden" name="ProjectID" value="@Model.Id" /></div></div></div>');
+    });
+
+    $("#AddPriority").click(function () {
+      $("#ProjectPriorities .modal-body").append('<div class="form-horizontal"><div class="form-group priority-box" ><div class="col-md-10 priority"><input type="text" name="Name" class="form-control" style="display: inline-block; width: 90%; max-width: none;" value="" /><input type="hidden" name="ProjectID" value="@Model.Id" /><i class="glyphicon glyphicon-trash pull-right"></i></div></div></div>');
+    });
+
+    $("#AddGuestType").click(function () {
+      $("#ProjectGuestTypes .modal-body").append('<div class="form-horizontal"><div class="form-group guest-type-box" ><div class="col-md-10 guest-type"><input type="text" name="Name" class="form-control" style="display: inline-block; width: 90%; max-width: none;" value="" /><input type="hidden" name="ProjectID" value="@Model.Id" /><i class="glyphicon glyphicon-trash pull-right"></i></div></div></div>');
+    });
+  });
+</script>

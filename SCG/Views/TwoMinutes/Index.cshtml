@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Two Minutes";
+    ViewBag.Page_Nav = "onefirm";
+    ViewBag.Page_Area = "two_minutes_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<div class="page-holder">
+
+    <div>
+
+        @{
+            foreach (var scgitem in ViewBag.scgNodes)
+            {
+                <div>@Html.Raw(scgitem.InnerHtml)</div>
+            }
+        }
+
+    </div>
+
+</div>

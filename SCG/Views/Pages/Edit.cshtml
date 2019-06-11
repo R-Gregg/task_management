@@ -1,0 +1,79 @@
+﻿@model SCG.Models.Page
+
+<h2>Edit Page</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+
+    <div class="css_tbl css_tbl_frm css_tbl_sgl">
+
+        <div class="css_tbl_tr">
+            <div class="css_tbl_th" style="width: 10%;">
+                @Html.LabelFor(model => model.Name, "Page Name:")
+            </div>
+            <div class="css_tbl_td">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="css_tbl_tr">
+            <div class="css_tbl_th" style="width: 10%;">
+                @Html.LabelFor(model => model.Text, "Page Body:")
+            </div>
+            <div class="css_tbl_td"><textarea id="Text" name="Text" style="height:350px;">@Html.DisplayFor(model => model.Text)</textarea></div>
+        </div>
+    </div>
+
+    <hr class="css_tbl_spc" />
+
+    <div class="css_tbl css_tbl_sbmt">
+
+        <div class="css_tbl_tr">
+            <div class="css_tbl_td">
+                <input type="submit" value="Submit" />
+                <input type="button" value="Cancel" onclick="fPopup_Kill();" />
+                <input type="hidden" id="sub__Product_Price" name="sub__Product_Price" value="" />
+                <input type="hidden" id="Date_Created" name="Date_Created" value="@System.DateTime.Now" />
+                <input type="hidden" id="Date_Created_IP" name="Date_Created_IP" value="@Request.UserHostAddress" />
+                <input type="hidden" id="Last_Updated" name="Last_Updated" value="@System.DateTime.Now" />
+                <input type="hidden" id="Last_Updated_IP" name="Last_Updated_IP" value="@Request.UserHostAddress" />
+            </div>
+        </div>
+
+    </div>
+
+    <p>&nbsp;</p>
+}
+
+@Scripts.Render("~/bundles/forms")
+<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    $("document").ready(function () {
+
+        $('form').click(function () {
+            tinyMCE.triggerSave(); 
+        }); 
+        tinymce.init({
+            selector: '#Text',
+            menubar: false,
+            statusbar: false,
+            toolbar_items_size: 'small',
+            relative_urls: false,
+            remove_script_host: false,
+            document_base_url: "http://www.saltmarshcpa.com/",
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor textcolor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code help'
+            ],
+            toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | help'
+        });
+
+    });
+</script>

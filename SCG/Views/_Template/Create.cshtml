@@ -1,0 +1,165 @@
+﻿@model Subscriptions.Models.subscription_tbl
+
+<h4>Add New Subscription</h4>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="css_tbl_col_2_wrp">
+
+        <div class="css_tbl_col">
+            <div class="css_tbl css_tbl_frm css_tbl_sgl">
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Account_ID, "Account:")
+                    </div>
+                    <div class="css_tbl_td">
+                        @Html.DropDownList("sub__Account_ID", null, string.Empty, htmlAttributes: new { @class = "form-control", required = string.Empty })
+                        @Html.ValidationMessageFor(model => model.sub__Account_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Vendor_ID, "Vendor:")
+                    </div>
+                    <div class="css_tbl_td">
+                        @Html.DropDownList("sub__Vendor_ID", null, string.Empty, htmlAttributes: new { @class = "form-control", required = string.Empty })
+                        @Html.ValidationMessageFor(model => model.sub__Vendor_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Product_ID, "Product Line:")
+                    </div>
+                    <div class="css_tbl_td">
+                        <select id="sub__Product_ID" name="sub__Product_ID" required=""></select>
+                        @Html.ValidationMessageFor(model => model.sub__Product_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Product_Level_ID, "Product Level:")
+                    </div>
+                    <div class="css_tbl_td">
+                        <select id="sub__Product_Level_ID" name="sub__Product_Level_ID" required=""></select>
+                        @Html.ValidationMessageFor(model => model.sub__Product_Level_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Price_Override, "Override Price:")
+                    </div>
+                    <div class="css_tbl_td">
+                        @Html.EditorFor(model => model.sub__Price_Override, new { htmlAttributes = new { @class = "form-control", type = "currency" } })
+                        @Html.ValidationMessageFor(model => model.sub__Price_Override, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="css_tbl_col">
+
+            <div class="css_tbl css_tbl_frm css_tbl_sgl">
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Annv_ID, "Renewal Type:")
+                    </div>
+                    <div class="css_tbl_td">
+                        @Html.DropDownList("sub__Annv_ID", null, string.Empty, htmlAttributes: new { @class = "form-control", required = string.Empty })
+                        @Html.ValidationMessageFor(model => model.sub__Annv_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Annv_Date, "Renewal Date:")
+                    </div>
+                    <div class="css_tbl_td">
+                        @Html.EditorFor(model => model.sub__Annv_Date, new { htmlAttributes = new { @class = "form-control dt_pckr", required = string.Empty } })
+                        @Html.ValidationMessageFor(model => model.sub__Annv_Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Notes, "Notes:")
+                    </div>
+                    <div class="css_tbl_td">
+                        <textarea class="form-control" id="sub__Notes" name="sub__Notes" style="height:84px;"></textarea>
+                        @Html.ValidationMessageFor(model => model.sub__Notes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="css_tbl_tr">
+                    <div class="css_tbl_th">
+                        @Html.LabelFor(model => model.sub__Status, "Status:")
+                    </div>
+                    <div class="css_tbl_td">
+                        @Html.DropDownList("sub__Status", null, htmlAttributes: new { @class = "form-control", required = string.Empty })
+                        @Html.ValidationMessageFor(model => model.sub__Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <hr class="css_tbl_spc" />
+
+    <div class="css_tbl css_tbl_sbmt">
+
+        <div class="css_tbl_tr">
+            <div class="css_tbl_td">
+                <input type="submit" value="Submit" />
+                <input type="button" value="Cancel" onclick="fPopup_Kill();" />
+                <input type="hidden" id="sub__Product_Price" name="sub__Product_Price" value="" />
+                <input type="hidden" id="Date_Created" name="Date_Created" value="@System.DateTime.Now" />
+                <input type="hidden" id="Date_Created_IP" name="Date_Created_IP" value="@Request.UserHostAddress" />
+                <input type="hidden" id="Last_Updated" name="Last_Updated" value="@System.DateTime.Now" />
+                <input type="hidden" id="Last_Updated_IP" name="Last_Updated_IP" value="@Request.UserHostAddress" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $(function () {
+        $("#sub__Annv_Date").datepicker();
+    });
+</script>
+
+<script>
+        $('#sub__Account_ID').val('@ViewBag.SubAccountID');
+        $('#sub__Vendor_ID').change(function () {
+            var i = $(this).val();
+            $('#sub__Product_ID').html('<option>Loading...</option>').load('/ProductLine/ProductLineList/' + i, function () {
+                $('#sub__Product_Level_ID').html('');
+            });
+        });
+        $('#sub__Product_ID').change(function () {
+            var i = $(this).val();
+            $('#sub__Product_Level_ID').html('<option>Loading...</option>').load('/Products/ProductList/' + i);
+        });
+        $('#sub__Product_Level_ID').change(function () {
+            var i = $(this).val();
+            var m = $(this).find('[value="' + i + '"]').html();
+            var s = m.split('[(')
+            var p = s[1].replace(/[^0-9.]/g, '');
+            $('#sub__Product_Price').val(p);
+        });
+</script>

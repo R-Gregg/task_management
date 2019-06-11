@@ -1,0 +1,874 @@
+﻿@{
+    ViewBag.Title = "New Client Form";
+    ViewBag.Page_Nav = "resources";
+    ViewBag.Page_Area = "new_client_area";
+    ViewBag.Page_ID = "";
+    ViewBag.Page_Layout = "columns_3";
+}
+
+<style>
+    .css_tbl_frm .css_tbl_td span {
+        display: inline-block;
+    }
+
+    /* -- Placeholder --*/
+    ::-webkit-input-placeholder {
+        color: hotpink !important;
+    }
+
+    input:-moz-placeholder {
+        color: hotpink !important;
+    }
+
+
+    :-ms-input-placeholder {
+        color: hotpink !important;
+    }
+
+</style>
+
+<div class="page-holder">
+    <h1>@ViewBag.Title</h1>
+
+    <div id="success" class="alert" style="display:none;"><i class="fa fa-smile-o" aria-hidden="true"></i> Success!<span>Form data has been sent.</span></div>
+
+    <form id="newclient">
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Company">Client/Company:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Company" id="Company" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="SortName">Sort Name:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Sort Name" id="SortName" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="ActiveDate">Active Date:</label></div>
+                <div class="css_tbl_td"><input type="text" required class="dt_pckr" name="Active Date" id="ActiveDate" value="" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainContact">Main Contact:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Main Contact" id="MainContact" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainAddress1">Address:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Main Address" id="MainAddress1" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainAddress2">Suite/Apt:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Main Address 2" id="MainAddress2" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainCity">City:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Main City" id="MainCity" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainState">State:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="MainState" id="MainState" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainZip">Zip:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Main Zip" id="MainZip" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainPhone1">Phone:</label></div>
+                <div class="css_tbl_td"><input type="text" required name="Main Phone 1" id="MainPhone1" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainPhone2">Fax:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Main Phone 2" id="MainPhone2" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainPhone3">Cell:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Main Phone 3" id="MainPhone3" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainEmail">Email Address:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Main Email" id="MainEmail" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="MainURL">Website Address:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Mai nURL" id="MainURL" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="FedID">Federal ID Num:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Fed ID" id="FedID" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Social">Social Security Num:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Social" id="Social" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="SpouseSocial">Spouse's Social Security Num:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Spouse's Social" id="SpouseSocial" /></div>
+            </div>
+
+        </div>
+
+        <span id="same" style="float: right; margin-top: 20px; cursor: pointer;">Same As Above</span>
+        <h2>Billing Information</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillContact">Contact:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Contact" id="BillContact" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillAddress1">Address:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Address" id="BillAddress1" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillAddress2">Suite/Apt:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Address 2" id="BillAddress2" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillCity">City:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill City" id="BillCity" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillState">State:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill State" id="BillState" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillZip">Zip:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Zip" id="BillZip" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillPhone1">Phone:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Phone 1" id="BillPhone1" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillPhone2">Fax:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Phone 2" id="BillPhone2" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillPhone3">Cell:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Phone 3" id="BillPhone3" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillEmail">Email Address:</label></div>
+                <div class="css_tbl_td"><input type="text" class="same" name="Bill Email" id="BillEmail" /></div>
+            </div>
+        </div>
+
+
+        <h2>Description</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Office">SCG Office:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Office" id="Office" required>
+                        <option value=""></option>
+                        <option value="Pensacola">Pensacola</option>
+                        <option value="Fort Walton Beach">Fort Walton Beach</option>
+                        <option value="Tampa">Tampa</option>
+                        <option value="Orlando">Orlando</option>
+                    </select>
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Department">Department:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Department" id="Department" required>
+                        <option value=""></option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Audit">Audit</option>
+                        <option value="Banking">Banking</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Financial Advisors">Financial Advisors</option>
+                        <option value="Health Care">Health Care</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Litigation Support">Litigation Support</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="RAMP">RAMP</option>
+                        <option value="TAX">TAX</option>
+                        <option value="Other">Other</option>
+                    </select class="other">
+                    <input type="text" class="other" name="Department - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="EntityType">Entity Type:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Entity Type" id="EntityType">
+                        <option value=""></option>
+                        <option value="C Corporation">C Corporation</option>
+                        <option value="Estate">Estate</option>
+                        <option value="Financial Institute">Financial Institute</option>
+                        <option value="Government">Government</option>
+                        <option value="Individual">Individual</option>
+                        <option value="Non-Profit">Non-Profit</option>
+                        <option value="Partnership">Partnership</option>
+                        <option value="S Corporation">S Corporation</option>
+                        <option value="Sole Proprietorship">Sole Proprietorship</option>
+                        <option value="Trust">Trust</option>
+                    </select>
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="WorkType">Work Type:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Work Type" id="WorkType">
+                        <option value=""></option>
+                        <option value="ACCTG"> ACCTG </option>
+                        <option value="ATTEST"> ATTEST </option>
+                        <option value="AUDIT"> AUDIT </option>
+                        <option value="BKKG"> BKKG </option>
+                        <option value="BUS VAL"> BUS VAL </option>
+                        <option value="CAFE PLAN"> CAFE PLAN </option>
+                        <option value="COMPILATION"> COMPILATION </option>
+                        <option value="COMPUTER CONSULT"> COMPUTER CONSULT </option>
+                        <option value="EMP BENEFIT"> EMP BENEFIT </option>
+                        <option value="ESTATE"> ESTATE </option>
+                        <option value="GRENDELFLY"> GRENDELFLY </option>
+                        <option value="INVEST"> INVEST </option>
+                        <option value="LITIGATION"> LITIGATION </option>
+                        <option value="MARKETING"> MARKETING </option>
+                        <option value="MONTHLY ACCTG"> MONTHLY ACCTG </option>
+                        <option value="OTHER"> OTHER </option>
+                        <option value="PAYROLL"> PAYROLL </option>
+                        <option value="REVIEW"> REVIEW </option>
+                        <option value="TAX"> TAX </option>
+                        <option value="TRUST"> TRUST </option>
+                        <option value="TVAS"> TVAS </option>
+                    </select>
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="GroupName">Group Name:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Group Name" id="GroupName" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Service">Prod/Service Description:</label></div>
+                <div class="css_tbl_td"><textarea name="Service" id="Service"></textarea></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="NAICCode_GEN">NAIC Code:</label></div>
+                <div class="css_tbl_td">
+
+                    <select name="NAIC Code_GEN" id="NAICCode_GEN" required>
+                        <option value="0"></option>
+                        <option value="72">ACCOMMODATION & FOOD SERVICE</option>
+                        <option value="56">ADMIN & SUPPORT & WASTE MGMT & REME</option>
+                        <option value="11">AGRICULTURE FORESTRY FISHING</option>
+                        <option value="71">ARTS ENTERTAINMENT & RECREATION</option>
+                        <option value="23">CONSTRUCTION</option>
+                        <option value="61">EDUCATIONAL SERVICES</option>
+                        <option value="52">FINANCE & INSURANCE</option>
+                        <option value="62">HEALTH CARE & SOCIAL ASSISTANCE</option>
+                        <option value="51">INFORMATION</option>
+                        <option value="31">MANUFACTURING (31)</option>
+                        <option value="32">MANUFACTURING (32)</option>
+                        <option value="33">MANUFACTURING (33)</option>
+                        <option value="55">MGMT OF COMPANIES & ENTERPRISES</option>
+                        <option value="21">MINING</option>
+                        <option value="81">OTHER SERVICE (EXCEPT PUBLIC ADMIN)</option>
+                        <option value="54">PROFESSIONAL SCIENTIFIC AND TECH</option>
+                        <option value="92">PUBLIC ADMINISTRATION</option>
+                        <option value="53">REAL ESTATE & RENTAL & LEASING</option>
+                        <option value="44">RETAIL TRADE</option>
+                        <option value="48">TRANSPORTATION & WAREHOUSING</option>
+                        <option value="22">UTILITIES</option>
+                        <option value="42">WHOLESALE TRADE</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="EstimatedFee">Estimated Fee:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="Estimated Fee" id="EstimatedFee" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="FYEndMonth">FY End Month:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="FY End Month" id="FYEndMonth" /></div>
+            </div>
+        </div>
+
+
+        <h2>Project Tracking</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_01_Description">Project 1 Description:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Proj 1 Description" id="Proj_01_Description" required>
+                        <option value=""></option>
+                        <option value="1040 (IRS Form: Individual)">1040 (IRS Form: Individual)</option>
+                        <option value="1040 - Dependents (IRS Form: Client's dependents)">1040 - Dependents (IRS Form: Client's dependents)</option>
+                        <option value="1040NR (IRS Form: Non Resident Individual Tax)">1040NR (IRS Form: Non Resident Individual Tax)</option>
+                        <option value="1040X (IRS Form: Amended - Individual)">1040X (IRS Form: Amended - Individual)</option>
+                        <option value="1041 (IRS Form: Fiduciary Returns)">1041 (IRS Form: Fiduciary Returns)</option>
+                        <option value="1041 - Estate">1041 - Estate</option>
+                        <option value="1045 (IRS Form: Tentative refund)">1045 (IRS Form: Tentative refund)</option>
+                        <option value="1065 (IRS Form: Partnership Rtn)">1065 (IRS Form: Partnership Rtn)</option>
+                        <option value="1099 (IRS Form: 1099, 1096)">1099 (IRS Form: 1099, 1096)</option>
+                        <option value="1099R (IRS Form: 1096, 1099R)">1099R (IRS Form: 1096, 1099R)</option>
+                        <option value="1099R DRL">1099R DRL</option>
+                        <option value="1120 (IRS Form: C Corp Rtn)">1120 (IRS Form: C Corp Rtn)</option>
+                        <option value="1120H (IRS Form: Homeowners Association)">1120H (IRS Form: Homeowners Association)</option>
+                        <option value="1120S (IRS Form: S Corp Rtn)">1120S (IRS Form: S Corp Rtn)</option>
+                        <option value="1139 (IRS Form: NOL)">1139 (IRS Form: NOL)</option>
+                        <option value="402g Testing">402g Testing</option>
+                        <option value="5227 (IRS Form: Split interest trust)">5227 (IRS Form: Split interest trust)</option>
+                        <option value="5330">5330</option>
+                        <option value="5500 (IRS Form: 5500)">5500 (IRS Form: 5500)</option>
+                        <option value="706 (IRS Form: Estate Tax Return)">706 (IRS Form: Estate Tax Return)</option>
+                        <option value="709 (IRS Form: Gift tax return)">709 (IRS Form: Gift tax return)</option>
+                        <option value="945 (IRS Form: 945)">945 (IRS Form: 945)</option>
+                        <option value="990 (IRS Form: Non - profit)">990 (IRS Form: Non - profit)</option>
+                        <option value="990-PF (IRS Form: Private Foundation)">990-PF (IRS Form: Private Foundation)</option>
+                        <option value="990-T (IRS Form: Non-profit Corp)">990-T (IRS Form: Non-profit Corp)</option>
+                        <option value="ADP/ACP Testing">ADP/ACP Testing</option>
+                        <option value="Amended - Corporate">Amended - Corporate</option>
+                        <option value="Amended - Fiduciary">Amended - Fiduciary</option>
+                        <option value="Amended - Partnership (IRS Form: US 1065)">Amended - Partnership (IRS Form: US 1065)</option>
+                        <option value="Bookkeeping - Monthly">Bookkeeping - Monthly</option>
+                        <option value="Bookkeeping - Quarterly">Bookkeeping - Quarterly</option>
+                        <option value="CFF/SS">CFF/SS</option>
+                        <option value="Compilation - Full Disclosure">Compilation - Full Disclosure</option>
+                        <option value="Compilation - No Disclosure">Compilation - No Disclosure</option>
+                        <option value="Consulting">Consulting</option>
+                        <option value="Corporate State Return">Corporate State Return</option>
+                        <option value="Data Request Letter">Data Request Letter</option>
+                        <option value="EA Executed">EA Executed</option>
+                        <option value="EGTRRA Executed">EGTRRA Executed</option>
+                        <option value="EGTRRA Restatement">EGTRRA Restatement</option>
+                        <option value="Engagement Agreement">Engagement Agreement</option>
+                        <option value="F-1120 (IRS Form: Florida Corporate Return)">F-1120 (IRS Form: Florida Corporate Return)</option>
+                        <option value="Fiduciary State Return">Fiduciary State Return</option>
+                        <option value="Financial Statement">Financial Statement</option>
+                        <option value="Financial Statement (Ind)">Financial Statement (Ind)</option>
+                        <option value="FL DACS Annual Registration">FL DACS Annual Registration</option>
+                        <option value="Individual State Return">Individual State Return</option>
+                        <option value="Investment Advisory">Investment Advisory</option>
+                        <option value="Other">Other</option>
+                        <option value="Partnership State Return (IRS Form: FL)">Partnership State Return (IRS Form: FL)</option>
+                        <option value="Payroll Submission Files">Payroll Submission Files</option>
+                        <option value="Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)">Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)</option>
+                        <option value="PPA Amendment">PPA Amendment</option>
+                        <option value="PPA Executed">PPA Executed</option>
+                        <option value="Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)">Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)</option>
+                        <option value="Review">Review</option>
+                        <option value="Sales Tax Return">Sales Tax Return</option>
+                        <option value="SH Notice">SH Notice</option>
+                        <option value="SHN Distributed">SHN Distributed</option>
+                        <option value="Tangible">Tangible</option>
+                        <option value="Valuation Package">Valuation Package</option>
+                        <option value="Vesting Update">Vesting Update</option>
+
+                    </select>
+                    <input type="text" class="other" name="Project 1 Description - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_01_DueDate">Due Date:</label></div>
+                <div class="css_tbl_td"><input required class="dt_pckr" type="text" name="Proj 1 Due Date" id="Proj_01_DueDate" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_02_Description">Project 2 Description:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Proj 2 Description" id="Proj_02_Description">
+                        <option value=""></option>
+                        <option value="1040 (IRS Form: Individual)">1040 (IRS Form: Individual)</option>
+                        <option value="1040 - Dependents (IRS Form: Client's dependents)">1040 - Dependents (IRS Form: Client's dependents)</option>
+                        <option value="1040NR (IRS Form: Non Resident Individual Tax)">1040NR (IRS Form: Non Resident Individual Tax)</option>
+                        <option value="1040X (IRS Form: Amended - Individual)">1040X (IRS Form: Amended - Individual)</option>
+                        <option value="1041 (IRS Form: Fiduciary Returns)">1041 (IRS Form: Fiduciary Returns)</option>
+                        <option value="1041 - Estate">1041 - Estate</option>
+                        <option value="1045 (IRS Form: Tentative refund)">1045 (IRS Form: Tentative refund)</option>
+                        <option value="1065 (IRS Form: Partnership Rtn)">1065 (IRS Form: Partnership Rtn)</option>
+                        <option value="1099 (IRS Form: 1099, 1096)">1099 (IRS Form: 1099, 1096)</option>
+                        <option value="1099R (IRS Form: 1096, 1099R)">1099R (IRS Form: 1096, 1099R)</option>
+                        <option value="1099R DRL">1099R DRL</option>
+                        <option value="1120 (IRS Form: C Corp Rtn)">1120 (IRS Form: C Corp Rtn)</option>
+                        <option value="1120H (IRS Form: Homeowners Association)">1120H (IRS Form: Homeowners Association)</option>
+                        <option value="1120S (IRS Form: S Corp Rtn)">1120S (IRS Form: S Corp Rtn)</option>
+                        <option value="1139 (IRS Form: NOL)">1139 (IRS Form: NOL)</option>
+                        <option value="402g Testing">402g Testing</option>
+                        <option value="5227 (IRS Form: Split interest trust)">5227 (IRS Form: Split interest trust)</option>
+                        <option value="5330">5330</option>
+                        <option value="5500 (IRS Form: 5500)">5500 (IRS Form: 5500)</option>
+                        <option value="706 (IRS Form: Estate Tax Return)">706 (IRS Form: Estate Tax Return)</option>
+                        <option value="709 (IRS Form: Gift tax return)">709 (IRS Form: Gift tax return)</option>
+                        <option value="945 (IRS Form: 945)">945 (IRS Form: 945)</option>
+                        <option value="990 (IRS Form: Non - profit)">990 (IRS Form: Non - profit)</option>
+                        <option value="990-PF (IRS Form: Private Foundation)">990-PF (IRS Form: Private Foundation)</option>
+                        <option value="990-T (IRS Form: Non-profit Corp)">990-T (IRS Form: Non-profit Corp)</option>
+                        <option value="ADP/ACP Testing">ADP/ACP Testing</option>
+                        <option value="Amended - Corporate">Amended - Corporate</option>
+                        <option value="Amended - Fiduciary">Amended - Fiduciary</option>
+                        <option value="Amended - Partnership (IRS Form: US 1065)">Amended - Partnership (IRS Form: US 1065)</option>
+                        <option value="Bookkeeping - Monthly">Bookkeeping - Monthly</option>
+                        <option value="Bookkeeping - Quarterly">Bookkeeping - Quarterly</option>
+                        <option value="CFF/SS">CFF/SS</option>
+                        <option value="Compilation - Full Disclosure">Compilation - Full Disclosure</option>
+                        <option value="Compilation - No Disclosure">Compilation - No Disclosure</option>
+                        <option value="Consulting">Consulting</option>
+                        <option value="Corporate State Return">Corporate State Return</option>
+                        <option value="Data Request Letter">Data Request Letter</option>
+                        <option value="EA Executed">EA Executed</option>
+                        <option value="EGTRRA Executed">EGTRRA Executed</option>
+                        <option value="EGTRRA Restatement">EGTRRA Restatement</option>
+                        <option value="Engagement Agreement">Engagement Agreement</option>
+                        <option value="F-1120 (IRS Form: Florida Corporate Return)">F-1120 (IRS Form: Florida Corporate Return)</option>
+                        <option value="Fiduciary State Return">Fiduciary State Return</option>
+                        <option value="Financial Statement">Financial Statement</option>
+                        <option value="Financial Statement (Ind)">Financial Statement (Ind)</option>
+                        <option value="FL DACS Annual Registration">FL DACS Annual Registration</option>
+                        <option value="Individual State Return">Individual State Return</option>
+                        <option value="Investment Advisory">Investment Advisory</option>
+                        <option value="Other">Other</option>
+                        <option value="Partnership State Return (IRS Form: FL)">Partnership State Return (IRS Form: FL)</option>
+                        <option value="Payroll Submission Files">Payroll Submission Files</option>
+                        <option value="Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)">Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)</option>
+                        <option value="PPA Amendment">PPA Amendment</option>
+                        <option value="PPA Executed">PPA Executed</option>
+                        <option value="Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)">Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)</option>
+                        <option value="Review">Review</option>
+                        <option value="Sales Tax Return">Sales Tax Return</option>
+                        <option value="SH Notice">SH Notice</option>
+                        <option value="SHN Distributed">SHN Distributed</option>
+                        <option value="Tangible">Tangible</option>
+                        <option value="Valuation Package">Valuation Package</option>
+                        <option value="Vesting Update">Vesting Update</option>
+
+                    </select>
+                    <input type="text" class="other" name="Project 2 Description - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_02_DueDate">Due Date:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Proj 2 Due Date" id="Proj_02_DueDate" class="dt_pckr" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_03_Description">Project 3 Description:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Proj 3 Description" id="Proj_03_Description">
+                        <option value=""></option>
+                        <option value="1040 (IRS Form: Individual)">1040 (IRS Form: Individual)</option>
+                        <option value="1040 - Dependents (IRS Form: Client's dependents)">1040 - Dependents (IRS Form: Client's dependents)</option>
+                        <option value="1040NR (IRS Form: Non Resident Individual Tax)">1040NR (IRS Form: Non Resident Individual Tax)</option>
+                        <option value="1040X (IRS Form: Amended - Individual)">1040X (IRS Form: Amended - Individual)</option>
+                        <option value="1041 (IRS Form: Fiduciary Returns)">1041 (IRS Form: Fiduciary Returns)</option>
+                        <option value="1041 - Estate">1041 - Estate</option>
+                        <option value="1045 (IRS Form: Tentative refund)">1045 (IRS Form: Tentative refund)</option>
+                        <option value="1065 (IRS Form: Partnership Rtn)">1065 (IRS Form: Partnership Rtn)</option>
+                        <option value="1099 (IRS Form: 1099, 1096)">1099 (IRS Form: 1099, 1096)</option>
+                        <option value="1099R (IRS Form: 1096, 1099R)">1099R (IRS Form: 1096, 1099R)</option>
+                        <option value="1099R DRL">1099R DRL</option>
+                        <option value="1120 (IRS Form: C Corp Rtn)">1120 (IRS Form: C Corp Rtn)</option>
+                        <option value="1120H (IRS Form: Homeowners Association)">1120H (IRS Form: Homeowners Association)</option>
+                        <option value="1120S (IRS Form: S Corp Rtn)">1120S (IRS Form: S Corp Rtn)</option>
+                        <option value="1139 (IRS Form: NOL)">1139 (IRS Form: NOL)</option>
+                        <option value="402g Testing">402g Testing</option>
+                        <option value="5227 (IRS Form: Split interest trust)">5227 (IRS Form: Split interest trust)</option>
+                        <option value="5330">5330</option>
+                        <option value="5500 (IRS Form: 5500)">5500 (IRS Form: 5500)</option>
+                        <option value="706 (IRS Form: Estate Tax Return)">706 (IRS Form: Estate Tax Return)</option>
+                        <option value="709 (IRS Form: Gift tax return)">709 (IRS Form: Gift tax return)</option>
+                        <option value="945 (IRS Form: 945)">945 (IRS Form: 945)</option>
+                        <option value="990 (IRS Form: Non - profit)">990 (IRS Form: Non - profit)</option>
+                        <option value="990-PF (IRS Form: Private Foundation)">990-PF (IRS Form: Private Foundation)</option>
+                        <option value="990-T (IRS Form: Non-profit Corp)">990-T (IRS Form: Non-profit Corp)</option>
+                        <option value="ADP/ACP Testing">ADP/ACP Testing</option>
+                        <option value="Amended - Corporate">Amended - Corporate</option>
+                        <option value="Amended - Fiduciary">Amended - Fiduciary</option>
+                        <option value="Amended - Partnership (IRS Form: US 1065)">Amended - Partnership (IRS Form: US 1065)</option>
+                        <option value="Bookkeeping - Monthly">Bookkeeping - Monthly</option>
+                        <option value="Bookkeeping - Quarterly">Bookkeeping - Quarterly</option>
+                        <option value="CFF/SS">CFF/SS</option>
+                        <option value="Compilation - Full Disclosure">Compilation - Full Disclosure</option>
+                        <option value="Compilation - No Disclosure">Compilation - No Disclosure</option>
+                        <option value="Consulting">Consulting</option>
+                        <option value="Corporate State Return">Corporate State Return</option>
+                        <option value="Data Request Letter">Data Request Letter</option>
+                        <option value="EA Executed">EA Executed</option>
+                        <option value="EGTRRA Executed">EGTRRA Executed</option>
+                        <option value="EGTRRA Restatement">EGTRRA Restatement</option>
+                        <option value="Engagement Agreement">Engagement Agreement</option>
+                        <option value="F-1120 (IRS Form: Florida Corporate Return)">F-1120 (IRS Form: Florida Corporate Return)</option>
+                        <option value="Fiduciary State Return">Fiduciary State Return</option>
+                        <option value="Financial Statement">Financial Statement</option>
+                        <option value="Financial Statement (Ind)">Financial Statement (Ind)</option>
+                        <option value="FL DACS Annual Registration">FL DACS Annual Registration</option>
+                        <option value="Individual State Return">Individual State Return</option>
+                        <option value="Investment Advisory">Investment Advisory</option>
+                        <option value="Other">Other</option>
+                        <option value="Partnership State Return (IRS Form: FL)">Partnership State Return (IRS Form: FL)</option>
+                        <option value="Payroll Submission Files">Payroll Submission Files</option>
+                        <option value="Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)">Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)</option>
+                        <option value="PPA Amendment">PPA Amendment</option>
+                        <option value="PPA Executed">PPA Executed</option>
+                        <option value="Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)">Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)</option>
+                        <option value="Review">Review</option>
+                        <option value="Sales Tax Return">Sales Tax Return</option>
+                        <option value="SH Notice">SH Notice</option>
+                        <option value="SHN Distributed">SHN Distributed</option>
+                        <option value="Tangible">Tangible</option>
+                        <option value="Valuation Package">Valuation Package</option>
+                        <option value="Vesting Update">Vesting Update</option>
+
+                    </select>
+                    <input type="text" class="other" name="Project 3 Description - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_03_DueDate">Due Date:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Proj 3 Due Date" id="Proj_03_DueDate" class="dt_pckr" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_04_Description">Project 4 Description:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Proj 4 Description" id="Proj_04_Description">
+                        <option value=""></option>
+
+                        <option value="1040 (IRS Form: Individual)">1040 (IRS Form: Individual)</option>
+                        <option value="1040 - Dependents (IRS Form: Client's dependents)">1040 - Dependents (IRS Form: Client's dependents)</option>
+                        <option value="1040NR (IRS Form: Non Resident Individual Tax)">1040NR (IRS Form: Non Resident Individual Tax)</option>
+                        <option value="1040X (IRS Form: Amended - Individual)">1040X (IRS Form: Amended - Individual)</option>
+                        <option value="1041 (IRS Form: Fiduciary Returns)">1041 (IRS Form: Fiduciary Returns)</option>
+                        <option value="1041 - Estate">1041 - Estate</option>
+                        <option value="1045 (IRS Form: Tentative refund)">1045 (IRS Form: Tentative refund)</option>
+                        <option value="1065 (IRS Form: Partnership Rtn)">1065 (IRS Form: Partnership Rtn)</option>
+                        <option value="1099 (IRS Form: 1099, 1096)">1099 (IRS Form: 1099, 1096)</option>
+                        <option value="1099R (IRS Form: 1096, 1099R)">1099R (IRS Form: 1096, 1099R)</option>
+                        <option value="1099R DRL">1099R DRL</option>
+                        <option value="1120 (IRS Form: C Corp Rtn)">1120 (IRS Form: C Corp Rtn)</option>
+                        <option value="1120H (IRS Form: Homeowners Association)">1120H (IRS Form: Homeowners Association)</option>
+                        <option value="1120S (IRS Form: S Corp Rtn)">1120S (IRS Form: S Corp Rtn)</option>
+                        <option value="1139 (IRS Form: NOL)">1139 (IRS Form: NOL)</option>
+                        <option value="402g Testing">402g Testing</option>
+                        <option value="5227 (IRS Form: Split interest trust)">5227 (IRS Form: Split interest trust)</option>
+                        <option value="5330">5330</option>
+                        <option value="5500 (IRS Form: 5500)">5500 (IRS Form: 5500)</option>
+                        <option value="706 (IRS Form: Estate Tax Return)">706 (IRS Form: Estate Tax Return)</option>
+                        <option value="709 (IRS Form: Gift tax return)">709 (IRS Form: Gift tax return)</option>
+                        <option value="945 (IRS Form: 945)">945 (IRS Form: 945)</option>
+                        <option value="990 (IRS Form: Non - profit)">990 (IRS Form: Non - profit)</option>
+                        <option value="990-PF (IRS Form: Private Foundation)">990-PF (IRS Form: Private Foundation)</option>
+                        <option value="990-T (IRS Form: Non-profit Corp)">990-T (IRS Form: Non-profit Corp)</option>
+                        <option value="ADP/ACP Testing">ADP/ACP Testing</option>
+                        <option value="Amended - Corporate">Amended - Corporate</option>
+                        <option value="Amended - Fiduciary">Amended - Fiduciary</option>
+                        <option value="Amended - Partnership (IRS Form: US 1065)">Amended - Partnership (IRS Form: US 1065)</option>
+                        <option value="Bookkeeping - Monthly">Bookkeeping - Monthly</option>
+                        <option value="Bookkeeping - Quarterly">Bookkeeping - Quarterly</option>
+                        <option value="CFF/SS">CFF/SS</option>
+                        <option value="Compilation - Full Disclosure">Compilation - Full Disclosure</option>
+                        <option value="Compilation - No Disclosure">Compilation - No Disclosure</option>
+                        <option value="Consulting">Consulting</option>
+                        <option value="Corporate State Return">Corporate State Return</option>
+                        <option value="Data Request Letter">Data Request Letter</option>
+                        <option value="EA Executed">EA Executed</option>
+                        <option value="EGTRRA Executed">EGTRRA Executed</option>
+                        <option value="EGTRRA Restatement">EGTRRA Restatement</option>
+                        <option value="Engagement Agreement">Engagement Agreement</option>
+                        <option value="F-1120 (IRS Form: Florida Corporate Return)">F-1120 (IRS Form: Florida Corporate Return)</option>
+                        <option value="Fiduciary State Return">Fiduciary State Return</option>
+                        <option value="Financial Statement">Financial Statement</option>
+                        <option value="Financial Statement (Ind)">Financial Statement (Ind)</option>
+                        <option value="FL DACS Annual Registration">FL DACS Annual Registration</option>
+                        <option value="Individual State Return">Individual State Return</option>
+                        <option value="Investment Advisory">Investment Advisory</option>
+                        <option value="Other">Other</option>
+                        <option value="Partnership State Return (IRS Form: FL)">Partnership State Return (IRS Form: FL)</option>
+                        <option value="Payroll Submission Files">Payroll Submission Files</option>
+                        <option value="Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)">Pension/Profit-Sharing Rtn/Rpt (IRS Form: US 5500)</option>
+                        <option value="PPA Amendment">PPA Amendment</option>
+                        <option value="PPA Executed">PPA Executed</option>
+                        <option value="Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)">Quarterly Payroll Tax Return (IRS Form: 940, 941, UCT-6, W-2, W-3)</option>
+                        <option value="Review">Review</option>
+                        <option value="Sales Tax Return">Sales Tax Return</option>
+                        <option value="SH Notice">SH Notice</option>
+                        <option value="SHN Distributed">SHN Distributed</option>
+                        <option value="Tangible">Tangible</option>
+                        <option value="Valuation Package">Valuation Package</option>
+                        <option value="Vesting Update">Vesting Update</option>
+
+                    </select>
+                    <input type="text" class="other" name="Project 4 Description - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Proj_04_DueDate">Due Date:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Proj 4 Due Date" id="Proj_04_DueDate" class="dt_pckr" /></div>
+            </div>
+        </div>
+
+
+        <h2>Staff Assigned</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="PrimaryPartner">Shareholder/Senior Manager:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="Primary Partner" id="PrimaryPartner" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="BillManager">Bill Manager:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="Bill Manager" id="BillManager" /></div>
+            </div>
+        </div>
+
+
+        <h2>Responsible for Acquiring Client</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="EmployeeResponsible">Employee:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="EmployeeResponsible" id="EmployeeResponsible" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th">
+                    <label for="MarketingMethodResponsible">Marketing Method:</label>
+                </div>
+                <div class="css_tbl_td">
+                    <select name="Marketing Method Responsible" id="MarketingMethodResponsible" required>
+                        <option value=""></option>
+                        <option value="Business Publication">Business Publication</option>
+                        <option value="Client Expansion">Client Expansion</option>
+                        <option value="Community Event">Community Event</option>
+                        <option value="Former Client Returning">Former Client Returning</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Mailer">Mailer</option>
+                        <option value="Marketing Awards Program">Marketing Awards Program</option>
+                        <option value="Newspaper">Newspaper</option>
+                        <option value="Personal Relationship">Personal Relationship</option>
+                        <option value="Phone Directory">Phone Directory</option>
+                        <option value="Proposal">Proposal</option>
+                        <option value="QuickBooks Seminar">QuickBooks Seminar</option>
+                        <option value="Referral Alumni">Referral Alumni</option>
+                        <option value="Referral Attorney">Referral Attorney</option>
+                        <option value="Referral Banker">Referral Banker</option>
+                        <option value="Referral Client">Referral Client</option>
+                        <option value="Referral Individual">Referral Individual</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" class="other" name="Marketing Method - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="ReferralResponsible">Referral:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="Referral Responsible" id="ReferralResponsible" /></div>
+            </div>
+        </div>
+
+
+        <h2>PD Team Information</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="PD_Team_Mbr_1">PD Team Member 1:</label></div>
+                <div class="css_tbl_td"><input type="text" name="PD Team Member 1" id="PD_Team_Mbr_1" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="PD_Team_Mbr_2">PD Team Member 2:</label></div>
+                <div class="css_tbl_td"><input type="text" name="PD Team Member 2" id="PD_Team_Mbr_2" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="PD_Team_Mbr_3">PD Team Member 3:</label></div>
+                <div class="css_tbl_td"><input type="text" name="PD Team Member 3" id="PD_Team_Mbr_3" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="PD_Team_Mbr_4">PD Team Member 4:</label></div>
+                <div class="css_tbl_td"><input type="text" name="PD Team Member 4" id="PD_Team_Mbr_4" /></div>
+            </div>
+
+        </div>
+
+
+        <h2>Email Contact Lists</h2>
+        <p>Complete the following to add your client contact to the firm's various email lists. Select all that apply. To add multiple entries, contact the Marketing Department.</p>
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label data-id="First Name:label" data-name="first_name" class="ctct-form-required">First Name:</label></div>
+                <div class="css_tbl_td">
+                    <input class="cc" data-id="ca:input" type="hidden" name="ca" value="bed13c5b-2af4-4d50-974f-113e1206e495">
+                    <input class="cc" data-id="source:input" type="hidden" name="source" value="EFD">
+                    <input class="cc" data-id="required:input" type="hidden" name="required" value="list,email,first_name,last_name">
+                    <input class="cc" data-id="url:input" type="hidden" name="url" value="">
+                    <input class="cc" data-id="First Name:input" type="text" name="first_name" value="" maxlength="50">
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label data-id="Last Name:label" data-name="last_name" class="ctct-form-required">Last Name:</label></div>
+                <div class="css_tbl_td"><input class="cc" data-id="Last Name:input" type="text" name="last_name" value="" maxlength="50"></div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label data-id="Email Address:label" data-name="email" class="ctct-form-required">Email Address:</label></div>
+                <div class="css_tbl_td"><input class="cc" data-id="Email Address:input" type="text" name="email" value="" maxlength="80"></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label data-id="Lists:label" data-name="list" class="ctct-form-required">Email Lists:</label></div>
+                <div class="css_tbl_td">
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_0" value="1858018559"><span data-id="Lists:span">A&amp;A Update</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_1" value="1469524745"><span data-id="Lists:span">AL Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_2" value="1366335817"><span data-id="Lists:span">AML User Banks</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_3" value="2042400975"><span data-id="Lists:span">AML User Credit Union</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_4" value="2"><span data-id="Lists:span">Bank Advisors - Industry Updates</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_5" value="1125633137"><span data-id="Lists:span">Bank Advisors - Regulatory Updates</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_6" value="1130321571"><span data-id="Lists:span">CMO Virtual Roundtable Meetings (Banks)</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_7" value="1115334179"><span data-id="Lists:span">CMO Virtual Roundtable Meetings (Credit Unions)</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_8" value="1690749315"><span data-id="Lists:span">Construction Industry Update</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_9" value="1125354633"><span data-id="Lists:span">Credit Union Advisors - Industry Updates</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_10" value="1791119266"><span data-id="Lists:span">Credit Union Advisors - Regulatory Updates</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_11" value="1993378087"><span data-id="Lists:span">Dimensions - Qtrly Construction Newsletter</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_12" value="1745768347"><span data-id="Lists:span">Investment Update- Monthly Investment Newsletter</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_13" value="1543462960"><span data-id="Lists:span">JAX Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_14" value="1984686593"><span data-id="Lists:span">NWFL Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_15" value="1532970031"><span data-id="Lists:span">ORL Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_16" value="2006055364"><span data-id="Lists:span">Pensacola Business Leaders Funnel</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_17" value="1244681432"><span data-id="Lists:span">Reingruber Report - Healthcare Newsletter</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_18" value="1914017068"><span data-id="Lists:span">SEFL Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_19" value="1237537709"><span data-id="Lists:span">SWFL Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_20" value="2052248011"><span data-id="Lists:span">Tampa Bank CFO</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_21" value="1145810384"><span data-id="Lists:span">Tax - C-CORP</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_22" value="1559963109"><span data-id="Lists:span">Tax - CORPORATION</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_23" value="1330530962"><span data-id="Lists:span">Tax - INDIVIDUAL</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_24" value="2030074501"><span data-id="Lists:span">Tax - NON PROFIT</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_25" value="1968665043"><span data-id="Lists:span">Tax - Other</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_26" value="2050255457"><span data-id="Lists:span">Tax - PARTNERSHIP</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_27" value="1011751208"><span data-id="Lists:span">Tax - S-CORP</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_28" value="1018358160"><span data-id="Lists:span">Tax - SOLE PROPRTR</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_29" value="1363750320"><span data-id="Lists:span">Tax - TRUST</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_30" value="1902720391"><span data-id="Lists:span">The Saltmarsh Report - Qtrly Law Newsletter</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_31" value="1090952273"><span data-id="Lists:span">The Trusted Business Insider - Qtrly Business Newsletter</span><br />
+                    <input class="cc" data-id="Lists:input" type="checkbox" name="list_32" value="71"><span data-id="Lists:span">Upcoming Seminars by Saltmarsh</span>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>Other Information</h2>
+
+        <div class="css_tbl css_tbl_frm css_tbl_sgl">
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="InvoiceByEmail">Invoices By Email:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Invoice By Email" id="InvoiceByEmail">
+                        <option value="Yes">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="AcctSoftware">Account Software:</label></div>
+                <div class="css_tbl_td">
+                    <select name="Account Software" id="AcctSoftware">
+                        <option value=""></option>
+                        <option value="Great Plains">Great Plains</option>
+                        <option value="MAS 90">MAS 90</option>
+                        <option value="PeachTree">PeachTree</option>
+                        <option value="Proprietary">Proprietary</option>
+                        <option value="QuickBooks">QuickBooks</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" class="other" name="Account Software - Explain Other" placeholder="Explain Other" />
+                </div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="NumEmployees">Num of Employees:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Num Employees" id="NumEmployees" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Date">Date:</label></div>
+                <div class="css_tbl_td"><input class="dt_pckr" type="text" name="Date" id="Date" value="@string.Format("{0:MM/dd/yyyy}",DateTime.Now)" /></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="AddFileType">Additional File Type:</label></div>
+                <div class="css_tbl_td"><input type="text" name="Additional File Type" id="AddFileType" /></div>
+            </div>
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="AddNotes">Additional Notes:</label></div>
+                <div class="css_tbl_td"><textarea name="Additional Notes" id="AddNotes"></textarea></div>
+            </div>
+            <div class="css_tbl_tr">
+                <div class="css_tbl_th"><label for="Author">Form Filled Out By:</label></div>
+                <div class="css_tbl_td"><input required type="text" name="Author" id="Author" style="text-transform:capitalize;" value="@string.Join(" ", User.Identity.Name.Remove(0, 8).Split('.'))" /></div>
+            </div>
+        </div>
+
+
+        <hr class="css_tbl_spc" />
+
+        <div class="css_tbl css_tbl_sbmt">
+
+            <div class="css_tbl_tr">
+                <div class="css_tbl_td">
+                    <input id="profileSubmit" type="submit" value="Submit" />
+                    <input type="reset" value="Cancel" />
+                    <input type="hidden" id="form__EmailSubject" name="form__EmailSubject" value="New Client Form" />
+                    <input type="hidden" id="form__EmailFrom" name="form__EmailFrom" value="fax@saltmarshcpa.com" />
+                    <input type="hidden" id="form__EmailTo" name="form__EmailTo" value="fax@saltmarshcpa.com" />
+                    @*<input type="hidden" id="form__EmailAddTo" name="form__EmailAddTo" value="" />*@
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/forms")
+    <script type="text/javascript">
+
+        // Office - Email To Field
+        $('#Office').change(function () {
+            var o = $(this).val();
+            if (o === 'Fort Walton Beach') {
+                $('#form__EmailTo').val('teri.elkins@saltmarshcpa.com');
+            } else {
+                $('#form__EmailTo').val('fax@saltmarshcpa.com');
+            }
+        });
+
+        // Same Info as Above
+        $('#same').click(function () {
+            $('.same').each(function (i, e) {
+                var i = $(e).attr('id').replace('Bill', 'Main');
+                console.log(i);
+                var v = $('#' + i).val();
+                $(e).val(v);
+            });
+        });
+
+        $('form#newclient').submit(function (e) {
+            e.preventDefault();
+            $.post('/Email/SendEmail', $('form#newclient').serialize(), function (r) {
+                if (r == 'Success') {
+                    $('html:not(:animated),body:not(:animated)').animate({ scrollTop: 0 }, 500, function () {
+                        $('input[type="reset"]').click();
+                        $('#success').fadeIn();
+                    });
+                    // Constant Contact Post
+                    $.post('https://visitor2.constantcontact.com/api/signup', $('.cc').serialize(), function () {
+                        $('#success').append('<span>Client was added to Constant Contact.</span>');
+                    }).fail(function () {
+                        $('#success').append('<span>Client was NOT added to Constant Contact.</span>');
+                    });
+                }
+            })
+        });
+
+        $('.other').hide();
+        $('select').change(function () {
+            var v = $(this).val();
+            if (v == 'Other') {
+                $(this).next('.other').show();
+            } else {
+            }
+        });
+
+    </script>
+
+}
+
+
+
+
+
+

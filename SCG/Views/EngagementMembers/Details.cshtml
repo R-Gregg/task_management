@@ -1,0 +1,50 @@
+﻿@model SCG.Models.EngagementMember
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EngagementMember</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Leader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leader)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Engagement.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Engagement.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Guid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Guid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

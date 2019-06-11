@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - OneFirm</title>
+  @Styles.Render("~/Layout/css")
+  @Scripts.Render("~/bundles/jquery")
+</head>
+<body class="@ViewBag.Page_Nav @ViewBag.Page_Area @ViewBag.Page_Layout" id="@ViewBag.Page_ID">
+  <div id="header">
+    <div id="info-bar">
+      <div>
+        <span id="main_nav" style="display:inline-block; border-right:#555 dashed 1px; padding-right:20px; color:#CCC;">
+          <a id="onefirm_a" href="/Home/">One Firm</a>|
+          <a id="departments_a" href="/HR/Forms">Departments</a>|
+          <a id="resources_a" href="/Resources/">Resources</a>
+        </span>
+        @if (ViewBag.ShowYearSelector == true)
+        {
+          <span id="year_selector">This Data Is From: @Html.DropDownList("SelectYear")</span>
+        }
+        <span style="float: right;">
+          <span style="display:inline-block; border-right:#555 dashed 1px; margin-right: 20px; padding-right:10px;">
+            @if (ViewBag.Tutorial == true)
+            {
+              <a href="Javascript:void(0);">
+                <i id="help" class="fa fa-question-circle" aria-hidden="true"></i>
+              </a>
+            }
+            <a href="Javascript:void(0);">
+              <i id="full-screen" class="fa fa-arrows-alt" aria-hidden="true"></i>
+            </a>
+          </span>
+          @{
+            var user_name = "Hello, " + string.Join(" ", User.Identity.Name.Remove(0, 8).Split('.')) + "!";
+          }
+          <a id="profile_button" href="/Profiles/Edit/" style="text-transform:capitalize;"><i class="fa fa-user" aria-hidden="true"></i> - @user_name</a>
+
+        </span>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+
+    <div class="window_expand" id="hero">
+      <div id="hero-image">
+        <a href="/"><img id="logo" src="~/images/logo-wht-drp.svg" /></a>
+      </div>
+    </div>
+
+
+    <div class="window_expand" id="nav">
+      @Html.Partial("_Nav")
+    </div>
+
+  </div>
+
+
+  <div id="hero-bumper" class="window_expand"></div>
+
+  <div id="columns">
+
+    <div class="columns" id="col-1">
+      <div>
+        <div id="two_minutes_wrp" style="width: 100%; min-height: 240px; margin-bottom: 50px; background: url(/images/two-minutes-poster.png) center no-repeat;"></div>
+        <div id="conference_rooms">
+          <div class="conf-load"><span class="rss-load"><i class="fa fa-meh-o fa-spin" aria-hidden="true" style="color:white;"></i></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns" id="col-2">
+      <div>@RenderBody()</div>
+    </div>
+
+    <div class="columns" id="col-3">
+      <div>
+        <div id="facebook_feed"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="window_expand" id="footer">
+    <div>
+      <p style="font-family:'latolight'; font-size:18px; text-transform:uppercase; margin:5px;">Since 1944</p>
+      <p style="font-family:'abraham_lincolnregular'; font-size:32px;">“Achieving Success by Contributing to the Success of Others”</p>
+    </div>
+  </div>
+
+  <div id="modalBox"></div>
+  <div id="eggBasket"></div>
+
+
+  @Scripts.Render("~/bundles/bootstrap")
+  @Scripts.Render("~/bundles/scripts")
+  @RenderSection("scripts", required: false)
+
+  <script>
+
+        $('#two_minutes_wrp').load('/TwoMinutes/TwoMinutes/');
+
+        $(document).ready(function () {
+            $('#conference_rooms').load('/Home/Calendar');
+            $('#facebook_feed').load('/Home/Facebook');
+        });
+  </script>
+</body>
+</html>

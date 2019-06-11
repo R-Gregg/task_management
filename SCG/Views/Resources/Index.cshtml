@@ -1,0 +1,89 @@
+﻿
+@{
+  ViewBag.Title = "Resources";
+  ViewBag.Page_Nav = "resources";
+  ViewBag.Page_Area = "resources_area";
+  ViewBag.Page_ID = "";
+  ViewBag.Page_Layout = "columns_3";
+}
+<style>
+  .resources-holder {
+    text-align: center;
+  }
+
+  .resource-block {
+    width: 250px;
+    height: 250px;
+    border-radius: 250px;
+    display: inline-block;
+    color: #FFF;
+    vertical-align: top;
+    margin: 15px;
+    line-height: 250px;
+    text-align: center;
+    font-size: 25px;
+  }
+
+    .resource-block.proj-man {
+      background-image: url("../../assets/Misc/project_manager.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .resource-block.new-client {
+      background-image: url("../../assets/Misc/new_client.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .resource-block.mjl {
+      background-image: url("../../assets/Misc/mjl.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .resource-block.kb {
+      background-image: url("../../assets/Misc/knowledge_base.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .resource-block .layer {
+      background-color: #0563C1;
+      opacity: 0.85;
+      border-radius: 250px;
+      width: 250px;
+      height: 250px;
+      position: absolute
+    }
+
+    .resource-block .resource-text {
+      opacity: 1;
+      color: #FFF;
+      font-size: 25px;
+      position: absolute;
+      width: 250px;
+      height: 250px;
+    }
+</style>
+
+<div class="page-holder">
+  <h2>Resources</h2>
+
+  <div style="margin-bottom: 25px;">Welcome to the Saltmarsh Resources Page. Applications and Forms that have been integrated with the Intranet are found here.</div>
+
+  <div class="resources-holder">
+    <a href="/Projects"><div class="resource-block proj-man"><div class="layer"></div><div class="resource-text">Project Manager</div></div></a>
+    <a href="/Home/Form_NewClient"><div class="resource-block new-client"><div class="layer"></div><div class="resource-text">New Client Form</div></div></a>
+    @if (User.IsInRole("SCG-CPA\\MJL"))
+    {
+      <a href="/MJL"><div class="resource-block mjl"><div class="layer"></div><div class="resource-text">MJL</div></div></a>
+      <div class="resource-block kb"><div class="layer"></div><div class="resource-text">MJL Knowledge Base</div></div>
+    }
+  </div>
+
+</div>
